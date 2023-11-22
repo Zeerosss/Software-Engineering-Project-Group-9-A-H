@@ -25,10 +25,10 @@
             </AnchorPane>
             <TableView fx:id="rulesTable" prefHeight="480.0" prefWidth="480.0">
               <columns>
-                <TableColumn prefWidth="89.0" text="Status" />
-                <TableColumn prefWidth="114.0" text="Name" />
-                  <TableColumn prefWidth="129.0" text="Trigger" />
-                  <TableColumn prefWidth="144.0" text="Action" />
+                <TableColumn fx:id="statusId" prefWidth="89.0" text="Enabled" />
+                <TableColumn fx:id="ruleNameId" prefWidth="114.0" text="Name" />
+                  <TableColumn fx:id="triggerNameId" prefWidth="129.0" text="Trigger" />
+                  <TableColumn fx:id="actionNameId" prefWidth="144.0" text="Action" />
               </columns>
             </TableView>
          </children>
