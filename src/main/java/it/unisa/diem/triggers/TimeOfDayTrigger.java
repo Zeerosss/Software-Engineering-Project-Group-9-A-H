@@ -1,17 +1,18 @@
 package it.unisa.diem.triggers;
 
-public class TimeOfDayTrigger implements Trigger {
-    private int hour;
-    private int minute;
+import java.time.LocalTime;
 
-    public TimeOfDayTrigger(int hour,int minute){
-        this.hour=hour;
-        this.minute=minute;
+public class TimeOfDayTrigger implements Trigger {
+    LocalTime time;
+
+    public TimeOfDayTrigger(LocalTime time){
+        this.time = time;
     }
     @Override
     public boolean isValidated(){
-
-        return true;
+        LocalTime now = LocalTime.now();
+        
+        return( now.getHour() == time.getHour() && now.getMinute() == time.getMinute());
     }
     
 }
