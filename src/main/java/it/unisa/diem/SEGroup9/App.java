@@ -1,4 +1,4 @@
-package it.unisa.diem;
+package it.unisa.diem.SEGroup9;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

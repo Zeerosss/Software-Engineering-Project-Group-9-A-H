@@ -1,4 +1,6 @@
-package it.unisa.diem;
+package it.unisa.diem.actions.AudioFileAction;
+
+import it.unisa.diem.actions.Action;
 
 public class PlayAudioFileAction implements Action{
     private String filepath;
@@ -8,6 +10,4 @@ public class PlayAudioFileAction implements Action{
     }
     @Override
     public void startAction(){}
-
-    public void audioAction(){}
 }

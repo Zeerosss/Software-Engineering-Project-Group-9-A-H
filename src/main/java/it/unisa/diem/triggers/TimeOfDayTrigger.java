@@ -1,4 +1,4 @@
-package it.unisa.diem;
+package it.unisa.diem.triggers;
 
 public class TimeOfDayTrigger implements Trigger {
     private int hour;

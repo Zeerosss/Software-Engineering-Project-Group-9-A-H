@@ -1,4 +1,6 @@
-package it.unisa.diem;
+package it.unisa.diem.actions.MessageAction;
+
+import it.unisa.diem.actions.Action;
 
 public class ShowDialogBoxAction implements Action{
     private String message;

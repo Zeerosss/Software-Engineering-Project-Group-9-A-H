@@ -1,4 +1,4 @@
-package it.unisa.diem;
+package it.unisa.diem.triggers;
 
 public interface Trigger {
     public boolean isValidated();

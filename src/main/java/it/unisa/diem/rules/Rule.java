@@ -1,4 +1,7 @@
-package it.unisa.diem;
+package it.unisa.diem.rules;
+
+import it.unisa.diem.actions.Action;
+import it.unisa.diem.triggers.Trigger;
 
 public class Rule {
     private String name;

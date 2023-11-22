@@ -1,4 +1,4 @@
-package it.unisa.diem;
+package it.unisa.diem.SEGroup9;
 
 import java.io.IOException;
 import java.net.URL;

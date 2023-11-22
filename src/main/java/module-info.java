@@ -1,8 +1,9 @@
-module it.unisa.diem {
+module it.unisa.diem{
     requires javafx.controls;
     requires javafx.fxml;
     requires junit;
 
-    opens it.unisa.diem to javafx.fxml;
+    opens it.unisa.diem.SEGroup9 to javafx.fxml;
     exports it.unisa.diem;
+    exports it.unisa.diem.SEGroup9;
 }

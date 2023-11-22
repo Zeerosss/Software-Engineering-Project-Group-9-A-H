@@ -1,4 +1,4 @@
-package it.unisa.diem;
+package it.unisa.diem.actions;
 
 import java.util.LinkedList;
 import java.util.List;
