@@ -23,18 +23,14 @@ public class AudioActionController implements AbstractActionController{
         fileChooser.getExtensionFilters().add(extensionFilter);
         fileChooser.setTitle("Open Resource File");
         file = fileChooser.showOpenDialog(App.getStage());
-        System.out.println(file);
+        //System.out.println(file); remove comment if there is the need to show the path
         
-            
-        
-        //TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'initialize'");
     }
 
     @Override
     public Action createAction() {
-        // TODO Auto-generated method stub
-        if( this.isFilled()){
+        // comment
+        if(this.isFilled()){
             return( new PlayAudioFileAction(file.getPath()));
         }else return null;
         

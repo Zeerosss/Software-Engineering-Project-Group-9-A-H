@@ -30,6 +30,11 @@ public class App extends Application {
         
     }
 
+/**
+* Retrieves the primary stage associated with the current scene.
+ * 
+ * @return The primary stage.
+ */
     public static Stage getStage(){
         return ((Stage)scene.getWindow());
     }
