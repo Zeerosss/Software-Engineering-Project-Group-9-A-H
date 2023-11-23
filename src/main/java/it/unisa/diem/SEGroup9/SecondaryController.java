@@ -99,7 +99,7 @@ public class SecondaryController implements Initializable {
     @Override
         public void initialize(URL arg0, ResourceBundle arg1) {
             alert = new Alert(Alert.AlertType.WARNING);
-            actionBox.getItems().setAll("Play an audio file wip", "Display a message wip");
+            actionBox.getItems().setAll("Play an audio file", "Display a message wip");
             triggerBox.getItems().setAll("Time of day Trigger wip");
     
             actionBox.getSelectionModel().selectedIndexProperty().addListener((odd, oldValue, newValue) -> {
