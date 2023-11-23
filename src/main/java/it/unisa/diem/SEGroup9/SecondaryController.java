@@ -59,10 +59,20 @@ public class SecondaryController implements Initializable {
         }else{
             try{
             Action action = actionController.createAction();
+
+            if (action == null) {
+                // Mostra un avviso se l'oggetto action è nullo
+                alert.setTitle("Warning");
+                alert.setHeaderText("WARNING!");
+                alert.setContentText("First select an audio file!");
+                alert.showAndWait();
+            }
+            else{
             alreadyAdd.getItems().add(ruleName);
             triggerBox.setValue(null);
             actionBox.setValue(null);
             ruleNameLabel.setText(null);
+            }
             }catch(Exception e){
                 System.err.println("errore");
             }
