@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.unisa.diem.triggers.AbstractTriggerController;
+import it.unisa.diem.triggers.Trigger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,7 +24,7 @@ public class SecondaryController implements Initializable {
     @FXML
     private Button confirmRuleButton;
 
-    private TimeTriggerController timeTriggerController; 
+    private AbstractTriggerController triggerController; 
 
     private Alert alert;
 
@@ -57,12 +59,18 @@ public class SecondaryController implements Initializable {
             alert.showAndWait();
 
         }else{
-
+            Trigger trigger;
+            try{trigger = triggerController.createTrigger();
+                
+            System.out.println(trigger.toString());
             alreadyAdd.getItems().add(ruleName);
             triggerBox.setValue(null);
             actionBox.setValue(null);
             ruleNameLabel.setText(null);
-            
+            }catch(Exception e){
+                System.err.println("excepiton in trigger creation");
+
+            }
 
             }
 
@@ -81,6 +89,20 @@ public class SecondaryController implements Initializable {
         }else 
         App.setRoot("ruleview");
     }
+    private AbstractTriggerController getTriggerController(String fxml){
+    
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
+
+                try {
+                    Parent root = fxmlLoader.load();
+                    triggerInputPane.getChildren().add(root);
+                    return fxmlLoader.getController();
+                } catch (IOException e) {
+                    System.err.println("error in fxmlLoader");
+                    return null;
+                }
+                
+    }
 
     @Override
     /**
@@ -95,18 +117,8 @@ public class SecondaryController implements Initializable {
 
         triggerBox.getSelectionModel().selectedIndexProperty().addListener((odd, oldValue, newValue) -> {
             triggerInputPane.getChildren().clear();
-
-            if (newValue.intValue() == 0) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("timetrigger.fxml"));
-
-                try {
-                    Parent root = fxmlLoader.load();
-                    triggerInputPane.getChildren().add(root);
-                    timeTriggerController = fxmlLoader.getController();
-                } catch (IOException e) {
-                    System.err.println("error in fxmlLoader");
-                }
-            }
+            if(newValue.intValue() != -1) 
+            triggerController = getTriggerController(TypeConstant.TRIGGERTYPES_CONSTANTS.get(newValue.intValue()));
         });
     }
 }

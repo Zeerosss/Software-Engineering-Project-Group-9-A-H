@@ -14,5 +14,8 @@ public class TimeOfDayTrigger implements Trigger {
         
         return( now.getHour() == time.getHour() && now.getMinute() == time.getMinute());
     }
-    
+    @Override 
+    public String toString(){
+        return("Time trigger set on "+ String.format("%02d", time.getHour()) +":"+String.format("%02d", time.getMinute()));
+    }
 }

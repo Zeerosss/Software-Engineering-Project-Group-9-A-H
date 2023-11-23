@@ -10,7 +10,7 @@ public class TimeOfDayTriggerTest {
     @Test
     public void testIsValidated() {
          LocalTime time = LocalTime.now();
-        Trigger trigger = TriggerFactory.createTrigger(0, time);
+        Trigger trigger = new TimeOfDayTrigger(time);
         assertTrue(trigger.isValidated());
     }
 }

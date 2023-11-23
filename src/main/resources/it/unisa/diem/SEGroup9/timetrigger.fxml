@@ -6,8 +6,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.SEGroup9.TimeTriggerController">
    <children>
-      <Spinner fx:id="hSpinner" editable="true" layoutX="36.0" layoutY="14.0" />
-      <Spinner fx:id="minSpinner" editable="true" layoutX="36.0" layoutY="86.0" />
+      <Spinner fx:id="hSpinner" layoutX="36.0" layoutY="14.0" />
+      <Spinner fx:id="minSpinner" layoutX="36.0" layoutY="86.0" />
       <Label layoutX="195.0" layoutY="18.0" text="h" />
       <Label layoutX="189.0" layoutY="90.0" text="min" />
    </children>
