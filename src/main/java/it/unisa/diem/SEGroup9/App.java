@@ -15,7 +15,7 @@ import java.io.IOException;
 public class App extends Application {
     
     private static Scene scene;
-
+   
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("ruleview"));
@@ -30,6 +30,9 @@ public class App extends Application {
         
     }
 
+    public static Stage getStage(){
+        return ((Stage)scene.getWindow());
+    }
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
@@ -41,5 +44,6 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+
     }
 }
