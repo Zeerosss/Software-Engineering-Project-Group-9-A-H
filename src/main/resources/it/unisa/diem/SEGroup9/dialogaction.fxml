@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.SEGroup9.ShowDialogBoxController">
+   <children>
+      <Label layoutX="148.0" layoutY="23.0" text="Inserisci il tuo messaggio" />
+      <TextField fx:id="showDialogTextId" layoutX="140.0" layoutY="50.0" />
+   </children>
+</AnchorPane>
