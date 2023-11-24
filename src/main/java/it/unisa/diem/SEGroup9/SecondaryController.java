@@ -7,10 +7,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.unisa.diem.triggers.AbstractTriggerController;
-import it.unisa.diem.triggers.Trigger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -21,16 +20,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class SecondaryController implements Initializable {
+    //getting the RuleService Instance to set the elements into the ObservableList
+    private RuleService ruleService = RuleService.getInstance();
+    
     @FXML
     private Button confirmRuleButton;
 
-    private AbstractTriggerController triggerController; 
-
     private Alert alert;
+    private Trigger t;
+    private AbstractActionController actionController; 
 
     @FXML
     private AnchorPane creationPage;
-
+    @FXML
+    private AnchorPane actionSelectionPane;
     @FXML
     private ListView<String> alreadyAdd;
 
@@ -50,8 +53,8 @@ public class SecondaryController implements Initializable {
     private void switchToPrimary() throws IOException {
 
         String ruleName = ruleNameLabel.getText();
-
-        if(triggerBox.getValue() == null || ruleName.isEmpty() || actionBox.getValue() == null){
+        
+        if(triggerBox.getValue() == null || ruleName.isEmpty() || actionBox.getValue() == null||actionController.getText().isEmpty()){
 
             alert.setTitle("Warning");
             alert.setHeaderText("WARNING!");
@@ -60,22 +63,28 @@ public class SecondaryController implements Initializable {
 
         }else{
             Trigger trigger;
-            try{trigger = triggerController.createTrigger();
+            try{
+                trigger = triggerController.createTrigger();
+                          
                 
+                a=actionController.createAction();
+            
+            
+                
+                ruleService.ruleAdd(true,ruleName,t,a);   
             System.out.println(trigger.toString());
-            alreadyAdd.getItems().add(ruleName);
-            triggerBox.setValue(null);
-            actionBox.setValue(null);
-            ruleNameLabel.setText(null);
+                alreadyAdd.getItems().add(ruleName);
+                triggerBox.setValue(null);
+                actionBox.setValue(null);
+                ruleNameLabel.setText(null);
             }catch(Exception e){
-                System.err.println("excepiton in trigger creation");
+                System.err.println("excepiton in creation");
+            }            
 
-            }
-
-            }
-
+        
+        
     }
-    
+        
     @FXML
     private void confirmSet(ActionEvent event) throws IOException{
         if(alreadyAdd.getItems().isEmpty()){
@@ -104,6 +113,21 @@ public class SecondaryController implements Initializable {
                 
     }
 
+    private AbstractActionController getActionController(String fxml){
+    
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
+
+                try {
+                    Parent root = fxmlLoader.load();
+                    actionSelectionPane.getChildren().add(root);
+                    return fxmlLoader.getController();
+                } catch (IOException e) {
+                    System.err.println("error in fxmlLoader");
+                    return null;
+                }
+                
+    }
+
     @Override
     /**
      * Initializes the SecondaryController.
@@ -120,5 +144,16 @@ public class SecondaryController implements Initializable {
             if(newValue.intValue() != -1) 
             triggerController = getTriggerController(TypeConstant.TRIGGERTYPES_CONSTANTS.get(newValue.intValue()));
         });
+    
+
+    
+        actionBox.getSelectionModel().selectedIndexProperty().addListener((odd, oldValue, newValue) -> {
+            actionSelectionPane.getChildren().clear();
+            if (newValue.intValue() != -1) {
+                actionController=getActionController(TypeConstant.ACTIONTYPES_CONSTANTS.get(newValue.intValue()));}
+    });
+    
     }
-}
+    
+
+    

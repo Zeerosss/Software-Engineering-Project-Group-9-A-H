@@ -5,7 +5,9 @@ import java.time.LocalTime;
 public class TimeOfDayTrigger implements Trigger {
     LocalTime time;
 
-    public TimeOfDayTrigger(LocalTime time){
+    public TimeOfDayTrigger(){
+    }
+    public void timeTrigger(LocalTime time){
         this.time = time;
     }
     @Override

@@ -46,5 +46,6 @@
          </font></Label>
       <Line endX="-424.5" endY="220.69998168945312" layoutX="592.0" layoutY="19.0" startX="47.0" startY="220.69998168945312" stroke="#d1cfcf" />
       <AnchorPane fx:id="triggerInputPane" layoutX="175.0" layoutY="90.0" prefHeight="135.0" prefWidth="440.0" />
+      <AnchorPane fx:id="actionInputPane" layoutX="187.0" layoutY="304.0" prefHeight="125.0" prefWidth="430.0" />
    </children>
 </AnchorPane>
