@@ -17,15 +17,22 @@ public class ShowDialogBoxController implements AbstractActionController{
 
     @Override
     public Action createAction() {
-        
-            ShowDialogBoxAction action = new ShowDialogBoxAction(showDialogTextId.getText());
-            return action;
+        if (isFilled()){
+            Action action = new ShowDialogBoxAction(showDialogTextId.getText());
+            return action;}else{
+                return null;
+            }
     }
  
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         showDialogTextId.setPromptText("Inserisci il testo qui...");
 
+    }
+
+    @Override
+    public boolean isFilled() {
+        return(!showDialogTextId.getText().isEmpty());
     }
     
 

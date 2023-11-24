@@ -15,11 +15,6 @@ import it.unisa.diem.triggers.Trigger;
 
 
 
-import it.unisa.diem.actions.AbstractActionController;
-import it.unisa.diem.actions.Action;
-import it.unisa.diem.rules.RuleService;
-import it.unisa.diem.triggers.AbstractTriggerController;
-import it.unisa.diem.triggers.Trigger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -137,7 +132,7 @@ private AbstractActionController getActionController(String fxml){
             }
 
     }
-}   
+   
     @FXML
     private void confirmSet(ActionEvent event) throws IOException{
         if(alreadyAdd.getItems().isEmpty()){

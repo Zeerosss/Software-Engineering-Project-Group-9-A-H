@@ -46,6 +46,7 @@ public class PrimaryController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         if(firstUse)
         createSet.setVisible(true);
+        
        //future proofing
        //table column initialization+ settings
         actionNameId.setCellValueFactory(new PropertyValueFactory<Rule,Action>("Action"));
@@ -53,7 +54,7 @@ public class PrimaryController implements Initializable{
         ruleNameId.setCellValueFactory(new PropertyValueFactory<Rule,String>("Name"));
         statusId.setCellValueFactory(new PropertyValueFactory<Rule,Boolean>("Status"));
         rulesTable.setItems(ruleService.getRules());
-        System.out.println(ruleService.getRules());
+
     }
 
 }
