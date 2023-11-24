@@ -1,9 +1,12 @@
 package it.unisa.diem.actions.AudioFileAction;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
+import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -16,66 +19,49 @@ import it.unisa.diem.actions.Action;
 
 public class PlayAudioFileAction implements Action {
 
-    private String filepath;
+    private Clip clip;
 
-    // Runnable to be executed at the end of playback
-    private Runnable atEnd;
-
-    public PlayAudioFileAction(String filepath) {
-        this.filepath = filepath;
+    // Constructor that takes the path of the audio file
+    public PlayAudioFileAction(String pathName) {
+        this(new File(pathName));
     }
 
+    // Constructor that takes a File object representing the audio file
+    public PlayAudioFileAction(File file) {
+        try {
+            clip = AudioSystem.getClip(); 
+            InputStream is = new FileInputStream(file); 
+            AudioFileFormat aff = AudioSystem.getAudioFileFormat(file); 
+
+            // Create an AudioInputStream from the InputStream
+            AudioInputStream ais = new AudioInputStream(is, aff.getFormat(), aff.getByteLength()); 
+            clip.open(ais); 
+
+            // Add a LineListener to handle events on the Clip
+            clip.addLineListener(new LineListener() {
+                @Override
+                public void update(LineEvent event) {
+                    // If the event type is STOP, drain the clip and close it
+                    if (event.getType() == LineEvent.Type.STOP) {
+                        clip.drain();
+                        clip.close();
+                    }
+                }
+            });
+        } catch (LineUnavailableException exc) {
+            throw new RuntimeException("Sorry. Cannot play audio files.");
+        } catch (UnsupportedAudioFileException exc) {
+            throw new RuntimeException("Unsupported file format for: " + file);
+        } catch (FileNotFoundException exc) {
+            throw new RuntimeException("File not found: " + file);
+        } catch (IOException exc) {
+            throw new RuntimeException("IOException: " + exc);
+        }
+    }
+
+    // Start playing the audio when the action is started
     @Override
     public void startAction() {
-        // Create a File object from the specified path
-        File audioFile = new File(filepath);
-
-        // Check if the file exists and can be read
-        if (audioFile.exists() && audioFile.canRead()) {
-            try {
-                // Obtain an audio input stream from the file
-                AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-
-                // Create a Clip object for audio playback
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioStream);
-                clip.start();
-
-                // Add a listener to handle the end of playback event
-                clip.addLineListener(new LineListener() {
-                    @Override
-                    public void update(LineEvent evt) {
-                        if (evt.getType().equals(LineEvent.Type.STOP)) {
-                            // Execute the Runnable at the end of playback
-                            Runnable r = getAtEndRunnable();
-                            if (r != null) {
-                                r.run();
-                            }
-                        }
-                    }
-                });
-                // Close the audio input stream
-                audioStream.close();
-            }  catch (LineUnavailableException exc) {
-            throw new RuntimeException("Sorry. Cannot play audio files.");
-            }  catch (UnsupportedAudioFileException exc) {
-            throw new RuntimeException("Unsupported file format for: "+audioFile);
-            }  catch (FileNotFoundException exc) {
-            throw new RuntimeException("File not found: "+audioFile);
-            }  catch (IOException exc) {
-            throw new RuntimeException("IOException: "+exc);
-           }
-            }
-        } 
-    
-
-    // Private method to get the Runnable to be executed at the end of playback
-    private synchronized Runnable getAtEndRunnable() {
-        return atEnd;
-    }
-
-    // Method to add a listener for the end of playback
-    public void addEndListener(Runnable listener) {
-        this.atEnd = listener;
+        clip.start();
     }
 }
