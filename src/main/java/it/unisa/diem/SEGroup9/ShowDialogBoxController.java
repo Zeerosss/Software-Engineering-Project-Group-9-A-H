@@ -14,10 +14,6 @@ public class ShowDialogBoxController implements AbstractActionController{
     @FXML
     private TextField showDialogTextId;
 
-    @Override
-    public String getText(){
-        return showDialogTextId.getText();
-   }
 
     @Override
     public Action createAction() {

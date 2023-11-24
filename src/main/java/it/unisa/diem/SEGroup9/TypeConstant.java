@@ -16,7 +16,7 @@ public class TypeConstant {
         map1.put(0, "timetrigger");
         
         map2.put(0,"audioaction");
-        map2.put(1,"messageaction");
+        map2.put(1,"dialogaction");
 
        
         

@@ -53,6 +53,7 @@ public class PrimaryController implements Initializable{
         ruleNameId.setCellValueFactory(new PropertyValueFactory<Rule,String>("Name"));
         statusId.setCellValueFactory(new PropertyValueFactory<Rule,Boolean>("Status"));
         rulesTable.setItems(ruleService.getRules());
+        System.out.println(ruleService.getRules());
     }
 
 }

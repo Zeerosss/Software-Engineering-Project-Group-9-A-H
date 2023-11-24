@@ -4,6 +4,7 @@ import java.net.URL;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+
 import it.unisa.diem.triggers.TimeOfDayTrigger;
 import it.unisa.diem.triggers.Trigger;
 import it.unisa.diem.triggers.AbstractTriggerController;
@@ -66,7 +67,7 @@ public class TimeTriggerController implements AbstractTriggerController {
     @Override
     public Trigger createTrigger() {
         LocalTime time = LocalTime.of(hSpinner.getValue(), minSpinner.getValue());
-        return new TimeOfDayTrigger(time);
+        return (new TimeOfDayTrigger(time));
         
     }
     
