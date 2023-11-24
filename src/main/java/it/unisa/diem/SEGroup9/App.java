@@ -17,7 +17,7 @@ import it.unisa.diem.rules.RuleService;
 public class App extends Application {
     
     private static Scene scene;
-
+   
     @Override
     public void start(Stage stage) throws IOException {
         //getting the instale at the start of the program
@@ -34,6 +34,15 @@ public class App extends Application {
         stage.show(); 
         
     }
+
+/**
+* Retrieves the primary stage associated with the current scene.
+ * 
+ * @return The primary stage.
+ */
+    public static Stage getStage(){
+        return ((Stage)scene.getWindow());
+    }
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
@@ -45,5 +54,6 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+
     }
 }

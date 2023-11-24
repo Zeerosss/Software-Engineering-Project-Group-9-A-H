@@ -12,9 +12,17 @@ import it.unisa.diem.actions.Action;
 import it.unisa.diem.rules.RuleService;
 import it.unisa.diem.triggers.AbstractTriggerController;
 import it.unisa.diem.triggers.Trigger;
+
+
+
+import it.unisa.diem.actions.AbstractActionController;
+import it.unisa.diem.actions.Action;
+import it.unisa.diem.rules.RuleService;
+import it.unisa.diem.triggers.AbstractTriggerController;
+import it.unisa.diem.triggers.Trigger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -37,10 +45,12 @@ public class SecondaryController implements Initializable {
 
     private AbstractActionController actionController; 
 
+
+    @FXML 
+    private AnchorPane actionInputPane;
+
     @FXML
     private AnchorPane creationPage;
-    @FXML
-    private AnchorPane actionInputPane;
     @FXML
     private ListView<String> alreadyAdd;
 
@@ -69,30 +79,63 @@ public class SecondaryController implements Initializable {
             alert.showAndWait();
 
         }else{
-            Trigger trigger;
-            Action action;
-            try{
+            Trigger trigger = triggerController.createTrigger();
+            Action action= actionController.createAction();
+            if( ( action == null )||( trigger == null) ){
+                
+                // Mostra un avviso se l'oggetto action è nullo
+                alert.setTitle("Warning");
+                alert.setHeaderText("WARNING!");
+                alert.setContentText("action or trigger field not filled");
+                alert.showAndWait();
+            }else{try{
                 trigger = triggerController.createTrigger();
                           
                 
                 action =actionController.createAction();
             
-            
-                
                 ruleService.ruleAdd(true,ruleName,trigger,action);   
-                System.out.println(trigger.toString());
+                
                 alreadyAdd.getItems().add(ruleName);
                 triggerBox.setValue(null);
                 actionBox.setValue(null);
                 ruleNameLabel.setText(null);
-                System.out.println(trigger.toString() + action.toString());
-                
+               
+            
             }catch(Exception e){
                 System.err.println("excepiton in creation");
             }            
+        
+           
+    }}
+}     private AbstractTriggerController getTriggerController(String fxml){
+    
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
 
-        
-        
+            try {
+                Parent root = fxmlLoader.load();
+                triggerInputPane.getChildren().add(root);
+                return fxmlLoader.getController();
+            } catch (IOException e) {
+                System.err.println("error in fxmlLoader");
+                return null;
+            }
+            
+}
+
+private AbstractActionController getActionController(String fxml){
+
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
+
+            try {
+                Parent root = fxmlLoader.load();
+                actionInputPane.getChildren().add(root);
+                return fxmlLoader.getController();
+            } catch (IOException e) {
+                System.err.println("error in fxmlLoader");
+                return null;
+            }
+
     }
 }   
     @FXML
@@ -108,35 +151,6 @@ public class SecondaryController implements Initializable {
         }else 
         App.setRoot("ruleview");
     }
-    private AbstractTriggerController getTriggerController(String fxml){
-    
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
-
-                try {
-                    Parent root = fxmlLoader.load();
-                    triggerInputPane.getChildren().add(root);
-                    return fxmlLoader.getController();
-                } catch (IOException e) {
-                    System.err.println("error in fxmlLoader");
-                    return null;
-                }
-                
-    }
-
-    private AbstractActionController getActionController(String fxml){
-    
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
-
-                try {
-                    Parent root = fxmlLoader.load();
-                    actionInputPane.getChildren().add(root);
-                    return fxmlLoader.getController();
-                } catch (IOException e) {
-                    System.err.println("error in fxmlLoader");
-                    return null;
-                }
-                
-    }
 
     @Override
     /**
@@ -146,8 +160,8 @@ public class SecondaryController implements Initializable {
      */
     public void initialize(URL arg0, ResourceBundle arg1) {
         alert = new Alert(Alert.AlertType.WARNING);
-        actionBox.getItems().setAll("Play an audio file wip", "Display a message wip");
-        triggerBox.getItems().setAll("Time of day Trigger wip");
+        actionBox.getItems().setAll("Play an audio file", "Display a message");
+        triggerBox.getItems().setAll("Time of day Trigger");
 
         triggerBox.getSelectionModel().selectedIndexProperty().addListener((odd, oldValue, newValue) -> {
             triggerInputPane.getChildren().clear();
