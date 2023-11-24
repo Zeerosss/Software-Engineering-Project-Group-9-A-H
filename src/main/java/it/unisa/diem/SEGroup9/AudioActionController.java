@@ -8,6 +8,7 @@ import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
 import it.unisa.diem.actions.AudioFileAction.PlayAudioFileAction;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
@@ -15,6 +16,8 @@ public class AudioActionController implements AbstractActionController{
 
     @FXML
     private AnchorPane fileChooserPane;
+    @FXML
+    private Label audioFilePathLabel;
     private File file;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -23,13 +26,15 @@ public class AudioActionController implements AbstractActionController{
         fileChooser.getExtensionFilters().add(extensionFilter);
         fileChooser.setTitle("Open Resource File");
         file = fileChooser.showOpenDialog(App.getStage());
-        //System.out.println(file); remove comment if there is the need to show the path
-        
+        //System.out.println(file); remove this comment if there is the need to show the path of the file in the console
+        if (file != null) {
+            audioFilePathLabel.setText("Path of the chosen file: " + file.getPath());
+        }
     }
 
     @Override
     public Action createAction() {
-        // comment
+        // comment on the method
         if(this.isFilled()){
             return( new PlayAudioFileAction(file.getPath()));
         }else return null;

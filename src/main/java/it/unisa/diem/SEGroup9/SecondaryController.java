@@ -102,6 +102,7 @@ public class SecondaryController implements Initializable {
                     return fxmlLoader.getController();
                 } catch (IOException e) {
                     System.err.println("error in fxmlLoader");
+                    e.printStackTrace();
                     return null;
                 }
                 
