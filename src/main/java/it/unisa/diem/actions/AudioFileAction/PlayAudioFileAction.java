@@ -67,7 +67,7 @@ public class PlayAudioFileAction implements Action {
 
     @Override
     public String toString() {
-        return ("PLAY:"+name);
+        return ("PLAY:\n"+name);
     }
     
 }

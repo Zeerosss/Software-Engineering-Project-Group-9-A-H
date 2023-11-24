@@ -23,7 +23,7 @@ public class ShowDialogBoxAction implements Action{
     }
     @Override
     public String toString() {
-        return("Show Dialog Box Action:"+ message);
+        return("Show Dialog Box Action:\n"+ message);
     }
 
 

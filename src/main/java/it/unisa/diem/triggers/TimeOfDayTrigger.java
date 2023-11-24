@@ -18,6 +18,6 @@ public class TimeOfDayTrigger implements Trigger {
     }
     @Override 
     public String toString(){
-        return("Time trigger set on "+ String.format("%02d", time.getHour()) +":"+String.format("%02d", time.getMinute()));
+        return("Time trigger set on \n"+ String.format("%02d", time.getHour()) +":"+String.format("%02d", time.getMinute()));
     }
 }

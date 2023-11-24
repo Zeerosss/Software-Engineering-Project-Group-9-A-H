@@ -23,7 +23,7 @@
                      </cursor></Button>
                </children>
             </AnchorPane>
-            <TableView fx:id="rulesTable" prefHeight="480.0" prefWidth="480.0">
+            <TableView fx:id="rulesTable" fixedCellSize="50.0" prefHeight="480.0" prefWidth="480.0">
               <columns>
                 <TableColumn fx:id="statusId" prefWidth="89.0" text="Enabled" />
                 <TableColumn fx:id="ruleNameId" prefWidth="114.0" text="Name" />
