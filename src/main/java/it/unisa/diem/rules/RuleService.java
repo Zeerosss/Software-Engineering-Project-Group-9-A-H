@@ -1,33 +1,48 @@
 package it.unisa.diem.rules;
-
+import javafx.concurrent.Task;
 import it.unisa.diem.actions.Action;
 import it.unisa.diem.triggers.Trigger;
-import javafx.collections.FXCollections;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.ScheduledService;
 
-public class RuleService {
-    private static RuleService instance;
-    private ObservableList<Rule> rules;
 
-    private RuleService() {
-        
-        rules= FXCollections.observableArrayList();
-    }
-    //setting the istance witch will grant access to the Observable List granting the sharing of the list and 
-    //the inizialitazion of the ViewTable in the PrimaryController by passing parameters from the Secondary Controller
-    public static RuleService getInstance() {
-        if (instance == null) {
-            instance = new RuleService();
-        }
-        return instance;
-    }
-    public void ruleAdd(boolean status,String name,Trigger t,Action a){
-         rules.add(new Rule(status, name, t, a));
+public class RuleService extends ScheduledService<Void>{
+    
+    private RuleCollection rules;
 
+    public RuleService(RuleCollection rules){
+        this.rules = rules;
     }
 
-    public ObservableList<Rule> getRules(){
-        return rules;
+    @Override
+    protected Task<Void> createTask() {
+     
+        return new Task<Void>(){
+            @Override
+            protected Void call() throws Exception {
+
+                for(Rule rule : rules.getRules()){
+
+                    if(rule.getTrigger().isValidated()){
+                        System.out.println("valido");
+                        //Platform.runLater mi permette di eseguire l'istruzione nel thread di JavaFx non ho bisogno di altri service
+                        Platform.runLater(() -> {
+                            //elimino prima la regola così non verrà ricontrollata
+                            rules.ruleDelete(rule);
+                            rule.getAction().startAction();
+                        });
+                    
+                    }  
+                    
+                }
+ 
+                return null;
+                   
+           }
+            
+        };
     }
+    
 }
 

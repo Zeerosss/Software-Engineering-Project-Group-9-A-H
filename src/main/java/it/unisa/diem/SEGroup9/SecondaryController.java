@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
-import it.unisa.diem.rules.RuleService;
+import it.unisa.diem.rules.RuleCollection;
 import it.unisa.diem.triggers.AbstractTriggerController;
 import it.unisa.diem.triggers.Trigger;
 
@@ -29,7 +29,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class SecondaryController implements Initializable {
     //getting the RuleService Instance to set the elements into the ObservableList
-    private RuleService ruleService = RuleService.getInstance();
+    private RuleCollection ruleCollection = RuleCollection.getInstance();
     
     @FXML
     private Button confirmRuleButton;
@@ -75,7 +75,7 @@ public class SecondaryController implements Initializable {
 
         }else{
             Trigger trigger = triggerController.createTrigger();
-            Action action= actionController.createAction();
+            Action action = actionController.createAction();
             if( ( action == null )||( trigger == null) ){
                 
                 // Mostra un avviso se l'oggetto action è nullo
@@ -85,11 +85,10 @@ public class SecondaryController implements Initializable {
                 alert.showAndWait();
             }else{try{
                 trigger = triggerController.createTrigger();
-                          
-                
-                action =actionController.createAction();
+                                      
+                action = actionController.createAction();
             
-                ruleService.ruleAdd(true,ruleName,trigger,action);   
+                ruleCollection.ruleAdd(true,ruleName,trigger,action);   
                 
                 alreadyAdd.getItems().add(ruleName);
                 triggerBox.setValue(null);

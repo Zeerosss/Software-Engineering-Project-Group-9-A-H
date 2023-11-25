@@ -18,8 +18,7 @@ public class ShowDialogBoxAction implements Action{
         alert.setTitle("Dialog Box");
         alert.setHeaderText(message);
         alert.setContentText("Press OK to close the Window");
-        alert.showAndWait();
-    
+        alert.showAndWait();    
     }
     @Override
     public String toString() {

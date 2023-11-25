@@ -63,7 +63,7 @@ public class TimeTriggerController implements AbstractTriggerController {
         minSpinner.getValueFactory().setConverter(converter);
         hSpinner.getEditor().setAlignment(Pos.CENTER_RIGHT);
         minSpinner.getEditor().setAlignment(Pos.CENTER_RIGHT);
-        }
+    }
     @Override
     public Trigger createTrigger() {
         LocalTime time = LocalTime.of(hSpinner.getValue(), minSpinner.getValue());

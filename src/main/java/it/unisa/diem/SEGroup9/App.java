@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import it.unisa.diem.rules.RuleService;
+import it.unisa.diem.rules.RuleCollection;
 
 /**
  * JavaFX App
@@ -21,7 +21,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //getting the instale at the start of the program
-        RuleService ruleService = RuleService.getInstance();
+        RuleCollection ruleService = RuleCollection.getInstance();
         
         scene = new Scene(loadFXML("ruleview"));
         Image icon = new Image("file:src/main/resources/it/unisa/diem/logo_unisa.png");

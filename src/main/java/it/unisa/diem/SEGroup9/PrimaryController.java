@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.Action;
 import it.unisa.diem.rules.Rule;
-import it.unisa.diem.rules.RuleService;
+import it.unisa.diem.rules.RuleCollection;
 import it.unisa.diem.triggers.Trigger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,8 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class PrimaryController implements Initializable{
     
     private static boolean firstUse = true;
-    //getting the RuleService Instance to get the elements from the ObservableList
-    private RuleService ruleService = RuleService.getInstance();
+    //getting the RuleCollection Instance to get the elements from the ObservableList
+    private RuleCollection ruleService = RuleCollection.getInstance();
     
     @FXML
     private Button createSet;

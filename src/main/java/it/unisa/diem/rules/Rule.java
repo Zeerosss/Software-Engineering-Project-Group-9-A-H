@@ -9,6 +9,7 @@ public class Rule {
     private Action a;
     private boolean status=true;
 
+
     public Rule(boolean status,String name,Trigger t,Action a){
         this.t=t;
         this.a=a;
@@ -29,6 +30,10 @@ public class Rule {
 
     public boolean getStatus() {
         return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
     
 }
