@@ -33,5 +33,9 @@ public class RuleCollection {
     public ObservableList<Rule> getRules(){
         return rules;
     }
+    public boolean isEmpty() {
+        return rules.isEmpty();
+    }
+    
 }
 

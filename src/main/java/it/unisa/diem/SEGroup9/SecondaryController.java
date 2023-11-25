@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
+import it.unisa.diem.rules.Rule;
 import it.unisa.diem.rules.RuleCollection;
 import it.unisa.diem.triggers.AbstractTriggerController;
 import it.unisa.diem.triggers.Trigger;
@@ -23,9 +24,12 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+
 import javafx.scene.layout.AnchorPane;
+
 
 public class SecondaryController implements Initializable {
     //getting the RuleService Instance to set the elements into the ObservableList
@@ -47,7 +51,7 @@ public class SecondaryController implements Initializable {
     @FXML
     private AnchorPane creationPage;
     @FXML
-    private ListView<String> alreadyAdd;
+    private ListView<Rule> alreadyAdd;
 
     @FXML
     private ChoiceBox<String> actionBox;
@@ -90,7 +94,7 @@ public class SecondaryController implements Initializable {
             
                 ruleCollection.ruleAdd(true,ruleName,trigger,action);   
                 
-                alreadyAdd.getItems().add(ruleName);
+               
                 triggerBox.setValue(null);
                 actionBox.setValue(null);
                 ruleNameLabel.setText(null);
@@ -156,6 +160,8 @@ private AbstractActionController getActionController(String fxml){
         alert = new Alert(Alert.AlertType.WARNING);
         actionBox.getItems().setAll("Play an audio file", "Display a message");
         triggerBox.getItems().setAll("Time of day Trigger");
+
+        alreadyAdd.setItems(ruleCollection.getRules());
 
         triggerBox.getSelectionModel().selectedIndexProperty().addListener((odd, oldValue, newValue) -> {
             triggerInputPane.getChildren().clear();

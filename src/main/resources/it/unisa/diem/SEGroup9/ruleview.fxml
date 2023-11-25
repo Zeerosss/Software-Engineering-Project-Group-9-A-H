@@ -14,13 +14,14 @@
          <children>
             <AnchorPane prefHeight="480.0" prefWidth="167.0">
                <children>
-                  <Button fx:id="createSet" alignment="CENTER" layoutX="10.0" layoutY="223.0" mnemonicParsing="false" onAction="#switchToCreateView" stylesheets="@application.css" text="Create new rule Set" visible="false">
+                  <Button fx:id="createSet" alignment="CENTER" layoutX="8.0" layoutY="222.0" mnemonicParsing="false" onAction="#switchToCreateView" stylesheets="@application.css" text="Create new rule Set">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
+                  <Button fx:id="delete" layoutX="44.0" layoutY="53.0" mnemonicParsing="false" onAction="#deleteSelectedRule" stylesheets="@application.css" text="Delete" visible="false" />
                </children>
             </AnchorPane>
             <TableView fx:id="rulesTable" fixedCellSize="50.0" prefHeight="480.0" prefWidth="480.0">
