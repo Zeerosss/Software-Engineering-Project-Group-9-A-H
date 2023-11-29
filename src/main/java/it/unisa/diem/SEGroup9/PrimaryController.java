@@ -2,7 +2,7 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
+
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.Action;
@@ -14,8 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;

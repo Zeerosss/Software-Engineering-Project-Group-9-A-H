@@ -12,4 +12,6 @@ module it.unisa.diem{
     //exports it.unisa.diem.triggers;
     opens it.unisa.diem.triggers to junit;
     exports it.unisa.diem.SEGroup9;
+    //exports it.unisa.diem;
+    exports it.unisa.diem.actions.FileAction;
 }
