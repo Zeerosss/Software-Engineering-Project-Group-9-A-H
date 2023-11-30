@@ -25,7 +25,7 @@ public class RuleService extends ScheduledService<Void>{
                 for(Rule rule : rules.getRules()){
 
                     if(rule.getTrigger().isValidated()){
-                        System.out.println("valido");
+                        //System.out.println("valido");
                         //Platform.runLater mi permette di eseguire l'istruzione nel thread di JavaFx non ho bisogno di altri service
                         Platform.runLater(() -> {
                             //elimino prima la regola così non verrà ricontrollata

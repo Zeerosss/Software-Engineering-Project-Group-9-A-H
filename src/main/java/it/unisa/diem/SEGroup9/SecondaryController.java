@@ -164,12 +164,10 @@ private AbstractActionController getActionController(String fxml){
         alreadyAdd.setItems(ruleCollection.getRules());
 
         triggerBox.getSelectionModel().selectedIndexProperty().addListener((odd, oldValue, newValue) -> {
-            triggerInputPane.getChildren().clear();
-            
+            triggerInputPane.getChildren().clear(); 
             if(newValue.intValue() != -1) 
-            triggerController = getTriggerController(TypeConstant.TRIGGERTYPES_CONSTANTS.get(newValue.intValue()));
+                 triggerController = getTriggerController(TypeConstant.TRIGGERTYPES_CONSTANTS.get(newValue.intValue()));
         });
-    
 
     
         actionBox.getSelectionModel().selectedIndexProperty().addListener((odd, oldValue, newValue) -> {

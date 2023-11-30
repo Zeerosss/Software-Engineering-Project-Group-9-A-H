@@ -33,6 +33,9 @@ public class PrimaryController implements Initializable{
     private Button delete;
 
     @FXML
+    private Button changeRuleStatusButton;
+
+    @FXML
     private TableView<Rule> rulesTable;
     @FXML
     private TableColumn<Rule,String> ruleNameId;
