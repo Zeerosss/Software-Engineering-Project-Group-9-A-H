@@ -39,5 +39,8 @@ public class Rule {
     public String toString() {
         return name;
     }
+    public void changeRuleStatus(){
+        this.status = !this.status;
+    }
     
 }

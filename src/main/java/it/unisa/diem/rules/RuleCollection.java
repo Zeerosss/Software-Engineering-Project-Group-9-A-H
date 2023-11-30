@@ -29,6 +29,9 @@ public class RuleCollection {
     public void ruleDelete(Rule rule){
         rules.remove(rule);
     }
+    public void changeRuleStatus(Rule rule) {
+        rule.changeRuleStatus();
+    }    
 
     public ObservableList<Rule> getRules(){
         return rules;

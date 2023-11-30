@@ -66,6 +66,26 @@ public class PrimaryController implements Initializable{
         );
         }
     }
+    @FXML
+    void changeStatus(ActionEvent event) throws IOException {
+        Rule selectedRule = rulesTable.getSelectionModel().getSelectedItem();
+        if (selectedRule != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Are you sure you want to perform this action?");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == javafx.scene.control.ButtonType.OK) {
+                    ruleService.changeRuleStatus(selectedRule);
+                    rulesTable.refresh();
+                    if (ruleService.isEmpty()) {
+                        changeRuleStatusButton.setVisible(false);
+                        createSet.setText("Create new rule Set");
+                    }
+                }
+            });
+        }
+    }
+
 
     @FXML
     void switchToCreateView(ActionEvent event) throws IOException{
@@ -79,6 +99,9 @@ public class PrimaryController implements Initializable{
         createSet.setText("Add new rules");
         delete.setVisible(true);
         }
+        
+        changeRuleStatusButton.setVisible(!ruleService.isEmpty());
+        
 
         
        //future proofing
