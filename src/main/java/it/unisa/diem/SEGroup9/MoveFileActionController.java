@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
-import it.unisa.diem.actions.FileAction.CopyFileAction;
+import it.unisa.diem.actions.FileAction.MoveFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,10 +17,16 @@ import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
-public class CopyFileActionController implements AbstractActionController {
+public class MoveFileActionController implements AbstractActionController{
     private File file;
     private File directory;
-    
+
+    @FXML
+    private Button chooseDirectoryButton;
+
+    @FXML
+    private Button chooseFileButton;
+
     @FXML
     private Label directoryChoosenId;
 
@@ -28,14 +34,18 @@ public class CopyFileActionController implements AbstractActionController {
     private Label fileChoosenId;
 
     @FXML
-    private Button chooseFileButton;
-    ;
-    @FXML
-    private Button chooseDirectoryButton;
+    void chooseDirectory(ActionEvent event) {
+        DirectoryChooser directoryChooser= new DirectoryChooser();
+        directoryChooser.setTitle("Choose your directory");
+        
+        directory= directoryChooser.showDialog(App.getStage());
+        if (directory!=null){
+            directoryChoosenId.setText(directory.getName());
+            }
+    }
 
-    //method to handle the file choosing process by clicking the button "Choose a File"
     @FXML
-    private void chooseFile(ActionEvent event){
+    void chooseFile(ActionEvent event) {
         FileChooser fileChooser=new FileChooser();
         fileChooser.setTitle("Choose a file to copy");
         
@@ -45,31 +55,16 @@ public class CopyFileActionController implements AbstractActionController {
             }
 
     }
-
-    //method to handle the directory choosing process by clicking the button "Choose a Directory"
-    @FXML
-    private void chooseDirectory(ActionEvent event){
-        DirectoryChooser directoryChooser= new DirectoryChooser();
-        directoryChooser.setTitle("Choose your directory");
-        
-        directory= directoryChooser.showDialog(App.getStage());
-        if (directory!=null){
-            directoryChoosenId.setText(directory.getName());
-            }
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Buttons are set on disabled untill you confirm the Alert below. If you close the alert without confirming it,
-        //the buttons will be inactive anyways.
         chooseFileButton.setDisable(true);
         chooseDirectoryButton.setDisable(true);
+
         Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
-        
         alert.setTitle("Alert!");
         alert.setHeaderText("Caution: This action works on files.");
         alert.setContentText("Press Confirm to go forward");
+
         Optional<ButtonType> result= alert.showAndWait();    
         if(result.isPresent() && result.get()==ButtonType.OK){
             chooseFileButton.setDisable(false);
@@ -88,21 +83,24 @@ public class CopyFileActionController implements AbstractActionController {
 
 
     }
+    
 
     @Override
-    public Action createAction(){
-        if(this.isFilled()){
-            return (new CopyFileAction(file,directory.getPath()));
-        }else{return null;}
-
+    public Action createAction() {
+        if(isFilled()){
+            return new MoveFileAction(file, directory.getPath());
+        }else{
+            return null;
+        }
     }
+
     @Override
-    public boolean isFilled(){
+    public boolean isFilled() {
         if(file!=null && directory !=null){
             return true;
         }else{ return false;}
+    
+        
     }
-
-
     
 }

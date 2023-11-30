@@ -32,6 +32,6 @@ public class CopyFileAction implements Action {
 
     @Override
     public String toString(){
-        return ("Copying the file:"+ file.getName()+ "\nto:"+ destinationPath);
+        return ("Copying the file:"+ file.getName().substring(0,15)+ "\nto:"+ destinationPath);
     }
 }

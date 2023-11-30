@@ -24,7 +24,7 @@ public class CopyFileActionTest {
             System.err.println("Error in creating the temp file");
         }
 
-        String destinationPath = "C:/Users/carmi/Desktop/Prog"; 
+        String destinationPath = "C:/"; 
 
         CopyFileAction copyAction = new CopyFileAction(tempFile, destinationPath);
 
@@ -50,13 +50,14 @@ public class CopyFileActionTest {
         catch(IOException e){
             System.err.println("Error in creating the temp file");
          }
-        String destinationPath = "C:/Users/carmi/Desktop/Prog"; 
+        String destinationPath = "C:/"; 
         CopyFileAction copyFileAction = new CopyFileAction(tempFile, destinationPath);
         copyFileAction.startAction();
 
         Path destinationPath2=Paths.get(destinationPath, tempFile.getName());
-        Files.copy(tempFile.toPath(),destinationPath2 ,StandardCopyOption.REPLACE_EXISTING);
+        copyFileAction.startAction();
         assertTrue(Files.exists(destinationPath2));
+        
         try{
             Files.delete(destinationPath2);
         }catch(IOException e){
