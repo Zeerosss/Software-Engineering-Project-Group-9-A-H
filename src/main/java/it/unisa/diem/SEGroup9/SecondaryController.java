@@ -11,6 +11,7 @@ import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
 import it.unisa.diem.rules.Rule;
 import it.unisa.diem.rules.RuleCollection;
+import it.unisa.diem.rules.RuleListToJavaFX;
 import it.unisa.diem.triggers.AbstractTriggerController;
 import it.unisa.diem.triggers.Trigger;
 
@@ -33,7 +34,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class SecondaryController implements Initializable {
     //getting the RuleService Instance to set the elements into the ObservableList
-    private RuleCollection ruleCollection = RuleCollection.getInstance();
+    private static RuleListToJavaFX ruleCollection = RuleListToJavaFX.getInstance();
     
     @FXML
     private Button confirmRuleButton;

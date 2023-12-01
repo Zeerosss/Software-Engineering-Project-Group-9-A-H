@@ -1,6 +1,8 @@
 package it.unisa.diem.actions;
 
-public interface Action {
+import java.io.Serializable;
+
+public interface Action extends Serializable {
     public void startAction();
     
 }

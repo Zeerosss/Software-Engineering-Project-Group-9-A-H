@@ -4,24 +4,47 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import it.unisa.diem.rules.RuleCollection;
+import it.unisa.diem.rules.AutoSaveManager;
+import it.unisa.diem.rules.RuleListToJavaFX;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
-    
+    private static RuleListToJavaFX ruleService = RuleListToJavaFX.getInstance();
     private static Scene scene;
+    private Alert alert;
+    private AutoSaveManager autoSaveManager = new AutoSaveManager();
+    
    
     @Override
     public void start(Stage stage) throws IOException {
+        
         //getting the instale at the start of the program
-        RuleCollection ruleService = RuleCollection.getInstance();
+        try {
+            autoSaveManager.load(); 
+
+
+        } catch (IOException e) {
+            
+            alert.setTitle("Warning");
+            alert.setHeaderText("WARNING!");
+            alert.setContentText("error in reload saves");
+            alert.showAndWait();
+        } catch (ClassNotFoundException e) {
+            
+            e.printStackTrace();
+        } catch (Exception e) {
+            
+            
+        }
         
         scene = new Scene(loadFXML("ruleview"));
         Image icon = new Image("file:src/main/resources/it/unisa/diem/logo_unisa.png");
@@ -31,7 +54,25 @@ public class App extends Application {
         scene.getStylesheets().add(css);
         stage.setResizable(false);
         stage.setScene(scene);
+        stage.setOnCloseRequest(event -> {
+            System.out.println("ciao mondo");
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Exit");
+            alert.setHeaderText("Exit");
+            alert.setContentText("Are you sure you want to exit?");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                
+                    System.exit(0);
+              
+            }});
+           
+        });
+
+        
+
         stage.show(); 
+
         
     }
 

@@ -2,20 +2,19 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.Action;
+
 import it.unisa.diem.rules.Rule;
-import it.unisa.diem.rules.RuleCollection;
+
+import it.unisa.diem.rules.RuleListToJavaFX;
 import it.unisa.diem.triggers.Trigger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,7 +23,7 @@ public class PrimaryController implements Initializable{
     
 
     //getting the RuleCollection Instance to get the elements from the ObservableList
-    private RuleCollection ruleService = RuleCollection.getInstance();
+    private static RuleListToJavaFX ruleService = RuleListToJavaFX.getInstance();
     
     @FXML
     private Button createSet;
@@ -72,6 +71,8 @@ public class PrimaryController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+       
+        
         if(!ruleService.isEmpty()){
         createSet.setText("Add new rules");
         delete.setVisible(true);
@@ -87,6 +88,8 @@ public class PrimaryController implements Initializable{
         rulesTable.setItems(ruleService.getRules());
 
     }
+
+    
 
 }
     

@@ -1,17 +1,16 @@
 package it.unisa.diem.rules;
 import javafx.concurrent.Task;
-import it.unisa.diem.actions.Action;
-import it.unisa.diem.triggers.Trigger;
+
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
+
 import javafx.concurrent.ScheduledService;
 
 
 public class RuleService extends ScheduledService<Void>{
     
-    private RuleCollection rules;
+    private RuleList rules;
 
-    public RuleService(RuleCollection rules){
+    public RuleService(RuleList rules){
         this.rules = rules;
     }
 

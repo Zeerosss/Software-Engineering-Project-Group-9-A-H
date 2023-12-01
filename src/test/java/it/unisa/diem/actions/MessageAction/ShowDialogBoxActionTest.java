@@ -2,11 +2,7 @@ package it.unisa.diem.actions.MessageAction;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
-
-import it.unisa.diem.actions.Action;
 
 public class ShowDialogBoxActionTest {
     @Test
