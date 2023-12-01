@@ -43,7 +43,7 @@ public class CopyFileActionController implements AbstractActionController {
     "/Applications",
     "/private");
 
-    //method to handle the file choosing process by clicking the button "Choose a File"
+    //method to handle the file choosing process by clicking the button "Choose a File". The method will also check the file lenght to ensure that there are no overlapping texts on the UI.
     @FXML
     private void chooseFile(ActionEvent event){
         FileChooser fileChooser=new FileChooser();

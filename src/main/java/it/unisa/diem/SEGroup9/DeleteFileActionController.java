@@ -37,7 +37,7 @@ public class DeleteFileActionController implements AbstractActionController{
     "/Applications",
     "/private");
 
-
+    //method to handle the file choosing process by clicking the button "Choose a File". The method will also check the file lenght to ensure that there are no overlapping texts on the UI.
     @FXML
     void chooseFile(ActionEvent event) {
         FileChooser fileChooser=new FileChooser();
@@ -52,7 +52,7 @@ public class DeleteFileActionController implements AbstractActionController{
             }
 
     }
-
+    //Disable the button until the Confirm button of the Alert is pressed. The button will be disabled if the alert is closed without pressing Confirm
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         chooseFileButton.setDisable(true);

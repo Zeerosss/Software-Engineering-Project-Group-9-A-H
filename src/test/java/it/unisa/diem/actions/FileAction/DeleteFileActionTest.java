@@ -37,7 +37,7 @@ public class DeleteFileActionTest {
         
     }
 
-    //Test to try the remove of a null File-> the test throws a NullPointerException
+    //Test to try the remove of a null File-> The test checks whether a NullPointerException is thrown correctly.
     @Test
     public void deleteNullFileTest(){
         File tempFile = null;
