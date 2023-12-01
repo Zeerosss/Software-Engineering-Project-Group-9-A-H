@@ -29,6 +29,6 @@ public class MoveFileAction implements Action{
     
     @Override
     public String toString(){
-        return "Move the File:"+file.getName().substring(0,15)+ "\n to:"+ destinationPath;
+        return "Move the File:"+file.getName()+ "\n to:"+ destinationPath;
     }
 }

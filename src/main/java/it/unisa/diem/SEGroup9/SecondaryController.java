@@ -85,7 +85,7 @@ public class SecondaryController implements Initializable {
                 // Mostra un avviso se l'oggetto action è nullo
                 alert.setTitle("Warning");
                 alert.setHeaderText("WARNING!");
-                alert.setContentText("action or trigger field not filled");
+                alert.setContentText("Error in action or trigger fields");
                 alert.showAndWait();
             }else{try{
                 trigger = triggerController.createTrigger();
@@ -131,6 +131,7 @@ private AbstractActionController getActionController(String fxml){
                 return fxmlLoader.getController();
             } catch (IOException e) {
                 System.err.println("error in fxmlLoader");
+                e.printStackTrace();
                 return null;
             }
 
@@ -158,7 +159,7 @@ private AbstractActionController getActionController(String fxml){
      */
     public void initialize(URL arg0, ResourceBundle arg1) {
         alert = new Alert(Alert.AlertType.WARNING);
-        actionBox.getItems().setAll("Play an audio file", "Display a message","Copy File","Move File");
+        actionBox.getItems().setAll("Play an audio file", "Display a message","Copy File","Move File","Delete File");
         triggerBox.getItems().setAll("Time of day Trigger");
 
         alreadyAdd.setItems(ruleCollection.getRules());

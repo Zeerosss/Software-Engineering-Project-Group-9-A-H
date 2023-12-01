@@ -8,7 +8,7 @@
    <children>
       <Button fx:id="chooseFileButton" layoutX="66.0" layoutY="37.0" mnemonicParsing="false" onAction="#chooseFile" text="Choose a file" />
       <Button fx:id="chooseDirectoryButton" layoutX="256.0" layoutY="37.0" mnemonicParsing="false" onAction="#chooseDirectory" text="Choose a directory" />
-      <Label fx:id="fileChoosenId" layoutX="65.0" layoutY="76.0" />
-      <Label fx:id="directoryChoosenId" layoutX="256.0" layoutY="76.0" />
+      <Label fx:id="fileChoosenId" layoutX="65.0" layoutY="76.0" text="No File choosen" />
+      <Label fx:id="directoryChoosenId" layoutX="256.0" layoutY="76.0" text="No Directory choosen" />
    </children>
 </AnchorPane>

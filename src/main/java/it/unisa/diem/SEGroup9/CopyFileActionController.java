@@ -2,6 +2,8 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -29,80 +31,91 @@ public class CopyFileActionController implements AbstractActionController {
 
     @FXML
     private Button chooseFileButton;
-    ;
+
     @FXML
     private Button chooseDirectoryButton;
+
+    //This list contains Path that can be dangerous to work with, so it will be impossible to copy file from or to these directories.
+    private  final List<String> sensitiveDirectories = List.of(
+    "C:\\Windows",
+    "C:\\Program Files",
+    "C:\\Program Files (x86)",
+    "/System",
+    "/Applications",
+    "/private");
 
     //method to handle the file choosing process by clicking the button "Choose a File"
     @FXML
     private void chooseFile(ActionEvent event){
         FileChooser fileChooser=new FileChooser();
         fileChooser.setTitle("Choose a file to copy");
-        
-        file= fileChooser.showOpenDialog(App.getStage());
-        if (file!=null){
-            fileChoosenId.setText(file.getName());
-            }
 
-    }
+        file = fileChooser.showOpenDialog(App.getStage());
+        if (file != null) {
+            String fileName = file.getName();
+            if (fileName.length() > 15) {
+                fileName = fileName.substring(0, 15)+"...";
+            }
+            fileChoosenId.setText(fileName);
+            }
+        }
 
     //method to handle the directory choosing process by clicking the button "Choose a Directory"
     @FXML
     private void chooseDirectory(ActionEvent event){
-        DirectoryChooser directoryChooser= new DirectoryChooser();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Choose your directory");
-        
-        directory= directoryChooser.showDialog(App.getStage());
-        if (directory!=null){
-            directoryChoosenId.setText(directory.getName());
-            }
 
-    }
+        directory = directoryChooser.showDialog(App.getStage());
+        if (directory != null) {
+                directoryChoosenId.setText(directory.getName());
+            }
+        }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Buttons are set on disabled untill you confirm the Alert below. If you close the alert without confirming it,
-        //the buttons will be inactive anyways.
+        //Buttons are set on disabled until you confirm the Alert below. If you close the alert without confirming it,
+        //the buttons will still be inactive and you need to change action.
         chooseFileButton.setDisable(true);
         chooseDirectoryButton.setDisable(true);
-        Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
-        
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Alert!");
         alert.setHeaderText("Caution: This action works on files.");
         alert.setContentText("Press Confirm to go forward");
-        Optional<ButtonType> result= alert.showAndWait();    
-        if(result.isPresent() && result.get()==ButtonType.OK){
+        Optional<ButtonType> result = alert.showAndWait();    
+
+        if(result.isPresent() && result.get() == ButtonType.OK){
             chooseFileButton.setDisable(false);
             chooseDirectoryButton.setDisable(false);
         }
-        
-        //Check to see if both the fields are choosen and show the file name and directory through the use of labels 
-        if(directory!=null || file!=null){
-            fileChoosenId.setText(file.getName().substring(0,15));
-            directoryChoosenId.setText(directory.getName());
-        } else{
-            fileChoosenId.setText("No file choosen!");
-            directoryChoosenId.setText("No directory choosen!");
-        }
-        
-
 
     }
 
     @Override
     public Action createAction(){
-        if(this.isFilled()){
-            return (new CopyFileAction(file,directory.getPath()));
-        }else{return null;}
-
+        if(isFilled()){
+            return new CopyFileAction(file, directory.getPath());
+        }else{ 
+            return null;
+        } 
     }
     @Override
-    public boolean isFilled(){
-        if(file!=null && directory !=null){
-            return true;
-        }else{ return false;}
+    public boolean isFilled() {
+        if (file != null && directory != null && !unavailableDirectory(directory.getPath()) && !unavailableFile(file)) {
+                return true;
+            }
+        return false;
+    }
+    //These two methods use .stream() to convert the List in a item stream and anyMatch to see if any item starts with the directory or the path of the file we want to check
+    //If it finds any matches, it return false. This methods are necessary to check if a Path is also present in sensitiveDirectory which contains dangerous paths.
+    private boolean unavailableDirectory(String directory) {
+        return sensitiveDirectories.stream().anyMatch(directory::startsWith);
     }
 
-
+    private boolean unavailableFile(File file) {
+        String filePath = file.getAbsolutePath();
+        return sensitiveDirectories.stream().anyMatch(filePath::startsWith);
     
+}
 }

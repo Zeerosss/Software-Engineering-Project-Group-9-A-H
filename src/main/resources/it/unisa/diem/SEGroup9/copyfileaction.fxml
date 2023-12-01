@@ -6,8 +6,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.SEGroup9.CopyFileActionController">
    <children>
-      <Label fx:id="fileChoosenId" layoutX="58.0" layoutY="63.0" text="File Choosen:" />
-      <Label fx:id="directoryChoosenId" layoutX="264.0" layoutY="63.0" text="Directory Choosen:" />
+      <Label fx:id="fileChoosenId" layoutX="49.0" layoutY="63.0" text="No File Choosen" />
+      <Label fx:id="directoryChoosenId" layoutX="255.0" layoutY="63.0" text="No Directory Choosen" />
       <Button fx:id="chooseFileButton" layoutX="50.0" layoutY="24.0" mnemonicParsing="false" onAction="#chooseFile" text="Choose a File" />
       <Button fx:id="chooseDirectoryButton" layoutX="256.0" layoutY="24.0" mnemonicParsing="false" onAction="#chooseDirectory" text="Choose a Directory" />
    </children>

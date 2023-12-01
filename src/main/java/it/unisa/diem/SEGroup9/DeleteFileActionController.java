@@ -9,32 +9,27 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
-import it.unisa.diem.actions.FileAction.MoveFileAction;
+import it.unisa.diem.actions.FileAction.DeleteFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.stage.DirectoryChooser;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 
-public class MoveFileActionController implements AbstractActionController{
+public class DeleteFileActionController implements AbstractActionController{
     private File file;
-    private File directory;
-
-    @FXML
-    private Button chooseDirectoryButton;
 
     @FXML
     private Button chooseFileButton;
 
     @FXML
-    private Label directoryChoosenId;
-
-    @FXML
     private Label fileChoosenId;
-//This list contains Path that can be dangerous to work with, so it will be impossible to move file from or to these directories.
+
+
+    //This list contains Path that can be dangerous to work with, so it will be impossible to copy file from or to these directories.
     private  final List<String> sensitiveDirectories = List.of(
     "C:\\Windows",
     "C:\\Program Files",
@@ -43,22 +38,11 @@ public class MoveFileActionController implements AbstractActionController{
     "/Applications",
     "/private");
 
-    @FXML
-    void chooseDirectory(ActionEvent event) {
-        DirectoryChooser directoryChooser= new DirectoryChooser();
-        directoryChooser.setTitle("Choose your directory");
-        
-        directory= directoryChooser.showDialog(App.getStage());
-        if (directory!=null){
-            directoryChoosenId.setText(directory.getName());
-            }
-    }
 
     @FXML
     void chooseFile(ActionEvent event) {
         FileChooser fileChooser=new FileChooser();
-        fileChooser.setTitle("Choose a file to move");
-        
+        fileChooser.setTitle("Choose a file to copy");
         file= fileChooser.showOpenDialog(App.getStage());
         if (file!=null){
             String fileName=file.getName();
@@ -67,50 +51,42 @@ public class MoveFileActionController implements AbstractActionController{
             }
             fileChoosenId.setText(fileName);
             }
-    
+
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         chooseFileButton.setDisable(true);
-        chooseDirectoryButton.setDisable(true);
 
-        Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Alert!");
-        alert.setHeaderText("Caution: This action works on files.");
-        alert.setContentText("Press Confirm to go forward");
+        Alert alert= new Alert(AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("Caution: This action is irreversible!");
+        alert.setContentText("Press Confirm to continue or change the selected action");
 
         Optional<ButtonType> result= alert.showAndWait();    
         if(result.isPresent() && result.get()==ButtonType.OK){
             chooseFileButton.setDisable(false);
-            chooseDirectoryButton.setDisable(false);
         }
         
-
-
     }
-    
 
     @Override
     public Action createAction() {
         if(isFilled()){
-            return new MoveFileAction(file, directory.getPath());
-        }else{
-            return null;
-        }
+            return(new DeleteFileAction(file));
+        }else{return null;}
+
     }
+
     @Override
     public boolean isFilled() {
-        if (file != null && directory != null && !unavailableDirectory(directory.getPath()) && !unavailableFile(file)) {
+        if (file != null && !unavailableFile(file)) {
                 return true;
             }
         return false;
     }
-    //These two methods use .stream() to convert the List in a item stream and anyMatch to see if any item starts with the directory or the path of the file we want to check
-    //If it finds any matches, it return false. This methods are necessary to check if a Path is also present in sensitiveDirectory which contains dangerous paths.
-    private boolean unavailableDirectory(String directory) {
-        return sensitiveDirectories.stream().anyMatch(directory::startsWith);
-    }
 
+   //check if the path of the file is acceptable or not by using the stream.anyMatch to see if any item starts with the path choosen.
     private boolean unavailableFile(File file) {
         String filePath = file.getAbsolutePath();
         return sensitiveDirectories.stream().anyMatch(filePath::startsWith);
@@ -118,3 +94,4 @@ public class MoveFileActionController implements AbstractActionController{
 }
     
 }
+

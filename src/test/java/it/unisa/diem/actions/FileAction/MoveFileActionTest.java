@@ -1,6 +1,8 @@
 package it.unisa.diem.actions.FileAction;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -11,22 +13,21 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
-// Test to check if a file has left the sourcePath correctly. The file is deleted after the check. 
-//The test has been run with Visual Studio Code which has been started with Admin privileges 
+//Test to check if a file has left the sourcePath correctly. The file is deleted after the check. 
+//The test has been run with Visual Studio Code which has been started with Admin privileges.
+//using createTempDirectory, i can create a temporary directory to be able to run tests on both mac and windows without the needs to specify a OS Path.
+//In a previous github release i used only a windows compatible test using the destination path "C:/"
 public class MoveFileActionTest {
-    @Test
-    public void fileSourceTest() {
-    File tempFile=null;
-    try{
-        tempFile = File.createTempFile("test", ".txt");
-    }catch(IOException e){
-        System.err.println("Error in creating the temp file");
-    }
-    String destinationPathString="C:/";
-    MoveFileAction action=new MoveFileAction(tempFile, destinationPathString);
+   @Test
+    public void fileSourceTest() throws IOException {
+    File tempFile=File.createTempFile("test", ".txt");
+    Path tempDirectory = Files.createTempDirectory("temporaryDirectory");
+
+    MoveFileAction action=new MoveFileAction(tempFile, tempDirectory.toString());
 
     Path sourcePath=tempFile.toPath();
-    Path destinationPath=Paths.get(destinationPathString, tempFile.getName());
+    Path destinationPath=Paths.get(tempDirectory.toString(), tempFile.getName());
+
 
     try{action.startAction();
     }catch(Exception e){
@@ -46,17 +47,13 @@ public class MoveFileActionTest {
     //Test to check if a moved file has reached the destination Path. The file is deleted after the check. 
     //The test has been runned with Visual Studio Code which has been started with Admin privileges 
     @Test
-    public void fileDestinationTest() {
-    File tempFile=null;
-    try{
-        tempFile = File.createTempFile("test", ".txt");
-    }catch(IOException e){
-        System.err.println("Error in creating the temp file");
-    }
-    String destinationPathString="C:/";
-    MoveFileAction action=new MoveFileAction(tempFile, destinationPathString);
+    public void fileDestinationTest() throws IOException {
+    File tempFile=File.createTempFile("test", ".txt");
+    Path tempDirectory = Files.createTempDirectory("temporaryDirectory");
 
-    Path destinationPath=Paths.get(destinationPathString, tempFile.getName());
+    MoveFileAction action=new MoveFileAction(tempFile, tempDirectory.toString());
+    Path destinationPath=Paths.get(tempDirectory.toString(), tempFile.getName());
+    
 
     try{action.startAction();
     }catch(Exception e){
@@ -75,5 +72,5 @@ public class MoveFileActionTest {
 
 
 
-
 }
+

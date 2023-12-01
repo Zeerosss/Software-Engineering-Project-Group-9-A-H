@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import org.junit.Test;
 
@@ -16,26 +15,22 @@ public class CopyFileActionTest {
     
     @Test
     // Test to check if a file is correctly copied and exists in the selected destination Path. After the check, the file is deleted.
-    public void copyActionTest() {
-       File tempFile = null;
-        try {
-            tempFile = File.createTempFile("test", ".txt");
-        } catch (IOException e) {
-            System.err.println("Error in creating the temp file");
-        }
+    //using createTempDirectory, i can create a temporary directory to be able to run tests on both mac and windows without the needs to specify a OS Path. 
+    //In a previous github release i used only a windows compatible test using C:\
+    public void copyActionTest() throws IOException {
+        File tempFile= File.createTempFile("test", ".txt");
+        Path tempDirectory = Files.createTempDirectory("temporaryDirectory");
 
-        String destinationPath = "C:/"; 
-
-        CopyFileAction copyAction = new CopyFileAction(tempFile, destinationPath);
-
+        CopyFileAction copyAction = new CopyFileAction(tempFile, tempDirectory.toString());
         copyAction.startAction();
 
         
-        Path copiedFilePath = Paths.get(destinationPath, tempFile.getName());
-        assertTrue(Files.exists(copiedFilePath));
+        Path filePath = Paths.get(tempDirectory.toString(), tempFile.getName());
+
+        assertTrue(Files.exists(filePath));
 
         try {
-            Files.delete(copiedFilePath);
+            Files.delete(filePath);
         } catch (IOException e) {
             System.err.println("Error in deleting the temp file");
         }
@@ -44,18 +39,15 @@ public class CopyFileActionTest {
     @Test
     //Test to check if an existing file get overwritten correctly. The file is deleted at the end of the test
     public void copyExistingFileTest() throws IOException{
-        File tempFile= null;
-        try{
-            tempFile = File.createTempFile("filetemp", ".txt");}
-        catch(IOException e){
-            System.err.println("Error in creating the temp file");
-         }
-        String destinationPath = "C:/"; 
-        CopyFileAction copyFileAction = new CopyFileAction(tempFile, destinationPath);
+        File tempFile= File.createTempFile("filetemp", ".txt");
+        Path tempDirectory = Files.createTempDirectory("temporaryDirectory");
+
+        CopyFileAction copyFileAction = new CopyFileAction(tempFile, tempDirectory.toString());
         copyFileAction.startAction();
 
-        Path destinationPath2=Paths.get(destinationPath, tempFile.getName());
+        Path destinationPath2=Paths.get(tempDirectory.toString(), tempFile.getName());
         copyFileAction.startAction();
+
         assertTrue(Files.exists(destinationPath2));
         
         try{
