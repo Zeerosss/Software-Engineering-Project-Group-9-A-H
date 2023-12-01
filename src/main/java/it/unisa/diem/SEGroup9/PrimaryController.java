@@ -61,6 +61,7 @@ public class PrimaryController implements Initializable{
                     if(ruleService.isEmpty()){
                     delete.setVisible(false);
                     createSet.setText("Create new rule Set");
+                    changeRuleStatusButton.setVisible(false);
                 }
         }
         );
@@ -72,16 +73,11 @@ public class PrimaryController implements Initializable{
         if (selectedRule != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
-            alert.setHeaderText("Are you sure you want to perform this action?");
+            alert.setHeaderText("Are you sure you want to change the status of the selected rule?");
             alert.showAndWait().ifPresent(response -> {
-                if (response == javafx.scene.control.ButtonType.OK) {
+                if (response == javafx.scene.control.ButtonType.OK) 
                     ruleService.changeRuleStatus(selectedRule);
-                    rulesTable.refresh();
-                    if (ruleService.isEmpty()) {
-                        changeRuleStatusButton.setVisible(false);
-                        createSet.setText("Create new rule Set");
-                    }
-                }
+                    rulesTable.refresh();            
             });
         }
     }
@@ -103,8 +99,6 @@ public class PrimaryController implements Initializable{
         changeRuleStatusButton.setVisible(!ruleService.isEmpty());
         
 
-        
-       //future proofing
        //table column initialization+ settings
         actionNameId.setCellValueFactory(new PropertyValueFactory<Rule,Action>("Action"));
         triggerNameId.setCellValueFactory(new PropertyValueFactory<Rule,Trigger>("Trigger"));

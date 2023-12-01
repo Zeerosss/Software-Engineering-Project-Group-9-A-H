@@ -6,26 +6,22 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
-import it.unisa.diem.actions.AudioFileAction.PlayAudioFileAction;
+import it.unisa.diem.actions.AppendTextAction.AppendTextAction;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
-public class AudioActionController implements AbstractActionController {
+public class AppendTextActionController implements AbstractActionController{
 
-    @FXML
-    private AnchorPane fileChooserPane;
-    @FXML
-    private Label audioFilePathLabel;
     private File file;
+    @FXML
+    private Label textFilePathLabel;
 
-    // This method is called when the controller is initialized
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Create a FileChooser to allow the user to select a WAV file
+        // Create a FileChooser to allow the user to select a txt file
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("WAV files (*.wav)", "*.wav");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Text files (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(extensionFilter);
         fileChooser.setTitle("Open Resource File");
 
@@ -36,24 +32,21 @@ public class AudioActionController implements AbstractActionController {
 
         // Update the label with the name of the chosen file if file is not null
         if (file != null) {
-            audioFilePathLabel.setText("Chosen file: " + file.getName());
+            textFilePathLabel.setText("Chosen file: " + file.getName());
         }
     }
 
-    // Create and return an Action based on the selected file
     @Override
     public Action createAction() {
-        // If the file is selected, create a PlayAudioFileAction with the file path
         if (this.isFilled()) {
-            return (new PlayAudioFileAction(file.getPath()));
+            return (new AppendTextAction(file.getPath(), null));
         } else {
             return null;
         }
     }
 
-    // Check if the file is selected
     @Override
     public boolean isFilled() {
-        return (!(file == null));
+       return(true);
     }
 }
