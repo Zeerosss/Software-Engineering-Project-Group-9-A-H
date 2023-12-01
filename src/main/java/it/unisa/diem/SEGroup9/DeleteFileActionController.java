@@ -2,12 +2,12 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.File;
 import java.net.URL;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
+import it.unisa.diem.actions.FileChecker;
 import it.unisa.diem.actions.FileAction.DeleteFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 
-public class DeleteFileActionController implements AbstractActionController{
+public class DeleteFileActionController extends FileChecker implements AbstractActionController{
     private File file;
 
     @FXML
@@ -26,16 +26,6 @@ public class DeleteFileActionController implements AbstractActionController{
 
     @FXML
     private Label fileChoosenId;
-
-
-    //This list contains Path that can be dangerous to work with, so it will be impossible to copy file from or to these directories.
-    private  final List<String> sensitiveDirectories = List.of(
-    "C:\\Windows",
-    "C:\\Program Files",
-    "C:\\Program Files (x86)",
-    "/System",
-    "/Applications",
-    "/private");
 
     //method to handle the file choosing process by clicking the button "Choose a File". The method will also check the file lenght to ensure that there are no overlapping texts on the UI.
     @FXML
@@ -84,13 +74,6 @@ public class DeleteFileActionController implements AbstractActionController{
             }
         return false;
     }
-
-   //check if the path of the file is acceptable or not by using the stream.anyMatch to see if any item starts with the path choosen.
-    private boolean unavailableFile(File file) {
-        String filePath = file.getAbsolutePath();
-        return sensitiveDirectories.stream().anyMatch(filePath::startsWith);
-    
-}
     
 }
 

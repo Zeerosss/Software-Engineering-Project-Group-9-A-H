@@ -2,12 +2,12 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.File;
 import java.net.URL;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
+import it.unisa.diem.actions.FileChecker;
 import it.unisa.diem.actions.FileAction.MoveFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +18,7 @@ import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
-public class MoveFileActionController implements AbstractActionController{
+public class MoveFileActionController extends FileChecker implements AbstractActionController{
     private File file;
     private File directory;
 
@@ -33,14 +33,7 @@ public class MoveFileActionController implements AbstractActionController{
 
     @FXML
     private Label fileChoosenId;
-//This list contains Path that can be dangerous to work with, so it will be impossible to move file from or to these directories.
-    private  final List<String> sensitiveDirectories = List.of(
-    "C:\\Windows",
-    "C:\\Program Files",
-    "C:\\Program Files (x86)",
-    "/System",
-    "/Applications",
-    "/private");
+
     //method to handle the directory choosing process by clicking the button "Choose a Directory"
     @FXML
     void chooseDirectory(ActionEvent event) {
@@ -105,16 +98,5 @@ public class MoveFileActionController implements AbstractActionController{
             }
         return false;
     }
-    //These two methods use .stream() to convert the List in a item stream and anyMatch to see if any item starts with the directory or the path of the file we want to check
-    //If it finds any matches, it return false. This methods are necessary to check if a Path is also present in sensitiveDirectory which contains dangerous paths.
-    private boolean unavailableDirectory(String directory) {
-        return sensitiveDirectories.stream().anyMatch(directory::startsWith);
-    }
-
-    private boolean unavailableFile(File file) {
-        String filePath = file.getAbsolutePath();
-        return sensitiveDirectories.stream().anyMatch(filePath::startsWith);
-    
-}
     
 }

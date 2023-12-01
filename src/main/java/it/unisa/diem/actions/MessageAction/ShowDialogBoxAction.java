@@ -1,11 +1,10 @@
 package it.unisa.diem.actions.MessageAction;
 
 import it.unisa.diem.actions.Action;
-import javafx.scene.control.Alert;
 
 public class ShowDialogBoxAction implements Action{
     private String message;
-
+    private transient AlertDisplayer dialogDisplayer=new AlertJavaFX();
     public ShowDialogBoxAction(String message){
         this.message=message;
     }
@@ -14,11 +13,8 @@ public class ShowDialogBoxAction implements Action{
     }
     @Override
     public void startAction(){
-        Alert alert= new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Dialog Box");
-        alert.setHeaderText(message);
-        alert.setContentText("Press OK to close the Window");
-        alert.showAndWait();    
+        dialogDisplayer.displayAlert("Dialog Box", message, "Press OK to close the window");
+        
     }
     @Override
     public String toString() {
