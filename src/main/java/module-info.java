@@ -3,6 +3,8 @@ module it.unisa.diem{
     requires javafx.fxml;
     requires junit;
     requires java.desktop;
+    requires javafx.media;
+    
     exports it.unisa.diem.actions.MessageAction;
     opens it.unisa.diem.rules to javafx.base;
     opens it.unisa.diem.actions to junit;

@@ -97,7 +97,7 @@ public class SecondaryController implements Initializable {
                
                 triggerBox.setValue(null);
                 actionBox.setValue(null);
-                ruleNameLabel.setText(null);
+                ruleNameLabel.clear();
                
             
             }catch(Exception e){
