@@ -1,5 +1,7 @@
 package it.unisa.diem.rules;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +30,28 @@ public class RuleList implements Observer,Observable {
         new Thread(ruleThread).start();
     }
 
-    public synchronized void ruleAdd(boolean status,String name,Trigger t,Action a){
-        Rule rule = new Rule(status, name, t, a);
+    //The view use this function
+    public synchronized void ruleAdd(boolean status,String name,Trigger t,Action a, boolean onlyOnce, Duration sleepingTime){
+        if(onlyOnce)
+            sleepingTime = Duration.ZERO;
+        Rule rule = new Rule(status, name, t, a, onlyOnce, sleepingTime);
         rule.addObserver(this);
         rules.add(rule);
-        notifyObserver();
+        this.notifyObserver();
+    }
+
+    //autoSave use this function
+    public synchronized void ruleAdd(boolean status,String name,Trigger t,
+Action a, boolean onlyOnce, Duration sleepingTime, LocalDateTime nextUsefulDate){
+    
+        Rule rule = new Rule(status, name, t, a, onlyOnce, sleepingTime);
+        rule.setNextUsefulDate(nextUsefulDate);
+        rule.addObserver(this);
+        rules.add(rule);
+        this.notifyObserver();
         
     }
+
     public synchronized void ruleDelete(Rule rule){
         rule.removeObserver(this);
         rules.remove(rule);
@@ -44,7 +61,7 @@ public class RuleList implements Observer,Observable {
     public synchronized List<Rule> getRules(){
         return rules;
     }
-    public synchronized boolean isEmpty() {
+    public boolean isEmpty() {
         return rules.isEmpty();
     }
     @Override
@@ -57,10 +74,11 @@ public class RuleList implements Observer,Observable {
     }
     @Override
     public synchronized void notifyObserver() {
-        System.out.println("ciao");
-      for(Observer observer : observers){
-        observer.update();
-      }
+        
+        for(Observer observer : observers){
+            observer.update();
+            System.out.println("ciao");
+        }
     }
 
     @Override

@@ -15,10 +15,16 @@ public class RuleThread implements Runnable {
 
                 for(Rule rule : ruleList.getRules()){
 
-                    if(rule.getStatus() && rule.getTrigger().isValidated()){
-                        //Platform.runLater mi permette di eseguire l'istruzione nel thread di JavaFx non ho bisogno di altri service
+                    System.out.println(rule.getNextUsefulDate() + " " + rule);
+
+                    if(!rule.isSleeping() && rule.getStatus() && rule.getTrigger().isValidated()){
+                        
+                        //the status change if the rule is in only once execution mode
+                        if(!rule.isOnlyOnce())
+                            rule.updateNextUsefulDate();
+                        else
                             rule.setStatus(false);
-                            rule.getAction().startAction();
+                        rule.getAction().startAction();
                         
                     
                     }  

@@ -5,7 +5,10 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -47,5 +50,14 @@
       <Line endX="-424.5" endY="220.69998168945312" layoutX="592.0" layoutY="19.0" startX="47.0" startY="220.69998168945312" stroke="#d1cfcf" />
       <AnchorPane fx:id="triggerInputPane" layoutX="175.0" layoutY="90.0" prefHeight="135.0" prefWidth="440.0" />
       <AnchorPane fx:id="actionInputPane" layoutX="187.0" layoutY="304.0" prefHeight="125.0" prefWidth="430.0" />
+      <RadioButton fx:id="onlyOnceRadio" layoutX="187.0" layoutY="445.0" mnemonicParsing="false" text="Execute only once">
+         <toggleGroup>
+            <ToggleGroup fx:id="repeatGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="sleepingTimeRadio" layoutX="308.0" layoutY="445.0" mnemonicParsing="false" text="Execute every" toggleGroup="$repeatGroup" />
+      <Spinner fx:id="daySpinner" layoutX="410.0" layoutY="440.0" prefHeight="26.0" prefWidth="69.0" />
+      <Spinner fx:id="hourSpinner" layoutX="487.0" layoutY="440.0" prefHeight="26.0" prefWidth="69.0" />
+      <Spinner fx:id="minuteSpinner" layoutX="563.0" layoutY="440.0" prefHeight="26.0" prefWidth="69.0" />
    </children>
 </AnchorPane>

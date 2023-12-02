@@ -43,6 +43,8 @@ public class PrimaryController implements Initializable{
     private TableColumn<Rule,Trigger> triggerNameId;
     @FXML
     private TableColumn<Rule,Action> actionNameId;
+    @FXML
+    private Button changeRuleStatusButton;
    
     @FXML
     void deleteSelectedRule(ActionEvent event) throws IOException{
@@ -69,6 +71,16 @@ public class PrimaryController implements Initializable{
 
         App.setRoot("createsetview");
     }
+    @FXML
+    public void changeRuleStatus(ActionEvent event) throws IOException{
+
+        Rule r = rulesTable.getSelectionModel().getSelectedItem();
+            if(r.getStatus())
+                r.setStatus(false);
+            else
+                r.setStatus(true);
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,6 +99,8 @@ public class PrimaryController implements Initializable{
         rulesTable.setItems(ruleListToJavaFX.getRules());
 
         delete.visibleProperty().bind(Bindings.isNotEmpty(ruleListToJavaFX.getRules()));
+        changeRuleStatusButton.disableProperty().bind(rulesTable.getSelectionModel().selectedItemProperty().isNull());       
+        changeRuleStatusButton.visibleProperty().bind(Bindings.isNotEmpty(ruleListToJavaFX.getRules()));
 
     }
 

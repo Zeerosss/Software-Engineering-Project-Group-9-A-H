@@ -50,7 +50,8 @@ public class AutoSaveManager implements Observer {
                 if (obj instanceof Rule) {
                     Rule rule = (Rule) obj;
                     
-                    ruleList.ruleAdd(rule.getStatus(), rule.getName(), rule.getTrigger(), rule.getAction() /*, rule.getNextUsefulDate() */);
+                    ruleList.ruleAdd(rule.getStatus(), rule.getName(), rule.getTrigger(), rule.getAction(), 
+                    rule.isOnlyOnce(), rule.getSleepingTime(), rule.getNextUsefulDate());
                 }
             }
            

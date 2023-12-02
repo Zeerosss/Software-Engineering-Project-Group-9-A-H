@@ -18,10 +18,11 @@ import it.unisa.diem.rules.RuleListToJavaFX;
  * JavaFX App
  */
 public class App extends Application {
-    private static RuleListToJavaFX ruleService = RuleListToJavaFX.getInstance();
     private static Scene scene;
     private Alert alert;
     private AutoSaveManager autoSaveManager = new AutoSaveManager();
+    //the application needs an istance
+    private RuleListToJavaFX ruleListToJavaFX = RuleListToJavaFX.getInstance();
     
    
     @Override

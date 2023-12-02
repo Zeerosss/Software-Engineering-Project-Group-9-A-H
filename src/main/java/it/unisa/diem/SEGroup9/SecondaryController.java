@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
@@ -26,6 +27,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
 import javafx.scene.layout.AnchorPane;
@@ -43,32 +47,37 @@ public class SecondaryController implements Initializable {
     private AbstractTriggerController triggerController;
 
     private AbstractActionController actionController; 
-
-
     @FXML 
     private AnchorPane actionInputPane;
-
     @FXML
     private AnchorPane creationPage;
     @FXML
     private ListView<Rule> alreadyAdd;
-
     @FXML
     private ChoiceBox<String> actionBox;
-
     @FXML
     private AnchorPane triggerInputPane;
-
-    
     @FXML
     private ChoiceBox<String> triggerBox;
     @FXML
     private TextField ruleNameLabel;
+    @FXML
+    private RadioButton onlyOnceRadio;
+    @FXML
+    private RadioButton sleepingTimeRadio;
+    @FXML
+    private Spinner<Integer> hourSpinner;
+    @FXML
+    private Spinner<Integer> minuteSpinner;
+    @FXML
+    private Spinner<Integer> daySpinner;
     
     @FXML
     private void switchToPrimary() throws IOException {
 
         String ruleName = ruleNameLabel.getText();
+
+        Duration sleepingTime;
         
         if(triggerBox.getValue() == null || ruleName.isEmpty() || actionBox.getValue() == null){
 
@@ -91,8 +100,11 @@ public class SecondaryController implements Initializable {
                 trigger = triggerController.createTrigger();
                                       
                 action = actionController.createAction();
+
+                sleepingTime = Duration.ofDays(daySpinner.getValue()).plusHours(hourSpinner.getValue()
+            ).plusMinutes(minuteSpinner.getValue());
             
-                ruleCollection.ruleAdd(true,ruleName,trigger,action);   
+                ruleCollection.ruleAdd(true,ruleName,trigger,action, onlyOnceRadio.isSelected(), sleepingTime);   
                 
                
                 triggerBox.setValue(null);
@@ -170,16 +182,24 @@ private AbstractActionController getActionController(String fxml){
             triggerController = getTriggerController(TypeConstant.TRIGGERTYPES_CONSTANTS.get(newValue.intValue()));
         });
     
-
-    
         actionBox.getSelectionModel().selectedIndexProperty().addListener((odd, oldValue, newValue) -> {
             actionInputPane.getChildren().clear();
             if (newValue.intValue() != -1) {
                 actionController=getActionController(TypeConstant.ACTIONTYPES_CONSTANTS.get(newValue.intValue()));}
-    });
+        });
+
+        onlyOnceRadio.setSelected(true);
+
+        hourSpinner.visibleProperty().bind(sleepingTimeRadio.selectedProperty());
+        minuteSpinner.visibleProperty().bind(sleepingTimeRadio.selectedProperty());
+        daySpinner.visibleProperty().bind(sleepingTimeRadio.selectedProperty());
+
+        hourSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23));
+        minuteSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59));
+        daySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100000));
     
     
-}
+    }
 }
     
 
