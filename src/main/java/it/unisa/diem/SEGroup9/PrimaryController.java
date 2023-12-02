@@ -9,7 +9,9 @@ import it.unisa.diem.actions.Action;
 import it.unisa.diem.rules.Rule;
 
 import it.unisa.diem.rules.RuleListToJavaFX;
+import it.unisa.diem.rules.RuleThread;
 import it.unisa.diem.triggers.Trigger;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,7 +25,7 @@ public class PrimaryController implements Initializable{
     
 
     //getting the RuleCollection Instance to get the elements from the ObservableList
-    private static RuleListToJavaFX ruleService = RuleListToJavaFX.getInstance();
+    private static RuleListToJavaFX ruleListToJavaFX = RuleListToJavaFX.getInstance();
     
     @FXML
     private Button createSet;
@@ -53,9 +55,8 @@ public class PrimaryController implements Initializable{
         alert.setHeaderText("Are you sure you want to perform this action?");
         alert.showAndWait().ifPresent(response -> {
             if (response == javafx.scene.control.ButtonType.OK)
-                    ruleService.ruleDelete(selectedRule);
-                    if(ruleService.isEmpty()){
-                    delete.setVisible(false);
+                    ruleListToJavaFX.ruleDelete(selectedRule);
+                    if(ruleListToJavaFX.isEmpty()){
                     createSet.setText("Create new rule Set");
                 }
         }
@@ -72,10 +73,8 @@ public class PrimaryController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        
-        
-        if(!ruleService.isEmpty()){
-        createSet.setText("Add new rules");
-        delete.setVisible(true);
+        if(!ruleListToJavaFX.isEmpty()){
+            createSet.setText("Add new rules");
         }
 
         
@@ -85,7 +84,9 @@ public class PrimaryController implements Initializable{
         triggerNameId.setCellValueFactory(new PropertyValueFactory<Rule,Trigger>("Trigger"));
         ruleNameId.setCellValueFactory(new PropertyValueFactory<Rule,String>("Name"));
         statusId.setCellValueFactory(new PropertyValueFactory<Rule,Boolean>("Status"));
-        rulesTable.setItems(ruleService.getRules());
+        rulesTable.setItems(ruleListToJavaFX.getRules());
+
+        delete.visibleProperty().bind(Bindings.isNotEmpty(ruleListToJavaFX.getRules()));
 
     }
 

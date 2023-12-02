@@ -42,7 +42,5 @@ public class RuleListToJavaFX implements Observer{
     @Override
     public void update() {
         observableList.setAll(ruleList.getRules());
-        
     }
-    
 }

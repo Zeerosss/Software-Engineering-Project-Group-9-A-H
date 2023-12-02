@@ -36,16 +36,16 @@ public class Rule implements Serializable,Observable{
         return a;
     }
 
-    public boolean getStatus() {
+    public synchronized boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public synchronized void setStatus(boolean status) {
         this.status = status;
-        notifyObserver();;
+        notifyObserver();
     }
     @Override
-    public String toString() {
+    public synchronized String toString() {
         return name;
     }
     @Override
@@ -57,7 +57,7 @@ public class Rule implements Serializable,Observable{
       observers.remove(observer);
     }
     @Override
-    public void notifyObserver() {
+    public synchronized void notifyObserver() {
       for(Observer observer : observers){
         observer.update();
       }

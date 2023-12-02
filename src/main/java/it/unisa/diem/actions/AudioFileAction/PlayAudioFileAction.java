@@ -16,6 +16,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import it.unisa.diem.actions.Action;
+import javafx.application.Platform;
 
 public class PlayAudioFileAction implements Action {
     String name;
@@ -62,7 +63,9 @@ public class PlayAudioFileAction implements Action {
     // Start playing the audio when the action is started
     @Override
     public void startAction() {
-        clip.start();
+        Platform.runLater(() -> {
+            clip.start();
+        });
     }
 
     @Override

@@ -8,34 +8,43 @@ import it.unisa.diem.triggers.Trigger;
 
 
 public class RuleList implements Observer,Observable {
-    private List<Rule> rules = new ArrayList<>();
-    private List<Observer> observers = new ArrayList<>();
+    private List<Rule> rules;
+    private List<Observer> observers;
     private static RuleList instance;
+    private RuleThread ruleThread;
 
 
-    public static RuleList getInstance() {
+    public synchronized static RuleList getInstance() {
         if (instance == null) {
             instance = new RuleList();
         }
         return instance;
     }
-    public void ruleAdd(boolean status,String name,Trigger t,Action a){
+
+    private RuleList(){
+        this.rules = new ArrayList<>();
+        observers = new ArrayList<>();
+        this.ruleThread = new RuleThread(this);
+        new Thread(ruleThread).start();
+    }
+
+    public synchronized void ruleAdd(boolean status,String name,Trigger t,Action a){
         Rule rule = new Rule(status, name, t, a);
         rule.addObserver(this);
         rules.add(rule);
         notifyObserver();
         
     }
-    public void ruleDelete(Rule rule){
+    public synchronized void ruleDelete(Rule rule){
         rule.removeObserver(this);
         rules.remove(rule);
         this.notifyObserver();
     }
 
-    public List<Rule> getRules(){
+    public synchronized List<Rule> getRules(){
         return rules;
     }
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return rules.isEmpty();
     }
     @Override
@@ -47,16 +56,15 @@ public class RuleList implements Observer,Observable {
       observers.remove(observer);
     }
     @Override
-    public void notifyObserver() {
+    public synchronized void notifyObserver() {
         System.out.println("ciao");
       for(Observer observer : observers){
         observer.update();
-        
       }
     }
 
     @Override
-    public void update() {
+    public synchronized void update() {
         notifyObserver();
     }
 

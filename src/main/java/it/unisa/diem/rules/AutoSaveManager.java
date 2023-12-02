@@ -10,11 +10,10 @@ import java.io.ObjectOutputStream;
 public class AutoSaveManager implements Observer {
     RuleList ruleList = RuleList.getInstance();
     private static String SAVE_PATH = "src\\main\\resources\\it\\unisa\\diem\\rules.date";
-    private static File file= new File(SAVE_PATH);
+    private static File file = new File(SAVE_PATH);
  
     public AutoSaveManager() {
         ruleList.addObserver(this);
-
     }
 
     private void save() throws IOException {
@@ -51,7 +50,7 @@ public class AutoSaveManager implements Observer {
                 if (obj instanceof Rule) {
                     Rule rule = (Rule) obj;
                     
-                    ruleList.ruleAdd(rule.getStatus(),rule.getName(),rule.getTrigger(),rule.getAction());
+                    ruleList.ruleAdd(rule.getStatus(), rule.getName(), rule.getTrigger(), rule.getAction() /*, rule.getNextUsefulDate() */);
                 }
             }
            

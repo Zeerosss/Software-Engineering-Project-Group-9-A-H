@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
 import it.unisa.diem.rules.Rule;
-import it.unisa.diem.rules.RuleCollection;
 import it.unisa.diem.rules.RuleListToJavaFX;
 import it.unisa.diem.triggers.AbstractTriggerController;
 import it.unisa.diem.triggers.Trigger;
