@@ -19,7 +19,7 @@ import it.unisa.diem.rules.RuleListToJavaFX;
  */
 public class App extends Application {
     private static Scene scene;
-    private Alert alert;
+    private Alert alert = new Alert(Alert.AlertType.WARNING);
     private AutoSaveManager autoSaveManager = new AutoSaveManager();
     //the application needs an istance
     private RuleListToJavaFX ruleListToJavaFX = RuleListToJavaFX.getInstance();
