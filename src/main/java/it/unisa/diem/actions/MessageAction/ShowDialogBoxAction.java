@@ -4,9 +4,11 @@ import it.unisa.diem.actions.Action;
 
 public class ShowDialogBoxAction implements Action{
     private String message;
-    private transient AlertDisplayer dialogDisplayer=new AlertJavaFX();
-    public ShowDialogBoxAction(String message){
-        this.message=message;
+    private AlertDisplayer dialogDisplayer;
+
+    public ShowDialogBoxAction(String message, AlertDisplayer alertDisplayer){
+        this.message=message; 
+        this.dialogDisplayer = alertDisplayer;
     }
     public String getMessage(){
         return this.message;
