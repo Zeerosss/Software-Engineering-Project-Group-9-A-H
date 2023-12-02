@@ -47,8 +47,7 @@ public class PrimaryController implements Initializable{
     private TableColumn<Rule,Trigger> triggerNameId;
     @FXML
     private TableColumn<Rule,Action> actionNameId;
-    @FXML
-    private Button changeRuleStatusButton;
+    
    
     @FXML
     void deleteSelectedRule(ActionEvent event) throws IOException{
@@ -79,7 +78,7 @@ public class PrimaryController implements Initializable{
             alert.setHeaderText("Are you sure you want to change the status of the selected rule?");
             alert.showAndWait().ifPresent(response -> {
                 if (response == javafx.scene.control.ButtonType.OK) 
-                    ruleService.changeRuleStatus(selectedRule);
+                    selectedRule.changeRuleStatus();
                     rulesTable.refresh();            
             });
         }
@@ -91,16 +90,7 @@ public class PrimaryController implements Initializable{
 
         App.setRoot("createsetview");
     }
-    @FXML
-    public void changeRuleStatus(ActionEvent event) throws IOException{
-
-        Rule r = rulesTable.getSelectionModel().getSelectedItem();
-            if(r.getStatus())
-                r.setStatus(false);
-            else
-                r.setStatus(true);
-
-    }
+   
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -109,7 +99,7 @@ public class PrimaryController implements Initializable{
             createSet.setText("Add new rules");
         }
         
-        changeRuleStatusButton.setVisible(!ruleService.isEmpty());
+        changeRuleStatusButton.setVisible(!ruleListToJavaFX.isEmpty());
         
 
        //table column initialization+ settings
