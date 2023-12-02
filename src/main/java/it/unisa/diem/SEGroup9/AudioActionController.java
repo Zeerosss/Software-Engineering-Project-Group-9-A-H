@@ -1,12 +1,14 @@
 package it.unisa.diem.SEGroup9;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
 import it.unisa.diem.actions.AudioFileAction.PlayAudioFileAction;
+import it.unisa.diem.actions.AudioFileAction.PlayAudioFileJavaFX;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -31,7 +33,7 @@ public class AudioActionController implements AbstractActionController {
 
         // Show the file chooser dialog and get the selected file
         file = fileChooser.showOpenDialog(App.getStage());
-        // Uncomment the next line if you want to print the path of the file to the console
+        // Remove the comment of the next line if you want to print the path of the chosen file to the console
         // System.out.println(file);
 
         // Update the label with the name of the chosen file if file is not null
@@ -45,7 +47,13 @@ public class AudioActionController implements AbstractActionController {
     public Action createAction() {
         // If the file is selected, create a PlayAudioFileAction with the file path
         if (this.isFilled()) {
-            return (new PlayAudioFileAction(file.getPath()));
+            try {
+                return (new PlayAudioFileAction(file.getPath(), new PlayAudioFileJavaFX() {             
+                }));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return null;
+            }
         } else {
             return null;
         }

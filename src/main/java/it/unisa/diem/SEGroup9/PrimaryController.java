@@ -35,6 +35,9 @@ public class PrimaryController implements Initializable{
     private Button delete;
 
     @FXML
+    private Button changeRuleStatusButton;
+
+    @FXML
     private TableView<Rule> rulesTable;
     @FXML
     private TableColumn<Rule,String> ruleNameId;
@@ -61,11 +64,27 @@ public class PrimaryController implements Initializable{
                     ruleListToJavaFX.ruleDelete(selectedRule);
                     if(ruleListToJavaFX.isEmpty()){
                     createSet.setText("Create new rule Set");
+                    changeRuleStatusButton.setVisible(false);
                 }
         }
         );
         }
     }
+    @FXML
+    void changeStatus(ActionEvent event) throws IOException {
+        Rule selectedRule = rulesTable.getSelectionModel().getSelectedItem();
+        if (selectedRule != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Are you sure you want to change the status of the selected rule?");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == javafx.scene.control.ButtonType.OK) 
+                    ruleService.changeRuleStatus(selectedRule);
+                    rulesTable.refresh();            
+            });
+        }
+    }
+
 
     @FXML
     void switchToCreateView(ActionEvent event) throws IOException{
@@ -89,9 +108,10 @@ public class PrimaryController implements Initializable{
         if(!ruleListToJavaFX.isEmpty()){
             createSet.setText("Add new rules");
         }
-
         
-       //future proofing
+        changeRuleStatusButton.setVisible(!ruleService.isEmpty());
+        
+
        //table column initialization+ settings
         actionNameId.setCellValueFactory(new PropertyValueFactory<Rule,Action>("Action"));
         triggerNameId.setCellValueFactory(new PropertyValueFactory<Rule,Trigger>("Trigger"));

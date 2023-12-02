@@ -77,6 +77,10 @@ public class Rule implements Serializable,Observable{
         this.status = status;
         notifyObserver();
     }
+    public synchronized void changeRuleStatus(){
+        this.status = !this.status;
+        notifyObserver();
+    }
 
     public synchronized boolean isSleeping(){
         return LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).isBefore(nextUsefulDate);

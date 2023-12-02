@@ -5,7 +5,10 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/User-stories-B#03-B#04
 public class ShowDialogBoxActionTest {
     @Test
     public void testActionIsCreated() {
