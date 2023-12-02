@@ -17,6 +17,9 @@ public class TypeConstant {
         
         map2.put(0,"audioaction");
         map2.put(1,"dialogaction");
+        map2.put(2,"copyfileaction");
+        map2.put(3,"movefileaction");
+        map2.put(4,"deletefileaction");
 
        
         

@@ -1,27 +1,22 @@
 package it.unisa.diem.actions.MessageAction;
 
 import it.unisa.diem.actions.Action;
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
 
 public class ShowDialogBoxAction implements Action{
     private String message;
+    private AlertDisplayer dialogDisplayer;
 
-    public ShowDialogBoxAction(String message){
-        this.message=message;
+    public ShowDialogBoxAction(String message, AlertDisplayer alertDisplayer){
+        this.message=message; 
+        this.dialogDisplayer = alertDisplayer;
     }
     public String getMessage(){
         return this.message;
     }
     @Override
     public void startAction(){
-        Platform.runLater(() -> {
-            Alert alert= new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Dialog Box");
-            alert.setHeaderText(message);
-            alert.setContentText("Press OK to close the Window");
-            alert.showAndWait(); 
-        });       
+        dialogDisplayer.displayAlert("Dialog Box", message, "Press OK to close the window");
+        
     }
     @Override
     public String toString() {
