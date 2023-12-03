@@ -9,7 +9,6 @@ import it.unisa.diem.actions.Action;
 import it.unisa.diem.rules.Rule;
 
 import it.unisa.diem.rules.RuleListToJavaFX;
-import it.unisa.diem.rules.RuleThread;
 import it.unisa.diem.triggers.Trigger;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
