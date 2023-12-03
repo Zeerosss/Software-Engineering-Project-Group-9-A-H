@@ -21,6 +21,11 @@ public class PlayAudioFileAction implements Action {
     }
     
     @Override
+    public String toString() {
+        return "Play this file \nfile:" + audioFilePath;
+    }
+
+    @Override
     public void startAction() {
         playSound.StartSound(audioFilePath);
          }

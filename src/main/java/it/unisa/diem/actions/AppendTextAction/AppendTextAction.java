@@ -16,6 +16,11 @@ public class AppendTextAction implements Action{
         this.message = message;
     }
     @Override
+    public String toString() {
+    
+        return "Append a string on a file\n file:" + filePath + ", message=" + message;
+    }
+    @Override
     public void startAction() {
 
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(filePath, true)))) {

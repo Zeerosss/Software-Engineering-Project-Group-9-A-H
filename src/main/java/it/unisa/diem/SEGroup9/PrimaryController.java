@@ -32,7 +32,7 @@ public class PrimaryController implements Initializable{
     private Button createSet;
     
     @FXML
-    private Button delete;
+    private Button deleteButton;
 
     @FXML
     private Button changeRuleStatusButton;
@@ -62,8 +62,9 @@ public class PrimaryController implements Initializable{
             if (response == javafx.scene.control.ButtonType.OK)
                     ruleListToJavaFX.ruleDelete(selectedRule);
                     if(ruleListToJavaFX.isEmpty()){
+                    
                     createSet.setText("Create new rule Set");
-                    changeRuleStatusButton.setVisible(false);
+                    
                 }
         }
         );
@@ -99,7 +100,7 @@ public class PrimaryController implements Initializable{
             createSet.setText("Add new rules");
         }
         
-        changeRuleStatusButton.setVisible(!ruleListToJavaFX.isEmpty());
+        
         
 
        //table column initialization+ settings
@@ -109,7 +110,7 @@ public class PrimaryController implements Initializable{
         statusId.setCellValueFactory(new PropertyValueFactory<Rule,Boolean>("Status"));
         rulesTable.setItems(ruleListToJavaFX.getRules());
 
-        delete.visibleProperty().bind(Bindings.isNotEmpty(ruleListToJavaFX.getRules()));
+        deleteButton.visibleProperty().bind(Bindings.isNotEmpty(ruleListToJavaFX.getRules()));
         changeRuleStatusButton.disableProperty().bind(rulesTable.getSelectionModel().selectedItemProperty().isNull());       
         changeRuleStatusButton.visibleProperty().bind(Bindings.isNotEmpty(ruleListToJavaFX.getRules()));
 

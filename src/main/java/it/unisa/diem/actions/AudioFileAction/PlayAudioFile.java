@@ -1,5 +1,7 @@
 package it.unisa.diem.actions.AudioFileAction;
 
-public interface PlayAudioFile {
+import java.io.Serializable;
+
+public interface PlayAudioFile extends Serializable{
     public void StartSound(String audioFilePath);       
 } 

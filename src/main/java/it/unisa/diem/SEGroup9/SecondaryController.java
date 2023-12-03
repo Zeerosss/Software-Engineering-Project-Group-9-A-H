@@ -89,6 +89,7 @@ public class SecondaryController implements Initializable {
         }else{
             Trigger trigger = triggerController.createTrigger();
             Action action = actionController.createAction();
+            System.err.println(action);
             if( ( action == null )||( trigger == null) ){
                 
                 // If the action/trigger object is null
@@ -97,10 +98,6 @@ public class SecondaryController implements Initializable {
                 alert.setContentText("Error in action or trigger fields");
                 alert.showAndWait();
             }else{try{
-                trigger = triggerController.createTrigger();
-                                      
-                action = actionController.createAction();
-
                 sleepingTime = Duration.ofDays(daySpinner.getValue()).plusHours(hourSpinner.getValue()
             ).plusMinutes(minuteSpinner.getValue());
             
