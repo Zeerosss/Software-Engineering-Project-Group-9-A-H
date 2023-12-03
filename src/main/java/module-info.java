@@ -12,7 +12,7 @@ module it.unisa.diem{
     exports it.unisa.diem.actions;
     exports it.unisa.diem.actions.AudioFileAction;
     //exports it.unisa.diem.triggers;
-    
+    exports it.unisa.diem.rules;
     opens it.unisa.diem.triggers to junit;
     exports it.unisa.diem.SEGroup9;
     //exports it.unisa.diem;
