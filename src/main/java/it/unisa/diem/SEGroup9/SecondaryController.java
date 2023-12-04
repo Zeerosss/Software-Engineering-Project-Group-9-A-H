@@ -168,7 +168,7 @@ private AbstractActionController getActionController(String fxml){
     public void initialize(URL arg0, ResourceBundle arg1) {
         alert = new Alert(Alert.AlertType.WARNING);
         actionBox.getItems().setAll("Play an audio file", "Display a message","Copy File","Move File","Delete File","Append a message to a file");
-        triggerBox.getItems().setAll("Time of day Trigger");
+        triggerBox.getItems().setAll("Time of day Trigger","exit status of a program");
 
         alreadyAdd.setItems(ruleCollection.getRules());
 

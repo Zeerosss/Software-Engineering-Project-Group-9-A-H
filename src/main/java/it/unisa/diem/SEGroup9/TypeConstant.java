@@ -14,6 +14,7 @@ public class TypeConstant {
         Map<Integer, String> map2= new HashMap<>();
 
         map1.put(0, "timetrigger");
+        map1.put(1,"exitstatustrigger");
         
         map2.put(0,"audioaction");
         map2.put(1,"dialogaction");
