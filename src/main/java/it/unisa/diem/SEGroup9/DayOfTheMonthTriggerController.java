@@ -21,9 +21,9 @@ public class DayOfTheMonthTriggerController implements AbstractTriggerController
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        daySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, date.lengthOfMonth()));
+        daySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(date.getDayOfMonth(), date.lengthOfMonth()));
         daySpinner.getEditor().setAlignment(Pos.CENTER_RIGHT);
-        daySpinner.getValueFactory().setValue(0);
+        daySpinner.getValueFactory().setValue(date.getDayOfMonth());
 
 
     }
@@ -33,7 +33,7 @@ public class DayOfTheMonthTriggerController implements AbstractTriggerController
         try{ 
             return new DayOfTheMonthTrigger(daySpinner.getValue());}
         catch(Exception e){
-            System.err.println("Day of the month trigger wasn't created successfully");
+            System.err.println("Day of the month trigger hasn't been created");
             return null;
         }
          

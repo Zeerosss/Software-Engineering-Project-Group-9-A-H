@@ -15,7 +15,7 @@ public class TypeConstant {
 
         map1.put(0, "timetrigger");
         map1.put(1,"dayofmonthtrigger");
-        
+        map1.put(2,"datetrigger");
         map2.put(0,"audioaction");
         map2.put(1,"dialogaction");
         map2.put(2,"copyfileaction");
