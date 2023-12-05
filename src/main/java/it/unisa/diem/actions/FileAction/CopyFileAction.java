@@ -35,6 +35,6 @@ public class CopyFileAction implements Action {
     // Override the toString method to provide a human-readable representation of the action
     @Override
     public String toString() {
-        return ("Copying the file:" + file.getName() + "\n to:" + destinationPath);
+        return ("Copy the file:" + file.getName() + "\n to:" + destinationPath);
     }
 }

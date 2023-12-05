@@ -1,5 +1,6 @@
 package it.unisa.diem.triggers;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -32,5 +33,12 @@ public class DayOfTheMonthTriggerTest {
 
         assertTrue(trigger1.isValidated());
         assertTrue(trigger2.isValidated());
+    }
+
+    @Test
+    public void testDayOfTheMonthTriggerToString() {
+        DayOfTheMonthTrigger dayTrigger = new DayOfTheMonthTrigger(10);
+        String choosenDay = "Day of month choosen: \n " + 10;
+        assertEquals(choosenDay, dayTrigger.toString());
     }
 }
