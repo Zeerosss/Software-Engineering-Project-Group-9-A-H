@@ -14,10 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
-public class AppendTextActionController implements AbstractActionController{
+public class AppendTextActionController implements AbstractActionController {
 
     private FileChooser fileChooser;
     private File file;
+
     @FXML
     private Button changeFileButton;
 
@@ -27,7 +28,7 @@ public class AppendTextActionController implements AbstractActionController{
     @FXML
     private TextField messageField;
 
-
+    // Initialization method for the controller
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Create a FileChooser to allow the user to select a txt file
@@ -38,38 +39,38 @@ public class AppendTextActionController implements AbstractActionController{
 
         // Show the file chooser dialog and get the selected file
         file = fileChooser.showOpenDialog(App.getStage());
-        // Remove the comment of the next line if you want to print the path of the chosen file to the console
-       // System.out.println(file);
 
-        // Update the label with the name of the chosen file if file is not null
         if (file != null) {
             fileLabel.setText("Chosen file: " + file.getName());
         }
     }
-   @FXML
+
+    // Event handler method for the changeFileButton
+    @FXML
     void changeFile(ActionEvent event) {
+        // Show the file chooser dialog and update the label with the name of the chosen file
         file = fileChooser.showOpenDialog(App.getStage());
         fileLabel.setText("");
         if (file != null) {
             fileLabel.setText("Chosen file: " + file.getName());
         }
     }
+
+    // Create an AppendTextAction based on user input
     @Override
     public Action createAction() {
         if (this.isFilled()) {
             String message = messageField.getText();
             messageField.clear();
-           // System.out.println(file);
-            return (new AppendTextAction(file.getPath(), message));
+            return new AppendTextAction(file.getPath(), message);
         } else {
             return null;
         }
     }
 
+    // Check if both the file and messageField are filled
     @Override
     public boolean isFilled() {
-        if(file==null || messageField.getText().isEmpty()) 
-        return(false);
-        return(true);
+        return file != null && !messageField.getText().isEmpty();
     }
 }

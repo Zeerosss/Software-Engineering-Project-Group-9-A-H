@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import it.unisa.diem.actions.MessageAction.AlertDisplayer;
 import it.unisa.diem.actions.MessageAction.AlertJavaFX;
 import it.unisa.diem.actions.MessageAction.ShowDialogBoxAction;
 import it.unisa.diem.triggers.TimeOfDayTrigger;

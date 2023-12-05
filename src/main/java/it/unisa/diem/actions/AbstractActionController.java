@@ -4,6 +4,5 @@ import javafx.fxml.Initializable;
 
 public interface AbstractActionController extends Initializable {
     public Action createAction();
-    public boolean isFilled();
-    
+    public boolean isFilled(); 
 }

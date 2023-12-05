@@ -13,7 +13,7 @@ public class FileChecker {
     "/Applications",
     "/private");
 
-    //These two methods use .stream() to convert the List in a item stream and anyMatch to see if any item starts with the directory or the path of the file we want to check
+    //The following two methods use .stream() to convert the List in a item stream and anyMatch to see if any item starts with the directory or the path of the file we want to check
     //If it finds any matches, it return false. This methods are necessary to check if a Path is also present in sensitiveDirectory which contains dangerous paths.
     public boolean unavailableDirectory(String directory) {
         return sensitiveDirectories.stream().anyMatch(directory::startsWith);
@@ -22,6 +22,5 @@ public class FileChecker {
     public boolean unavailableFile(File file) {
         String filePath = file.getAbsolutePath();
         return sensitiveDirectories.stream().anyMatch(filePath::startsWith);
-    
-}
+    }
 }

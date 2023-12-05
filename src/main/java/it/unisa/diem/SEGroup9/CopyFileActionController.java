@@ -34,26 +34,24 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
     @FXML
     private Button chooseDirectoryButton;
 
-    //This list contains Path that can be dangerous to work with, so it will be impossible to copy file from or to these directories.
-
-
-    //method to handle the file choosing process by clicking the button "Choose a File". The method will also check the file lenght to ensure that there are no overlapping texts on the UI.
+    // This method handles the file choosing process by clicking the "Choose a File" button.
+    // It also checks the file length to ensure that there are no overlapping texts on the UI.
     @FXML
     private void chooseFile(ActionEvent event){
-        FileChooser fileChooser=new FileChooser();
+        FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a file to copy");
 
         file = fileChooser.showOpenDialog(App.getStage());
         if (file != null) {
             String fileName = file.getName();
             if (fileName.length() > 15) {
-                fileName = fileName.substring(0, 15)+"...";
+                fileName = fileName.substring(0, 15) + "...";
             }
             fileChoosenId.setText(fileName);
-            }
         }
+    }
 
-    //method to handle the directory choosing process by clicking the button "Choose a Directory"
+    // This method handles the directory choosing process by clicking the "Choose a Directory" button.
     @FXML
     private void chooseDirectory(ActionEvent event){
         DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -61,14 +59,15 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
 
         directory = directoryChooser.showDialog(App.getStage());
         if (directory != null) {
-                directoryChoosenId.setText(directory.getName());
-            }
+            directoryChoosenId.setText(directory.getName());
         }
+    }
 
+    // This method is called when the controller is initialized
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Buttons are set on disabled until you confirm the Alert below. If you close the alert without confirming it,
-        //the buttons will still be inactive and you need to change action.
+        // Buttons are set to disabled until the user confirms the Alert below.
+        // If the user closes the alert without confirming it, the buttons will remain inactive.
         chooseFileButton.setDisable(true);
         chooseDirectoryButton.setDisable(true);
 
@@ -78,28 +77,29 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
         alert.setContentText("Press Confirm to go forward");
         Optional<ButtonType> result = alert.showAndWait();    
 
-        if(result.isPresent() && result.get() == ButtonType.OK){
+        // If the user confirms the alert, enable the buttons
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             chooseFileButton.setDisable(false);
             chooseDirectoryButton.setDisable(false);
         }
-
     }
 
+    // This method creates and returns a CopyFileAction based on user input
     @Override
     public Action createAction(){
-        if(isFilled()){
+        if (isFilled()) {
             return new CopyFileAction(file, directory.getPath());
-        }else{ 
+        } else { 
             return null;
         } 
     }
+
+    // This method checks if the necessary fields are filled
     @Override
     public boolean isFilled() {
         if (file != null && directory != null && !unavailableDirectory(directory.getPath()) && !unavailableFile(file)) {
-                return true;
-            }
+            return true;
+        }
         return false;
     }
-    
-
 }

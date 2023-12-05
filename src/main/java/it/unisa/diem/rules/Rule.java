@@ -9,32 +9,34 @@ import java.util.List;
 
 import it.unisa.diem.actions.Action;
 import it.unisa.diem.triggers.Trigger;
-//"The synchronized keyword makes functions thread-safe. In the future, another thread will be used to parallelize auto-save."
 
-public class Rule implements Serializable,Observable{
+public class Rule implements Serializable, Observable {
     private static final long serialVersionUID = 1L;
+
+    // Transient list of observers to be excluded from serialization
     private transient List<Observer> observers = new ArrayList<>();
+
+    // Instance variables for a rule
     private final String name;
     private Trigger t;
     private Action a;
-    private boolean status=true;
+    private boolean status = true;
     private final boolean onlyOnce;
     private final Duration sleepingTime;
     private LocalDateTime nextUsefulDate;
 
-
-    public Rule(boolean status,String name,Trigger t,Action a, boolean onlyOnce, Duration sleepingTime){
-
-        this.t=t;
-        this.a=a;
-        this.name=name;
-        this.status=status;
+    // Constructor to initialize the rule
+    public Rule(boolean status, String name, Trigger t, Action a, boolean onlyOnce, Duration sleepingTime) {
+        this.t = t;
+        this.a = a;
+        this.name = name;
+        this.status = status;
         this.onlyOnce = onlyOnce;
         this.sleepingTime = sleepingTime;
-        this.nextUsefulDate = LocalDateTime.of(0,1,1,0,0);
-
+        this.nextUsefulDate = LocalDateTime.of(0, 1, 1, 0, 0);
     }
 
+    // Getter methods for rule properties
     public synchronized String getName() {
         return name;
     }
@@ -51,57 +53,68 @@ public class Rule implements Serializable,Observable{
         return status;
     }
 
-    public synchronized Duration getSleepingTime(){
+    public synchronized Duration getSleepingTime() {
         return sleepingTime;
     }
 
-    public synchronized LocalDateTime getNextUsefulDate(){
+    public synchronized LocalDateTime getNextUsefulDate() {
         return nextUsefulDate;
     }
 
-    public synchronized void setNextUsefulDate(LocalDateTime nextUsefulDate){
+    // Setter method for next useful date and notifies observers
+    public synchronized void setNextUsefulDate(LocalDateTime nextUsefulDate) {
         this.nextUsefulDate = nextUsefulDate;
         notifyObserver();
     }
 
-    public synchronized void updateNextUsefulDate(){
+    // Method to update next useful date and notifies observers
+    public synchronized void updateNextUsefulDate() {
         nextUsefulDate = LocalDateTime.now().plus(sleepingTime).truncatedTo(ChronoUnit.MINUTES);
         notifyObserver();
     }
 
-    public synchronized boolean isOnlyOnce(){
+    public synchronized boolean isOnlyOnce() {
         return onlyOnce;
     }
 
+    // Setter method for rule status and notifies observers
     public synchronized void setStatus(boolean status) {
         this.status = status;
         notifyObserver();
     }
-    public synchronized void changeRuleStatus(){
+
+    // Method to toggle rule status and notifies observers
+    public synchronized void changeRuleStatus() {
         this.status = !this.status;
         notifyObserver();
     }
 
-    public synchronized boolean isSleeping(){
+    // Method to check if the rule is in sleeping state
+    public synchronized boolean isSleeping() {
         return LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).isBefore(nextUsefulDate);
     }
+
+    // Override the toString method to provide a human-readable representation of the rule
     @Override
     public synchronized String toString() {
         return name;
     }
+
+    // Implementation of the Observable interface methods
     @Override
     public void addObserver(Observer observer) {
-       observers.add(observer);
+        observers.add(observer);
     }
+
     @Override
     public void removeObserver(Observer observer) {
-      observers.remove(observer);
+        observers.remove(observer);
     }
+
     @Override
     public void notifyObserver() {
-      for(Observer observer : observers){
-        observer.update();
-      }
+        for (Observer observer : observers) {
+            observer.update();
+        }
     }
-    
 }

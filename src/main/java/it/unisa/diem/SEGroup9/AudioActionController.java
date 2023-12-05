@@ -17,43 +17,43 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 public class AudioActionController implements AbstractActionController {
-    private FileChooser fileChooser;
     
+    private FileChooser fileChooser;
+    private File file;
+
     @FXML
     private Button changeFileButton;
+    
     @FXML
     private AnchorPane fileChooserPane;
+    
     @FXML
     private Label audioFilePathLabel;
-    private File file;
 
     // This method is called when the controller is initialized
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Create a FileChooser to allow the user to select a WAV file
+        // Create a FileChooser to allow the user to select an audio file (WAV or MP3)
         fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Audio Files (*.wav, *.mp3)" ,"*.wav","*.mp3");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Audio Files (*.wav, *.mp3)", "*.wav", "*.mp3");
         fileChooser.getExtensionFilters().add(extensionFilter);
         fileChooser.setTitle("Open Resource File");
 
         // Show the file chooser dialog and get the selected file
         file = fileChooser.showOpenDialog(App.getStage());
-        // Remove the comment of the next line if you want to print the path of the chosen file to the console
-        // System.out.println(file);
 
-        // Update the label with the name of the chosen file if file is not null
         if (file != null) {
             audioFilePathLabel.setText("Chosen file: " + file.getName());
         }
     }
 
-    // Create and return an Action based on the selected file
+    // Create and return a PlayAudioFileAction based on the selected file
     @Override
     public Action createAction() {
         // If the file is selected, create a PlayAudioFileAction with the file path
         if (this.isFilled()) {
             try {
-                return (new PlayAudioFileAction(file.getPath(), new PlayAudioFileJavaFX()));
+                return new PlayAudioFileAction(file.getPath(), new PlayAudioFileJavaFX());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 return null;
@@ -62,8 +62,11 @@ public class AudioActionController implements AbstractActionController {
             return null;
         }
     }
+
+    // Event handler method for the changeFileButton
     @FXML
     void changeFile(ActionEvent event) {
+        // Show the file chooser dialog and update the label with the name of the chosen file
         file = fileChooser.showOpenDialog(App.getStage());
         audioFilePathLabel.setText("");
         if (file != null) {
@@ -74,6 +77,6 @@ public class AudioActionController implements AbstractActionController {
     // Check if the file is selected
     @Override
     public boolean isFilled() {
-        return (!(file == null));
+        return file != null;
     }
 }

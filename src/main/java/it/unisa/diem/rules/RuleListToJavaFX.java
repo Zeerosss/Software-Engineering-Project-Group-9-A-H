@@ -1,6 +1,5 @@
 package it.unisa.diem.rules;
 
-
 import java.time.Duration;
 
 import it.unisa.diem.actions.Action;
@@ -8,16 +7,23 @@ import it.unisa.diem.triggers.Trigger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class RuleListToJavaFX implements Observer{
+public class RuleListToJavaFX implements Observer {
 
+    // Reference to the RuleList singleton
     private RuleList ruleList = RuleList.getInstance();
+
+    // ObservableList to be used by JavaFX UI components
     private ObservableList<Rule> observableList = FXCollections.observableArrayList();
+
+    // Singleton instance of RuleListToJavaFX
     private static RuleListToJavaFX instance;
-    
+
+    // Constructor to set up the observer relationship
     public RuleListToJavaFX() {
         ruleList.addObserver(this);
     }
 
+    // Singleton pattern to get an instance of RuleListToJavaFX
     public static RuleListToJavaFX getInstance() {
         if (instance == null) {
             instance = new RuleListToJavaFX();
@@ -25,26 +31,30 @@ public class RuleListToJavaFX implements Observer{
         return instance;
     }
 
-    public void ruleAdd(boolean status,String name,Trigger t,Action a, boolean onlyOnce, Duration sleepingTime){
+    // Method to add a rule to the RuleList
+    public void ruleAdd(boolean status, String name, Trigger t, Action a, boolean onlyOnce, Duration sleepingTime) {
         ruleList.ruleAdd(status, name, t, a, onlyOnce, sleepingTime);
     }
-   
-    public void ruleDelete(Rule rule){
+
+    // Method to delete a rule from the RuleList
+    public void ruleDelete(Rule rule) {
         ruleList.ruleDelete(rule);
     }
 
-    public ObservableList<Rule> getRules(){
-        
+    // Method to get the observable list of rules for JavaFX UI components
+    public ObservableList<Rule> getRules() {
         return observableList;
     }
 
+    // Method to check if the rule list is empty
     public boolean isEmpty() {
         return ruleList.isEmpty();
     }
 
+    // Implementation of the Observer interface method
     @Override
     public void update() {
-        System.out.println("aggiorno");
+        // Update the observable list with the latest rules from RuleList
         observableList.setAll(ruleList.getRules());
     }
 }
