@@ -32,7 +32,7 @@ public class DateTriggerController implements AbstractTriggerController {
         daySpinner.getValueFactory().setValue(1);
 
         //Month Spinner setting
-        monthSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12));
+        monthSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(date.getMonthValue(), 12));
         monthSpinner.getEditor().setAlignment(Pos.CENTER_LEFT);
         monthSpinner.getValueFactory().setValue(date.getMonthValue());
 
@@ -42,14 +42,14 @@ public class DateTriggerController implements AbstractTriggerController {
         yearSpinner.getValueFactory().setValue(2023);
 
         // The listeners are used to check if a different month or year is selected so that the day of the selected month
-        // can be calculated again and there is no problem (Es: February with 30 days).
+        // can be reset. This will ensure that there is no problem (Es: February with 30 days).
 
         monthSpinner.valueProperty().addListener((obs, oldValue, newValue) ->{
             int selectedMonth = newValue;
             int selectedYear = yearSpinner.getValue();
             //using the combination year of and length of month , it is possible to get the number of days in a month of a choosen year.
             int daysInMonth = YearMonth.of(selectedYear,selectedMonth).lengthOfMonth();
-            daySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(date.getDayOfMonth(), daysInMonth));
+            daySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, daysInMonth));
         });
 
         yearSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
@@ -57,7 +57,8 @@ public class DateTriggerController implements AbstractTriggerController {
             int selectedYear = newValue;
         
             int daysInMonth = YearMonth.of(selectedYear, selectedMonth).lengthOfMonth();
-            daySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(date.getDayOfMonth(), daysInMonth));
+            daySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, daysInMonth));
+            monthSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1,12));
         });
     }
         
