@@ -21,6 +21,7 @@ public class TypeConstant {
         map2.put(3,"movefileaction");
         map2.put(4,"deletefileaction");
         map2.put(5,"appendfileaction");
+        map2.put(6, "executeexternalprogram");
 
        
         

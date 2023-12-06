@@ -97,27 +97,29 @@ public class SecondaryController implements Initializable {
                 alert.setHeaderText("WARNING!");
                 alert.setContentText("Error in action or trigger fields");
                 alert.showAndWait();
-            }else{try{
-                sleepingTime = Duration.ofDays(daySpinner.getValue()).plusHours(hourSpinner.getValue()
-            ).plusMinutes(minuteSpinner.getValue());
+            }else{
+                try{
+                    
+                    sleepingTime = Duration.ofDays(daySpinner.getValue()).plusHours(hourSpinner.getValue()
+                ).plusMinutes(minuteSpinner.getValue());
             
-                ruleCollection.ruleAdd(true,ruleName,trigger,action, onlyOnceRadio.isSelected(), sleepingTime);   
+                    ruleCollection.ruleAdd(true,ruleName,trigger,action, onlyOnceRadio.isSelected(), sleepingTime);   
                 
                
-                triggerBox.setValue(null);
-                actionBox.setValue(null);
-                ruleNameLabel.clear();
+                    triggerBox.setValue(null);
+                    actionBox.setValue(null);
+                    ruleNameLabel.clear();
                
             
-            }catch(Exception e){
-                System.err.println("exception in creation");
-            }            
-        
-           
-    }}
-}     private AbstractTriggerController getTriggerController(String fxml){
+                }catch(Exception e){
+                    System.err.println("exception in creation");
+                }            
+            }
+        }
+    }     
+    private AbstractTriggerController getTriggerController(String fxml){
     
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
 
             try {
                 Parent root = fxmlLoader.load();
@@ -127,11 +129,11 @@ public class SecondaryController implements Initializable {
                 System.err.println("error in fxmlLoader");
                 return null;
             }       
-}
+    }
 
-private AbstractActionController getActionController(String fxml){
-
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
+    private AbstractActionController getActionController(String fxml){
+        System.out.println(getClass().getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
 
             try {
                 Parent root = fxmlLoader.load();
@@ -167,21 +169,24 @@ private AbstractActionController getActionController(String fxml){
      */
     public void initialize(URL arg0, ResourceBundle arg1) {
         alert = new Alert(Alert.AlertType.WARNING);
-        actionBox.getItems().setAll("Play an audio file", "Display a message","Copy File","Move File","Delete File","Append a message to a file");
+        actionBox.getItems().setAll("Play an audio file", "Display a message","Copy File","Move File","Delete File","Append a message to a file", 
+    "Execute external program");
         triggerBox.getItems().setAll("Time of day Trigger");
 
         alreadyAdd.setItems(ruleCollection.getRules());
 
         triggerBox.getSelectionModel().selectedIndexProperty().addListener((odd, oldValue, newValue) -> {
             triggerInputPane.getChildren().clear(); 
-            if(newValue.intValue() != -1) 
+            if(newValue.intValue() != -1) {
                  triggerController = getTriggerController(TypeConstant.TRIGGERTYPES_CONSTANTS.get(newValue.intValue()));
+            }
         });
     
         actionBox.getSelectionModel().selectedIndexProperty().addListener((odd, oldValue, newValue) -> {
             actionInputPane.getChildren().clear();
             if (newValue.intValue() != -1) {
-                actionController=getActionController(TypeConstant.ACTIONTYPES_CONSTANTS.get(newValue.intValue()));}
+                actionController=getActionController(TypeConstant.ACTIONTYPES_CONSTANTS.get(newValue.intValue()));
+            }
         });
 
         onlyOnceRadio.setSelected(true);
