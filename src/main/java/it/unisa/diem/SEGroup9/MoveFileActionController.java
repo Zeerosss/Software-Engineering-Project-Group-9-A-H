@@ -2,7 +2,6 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
@@ -12,8 +11,8 @@ import it.unisa.diem.actions.FileAction.MoveFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -63,23 +62,15 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
         }
     }
 
-    // Disable the buttons until the Confirm button of the Alert is pressed.
-    // The buttons will be disabled if the alert is closed without pressing Confirm.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        chooseFileButton.setDisable(true);
-        chooseDirectoryButton.setDisable(true);
+        //Alerting the user about an impending file operation
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("Caution: This action moves a file!");
+        alert.setContentText("Press OK to continue");
+        alert.showAndWait();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Alert!");
-        alert.setHeaderText("Caution: This action works on files.");
-        alert.setContentText("Press Confirm to go forward");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            chooseFileButton.setDisable(false);
-            chooseDirectoryButton.setDisable(false);
-        }
     }
 
     // This method creates and returns a MoveFileAction based on user input

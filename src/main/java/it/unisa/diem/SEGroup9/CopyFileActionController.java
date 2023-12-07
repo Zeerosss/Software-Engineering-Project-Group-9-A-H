@@ -2,7 +2,6 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
@@ -12,8 +11,8 @@ import it.unisa.diem.actions.FileAction.CopyFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -66,22 +65,13 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
     // This method is called when the controller is initialized
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Buttons are set to disabled until the user confirms the Alert below.
-        // If the user closes the alert without confirming it, the buttons will remain inactive.
-        chooseFileButton.setDisable(true);
-        chooseDirectoryButton.setDisable(true);
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Alert!");
-        alert.setHeaderText("Caution: This action works on files.");
-        alert.setContentText("Press Confirm to go forward");
-        Optional<ButtonType> result = alert.showAndWait();    
-
-        // If the user confirms the alert, enable the buttons
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            chooseFileButton.setDisable(false);
-            chooseDirectoryButton.setDisable(false);
-        }
+        //Alerting the user about an impending file operation
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("Caution: This action copies a file!");
+        alert.setContentText("Press Confirm to OK to continue");  
+        alert.showAndWait();
     }
 
     // This method creates and returns a CopyFileAction based on user input

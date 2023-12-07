@@ -2,7 +2,6 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
@@ -13,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
@@ -43,21 +41,17 @@ public class DeleteFileActionController extends FileChecker implements AbstractA
         }
     }
 
-    // Disable the button until the Confirm button of the Alert is pressed.
-    // The button will be disabled if the alert is closed without pressing Confirm.
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        chooseFileButton.setDisable(true);
 
+        //Alerting the user about an impending file operation
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Warning");
-        alert.setHeaderText("Caution: This action is irreversible!");
-        alert.setContentText("Press Confirm to continue or change the selected action");
+        alert.setHeaderText("Caution: This action deletes a file!");
+        alert.setContentText("Press OK to continue");
+        alert.showAndWait();
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            chooseFileButton.setDisable(false);
-        }
     }
 
     // This method creates and returns a DeleteFileAction based on user input
