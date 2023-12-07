@@ -7,6 +7,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.SEGroup9.DeleteFileActionController">
    <children>
       <Button fx:id="chooseFileButton" layoutX="173.0" layoutY="37.0" mnemonicParsing="false" onAction="#chooseFile" text="Choose a file" />
-      <Label fx:id="fileChoosenId" layoutX="173.0" layoutY="79.0" text="No File choosen" />
+      <Label fx:id="choosenFileID" layoutX="173.0" layoutY="79.0" text="No File choosen" />
    </children>
 </AnchorPane>

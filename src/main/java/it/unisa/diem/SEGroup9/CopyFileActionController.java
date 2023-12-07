@@ -23,10 +23,10 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
     private File directory;
     
     @FXML
-    private Label directoryChoosenId;
+    private Label choosenFileID;
 
     @FXML
-    private Label fileChoosenId;
+    private Label choosenDirectoryID;
 
     @FXML
     private Button chooseFileButton;
@@ -47,7 +47,7 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
             if (fileName.length() > 15) {
                 fileName = fileName.substring(0, 15) + "...";
             }
-            fileChoosenId.setText(fileName);
+            choosenFileID.setText(fileName);
         }
     }
 
@@ -59,7 +59,7 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
 
         directory = directoryChooser.showDialog(App.getStage());
         if (directory != null) {
-            directoryChoosenId.setText(directory.getName());
+            choosenDirectoryID.setText(directory.getName());
         }
     }
 

@@ -25,7 +25,7 @@ public class DeleteFileActionController extends FileChecker implements AbstractA
     private Button chooseFileButton;
 
     @FXML
-    private Label fileChoosenId;
+    private Label choosenFileID;
 
     // This method handles the file choosing process by clicking the "Choose a File" button.
     // It also checks the file length to ensure that there are no overlapping texts on the UI.
@@ -39,7 +39,7 @@ public class DeleteFileActionController extends FileChecker implements AbstractA
             if (fileName.length() > 15) {
                 fileName = fileName.substring(0, 15) + "...";
             }
-            fileChoosenId.setText(fileName);
+            choosenFileID.setText(fileName);
         }
     }
 

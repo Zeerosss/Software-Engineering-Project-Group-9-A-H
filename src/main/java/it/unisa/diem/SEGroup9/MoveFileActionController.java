@@ -29,10 +29,10 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
     private Button chooseFileButton;
 
     @FXML
-    private Label directoryChoosenId;
+    private Label choosenDirectoryID;
 
     @FXML
-    private Label fileChoosenId;
+    private Label choosenFileID;
 
     // This method handles the directory choosing process by clicking the "Choose a Directory" button
     @FXML
@@ -42,7 +42,7 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
 
         directory = directoryChooser.showDialog(App.getStage());
         if (directory != null) {
-            directoryChoosenId.setText(directory.getName());
+            choosenDirectoryID.setText(directory.getName());
         }
     }
 
@@ -59,7 +59,7 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
             if (fileName.length() > 15) {
                 fileName = fileName.substring(0, 15) + "...";
             }
-            fileChoosenId.setText(fileName);
+            choosenFileID.setText(fileName);
         }
     }
 
