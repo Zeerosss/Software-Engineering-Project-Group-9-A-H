@@ -168,7 +168,7 @@ private AbstractActionController getActionController(String fxml){
     public void initialize(URL arg0, ResourceBundle arg1) {
         alert = new Alert(Alert.AlertType.WARNING);
         actionBox.getItems().setAll("Play an audio file", "Display a message","Copy File","Move File","Delete File","Append a message to a file");
-        triggerBox.getItems().setAll("Time of day Trigger");
+        triggerBox.getItems().setAll("Time of day Trigger","File exists in a directory Trigger","File dimension exceeds Trigger");
 
         alreadyAdd.setItems(ruleCollection.getRules());
 
@@ -193,7 +193,6 @@ private AbstractActionController getActionController(String fxml){
         hourSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23));
         minuteSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59));
         daySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100000));
-    
     
     }
 }

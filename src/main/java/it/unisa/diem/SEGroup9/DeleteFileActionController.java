@@ -32,7 +32,7 @@ public class DeleteFileActionController extends FileChecker implements AbstractA
     @FXML
     void chooseFile(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose a file to copy");
+        fileChooser.setTitle("Choose a file to delete");
         file = fileChooser.showOpenDialog(App.getStage());
         if (file != null) {
             String fileName = file.getName();
