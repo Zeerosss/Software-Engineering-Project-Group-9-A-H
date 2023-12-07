@@ -171,7 +171,7 @@ public class SecondaryController implements Initializable {
         alert = new Alert(Alert.AlertType.WARNING);
         actionBox.getItems().setAll("Play an audio file", "Display a message","Copy File","Move File","Delete File","Append a message to a file", 
     "Execute external program");
-        triggerBox.getItems().setAll("Time of day Trigger");
+        triggerBox.getItems().setAll("Time of day Trigger", "Day of the week trigger");
 
         alreadyAdd.setItems(ruleCollection.getRules());
 

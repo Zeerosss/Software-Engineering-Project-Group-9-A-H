@@ -10,13 +10,11 @@ public class ExecuteExternalProgramAction implements Action{
 
     private File file;
     private List<String> parameterList;
-
     
     public ExecuteExternalProgramAction(File file, List<String> parameterList){
         this.file = file;
         parameterList.add(0, file.getAbsolutePath());
-        this.parameterList = parameterList;
-        
+        this.parameterList = parameterList;    
     }
 
     @Override

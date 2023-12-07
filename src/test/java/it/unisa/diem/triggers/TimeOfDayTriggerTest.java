@@ -9,7 +9,7 @@ import org.junit.Test;
 public class TimeOfDayTriggerTest {
     @Test
     public void testIsValidated() {
-         LocalTime time = LocalTime.now();
+        LocalTime time = LocalTime.now();
         Trigger trigger = new TimeOfDayTrigger(time);
         assertTrue(trigger.isValidated());
     }

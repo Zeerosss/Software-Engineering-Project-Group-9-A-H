@@ -68,7 +68,6 @@ public class TimeTriggerController implements AbstractTriggerController {
     public Trigger createTrigger() {
         LocalTime time = LocalTime.of(hSpinner.getValue(), minSpinner.getValue());
         return (new TimeOfDayTrigger(time));
-        
     }
     
 }
