@@ -11,72 +11,99 @@ import it.unisa.diem.actions.AudioFileAction.PlayAudioFileAction;
 import it.unisa.diem.actions.AudioFileAction.PlayAudioFileJavaFX;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 public class AudioActionController implements AbstractActionController {
-    
+
     private FileChooser fileChooser;
+
     private File file;
 
+    // Original file name (used for preserving the label when the file is not changed)
+    private String originalFileName;
+
     @FXML
-    private Button changeFileButton;
-    
+    private Button chooseFileButton;
+
     @FXML
     private AnchorPane fileChooserPane;
-    
+
     @FXML
     private Label audioFilePathLabel;
 
-    // This method is called when the controller is initialized
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Create a FileChooser to allow the user to select an audio file (WAV or MP3)
+        // Initialize the FileChooser, but don't show the dialog immediately
         fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Audio Files (*.wav, *.mp3)", "*.wav", "*.mp3");
         fileChooser.getExtensionFilters().add(extensionFilter);
         fileChooser.setTitle("Open Resource File");
-
-        // Show the file chooser dialog and get the selected file
-        file = fileChooser.showOpenDialog(App.getStage());
-
-        if (file != null) {
-            audioFilePathLabel.setText("Chosen file: " + file.getName());
-        }
     }
 
-    // Create and return a PlayAudioFileAction based on the selected file
+    @FXML
+    void chooseFile(ActionEvent event) {
+        // Save the original file name
+        originalFileName = (file != null) ? file.getName() : "";
+
+        File newFile = fileChooser.showOpenDialog(App.getStage());
+
+        // Update the label only if a valid file is chosen
+        if (newFile != null && newFile.exists()) {
+            file = newFile;
+            audioFilePathLabel.setText("Chosen file: " + file.getName());
+        }
+        // Otherwise, leave the label unchanged
+    }
+
+    // Create an Action based on user input
     @Override
     public Action createAction() {
-        // If the file is selected, create a PlayAudioFileAction with the file path
-        if (this.isFilled()) {
+        // Check if the file is selected and valid
+        if (isFilled()) {
             try {
+                // Create and return a PlayAudioFileAction based on the selected file
                 return new PlayAudioFileAction(file.getPath(), new PlayAudioFileJavaFX());
             } catch (FileNotFoundException e) {
+                showAlert("Error: File not found.");
                 e.printStackTrace();
-                return null;
             }
-        } else {
-            return null;
         }
+        return null;
     }
 
-    // Event handler method for the changeFileButton
-    @FXML
-    void changeFile(ActionEvent event) {
-        // Show the file chooser dialog and update the label with the name of the chosen file
-        file = fileChooser.showOpenDialog(App.getStage());
-        audioFilePathLabel.setText("");
-        if (file != null) {
-            audioFilePathLabel.setText("Chosen file: " + file.getName());
-        }
-    }
-
-    // Check if the file is selected
+    // Check if the necessary fields are filled
     @Override
     public boolean isFilled() {
-        return file != null;
+        // Check if the file is selected
+        if (file == null) {
+            showAlert("Please choose an audio file in the Audio Action section.");
+            return false;
+        }
+
+        // Check if the file exists and is readable
+        if (!file.exists()) {
+            showAlert("The selected audio file does not exist. Please choose another file.");
+            return false;
+        }
+
+        if (!file.canRead()) {
+            showAlert("The selected audio file is not readable. Please choose another file.");
+            return false;
+        }
+
+        return true;
+    }
+
+    // Show an alert with the specified message
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

@@ -36,32 +36,47 @@ public class FileDimensionExceedsController implements AbstractTriggerController
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Inizializza Spinner con le unità di misura
+        // Initialize the Spinner with units of measure
         unitSpinner.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<>(FXCollections.observableArrayList("byte", "kilobyte", "megabyte", "gigabyte")));
     }
 
     @FXML
     void chooseFile(ActionEvent event) {
+        // Open a FileChooser dialog to choose a file
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a file");
 
-        selectedFile = fileChooser.showOpenDialog(null);
-        if (selectedFile != null) {
+        // Get the selected file
+        File newSelectedFile = fileChooser.showOpenDialog(null);
+        if (newSelectedFile != null) {
+            // Update the selectedFile and label with the chosen file information
+            selectedFile = newSelectedFile;
             chosenFileID.setText("Chosen file: " + selectedFile.getName());
         }
     }
 
     @Override
     public Trigger createTrigger() {
+        // Check if a file is selected
         if (selectedFile != null) {
+            // Verify if the selected file still exists before creating the trigger
+            if (!selectedFile.exists()) {
+                showAlert("The selected file no longer exists. Please choose another file.");
+                return null;
+            }
+
+            // Get the selected unit and file dimension value
             String selectedUnit = unitSpinner.getValue();
             String valueText = dimensionTextField.getText();
 
+            // Check if the file dimension value is provided
             if (!valueText.isEmpty()) {
                 try {
+                    // Parse the file dimension value to a double
                     double value = Double.parseDouble(valueText);
                     double maxSize = convertToBytes(value, selectedUnit);
 
+                    // Check if the file dimension is a positive number
                     if (maxSize > 0) {
                         return new FileDimensionExceedsTrigger(selectedFile.getAbsolutePath(), maxSize);
                     } else {
@@ -74,11 +89,12 @@ public class FileDimensionExceedsController implements AbstractTriggerController
                 showAlert("Please enter a value for file dimension.");
             }
         } else {
-            showAlert("Please choose a file.");
+            showAlert("Please choose a file in the File dimension Trigger section.");
         }
         return null;
     }
 
+    // Show an alert with the specified message
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
@@ -87,6 +103,7 @@ public class FileDimensionExceedsController implements AbstractTriggerController
         alert.showAndWait();
     }
 
+    // Convert the file dimension value to bytes based on the selected unit
     private double convertToBytes(double value, String unit) {
         switch (unit) {
             case "byte":
