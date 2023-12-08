@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="fileChooserPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.SEGroup9.AudioActionController">
    <children>
-      <Label fx:id="audioFilePathLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="74.0" maxWidth="Infinity" prefHeight="21.0" prefWidth="130.0" text="No file chosen" textAlignment="CENTER" textOverrun="CLIP" wrapText="false" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="74.0">
+      <Label fx:id="audioFilePathLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="77.0" maxWidth="Infinity" prefHeight="21.0" prefWidth="155.0" text="No file chosen" textAlignment="CENTER" textOverrun="CLIP" wrapText="false" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="138.0" AnchorPane.rightAnchor="137.0" AnchorPane.topAnchor="77.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font></Label>
