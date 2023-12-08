@@ -22,8 +22,7 @@ public class ExitStatusTriggerController implements AbstractTriggerController{
     @FXML
     private Button chooseProgramButton;
 
-    @FXML
-    private TextField exitField;
+
 
     @FXML
     private Label fileLabel;
@@ -59,7 +58,15 @@ public class ExitStatusTriggerController implements AbstractTriggerController{
     }
     @Override
     public Trigger createTrigger() {
-        return new ProgramExitStatusTrigger();
+        if(isFilled())
+        return new ProgramExitStatusTrigger(file.getPath(),inputField.getText());
+        return null;
+    }
+
+    public boolean isFilled() {
+        if(file==null || inputField.getText().isEmpty()) 
+        return(false);
+        return(true);
     }
     
 }

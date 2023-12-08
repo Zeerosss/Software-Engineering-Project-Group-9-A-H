@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import it.unisa.diem.actions.MessageAction.AlertJavaFX;
 import it.unisa.diem.rules.AutoSaveManager;
 import it.unisa.diem.rules.RuleListToJavaFX;
 
@@ -30,7 +31,9 @@ public class App extends Application {
         
         //getting the instale at the start of the program
         try {
-            autoSaveManager.load(); 
+            AlertController.initialize(new AlertJavaFX());
+            autoSaveManager.load();
+            ruleListToJavaFX.restartTrigger();
 
 
         } catch (IOException e) {

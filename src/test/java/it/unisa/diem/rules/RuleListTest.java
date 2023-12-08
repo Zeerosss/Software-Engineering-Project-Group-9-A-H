@@ -4,14 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
 import org.junit.Test;
 
-import it.unisa.diem.actions.MessageAction.AlertDisplayer;
+
 import it.unisa.diem.actions.MessageAction.AlertJavaFX;
 import it.unisa.diem.actions.MessageAction.ShowDialogBoxAction;
 import it.unisa.diem.triggers.TimeOfDayTrigger;
@@ -22,6 +21,7 @@ public class RuleListTest {
        @Test
     public void test_addRule_successfully() {
         RuleList ruleList = RuleList.getInstance();
+        ruleList.getRules().clear();
         ruleList.ruleAdd(true, "Rule 1", new TimeOfDayTrigger(LocalTime.now()), new ShowDialogBoxAction("Test",new AlertJavaFX()), true, null, LocalDateTime.now());
         List<Rule> rules = ruleList.getRules();
         assertEquals(1, rules.size());
@@ -46,6 +46,7 @@ public class RuleListTest {
     @Test
     public void test_returns_true_if_rules_list_is_empty() {
         RuleList ruleList = RuleList.getInstance();
+        ruleList.getRules().clear();
         assertTrue(ruleList.isEmpty());
     }
 

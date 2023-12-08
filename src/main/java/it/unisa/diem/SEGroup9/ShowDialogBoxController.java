@@ -4,7 +4,6 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
-import it.unisa.diem.actions.MessageAction.AlertDisplayer;
 import it.unisa.diem.actions.MessageAction.AlertJavaFX;
 import it.unisa.diem.actions.MessageAction.ShowDialogBoxAction;
 import javafx.fxml.FXML;

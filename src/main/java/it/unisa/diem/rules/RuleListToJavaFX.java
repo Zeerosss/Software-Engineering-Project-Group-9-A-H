@@ -2,6 +2,7 @@ package it.unisa.diem.rules;
 
 
 import java.time.Duration;
+import java.util.List;
 
 import it.unisa.diem.actions.Action;
 import it.unisa.diem.triggers.Trigger;
@@ -47,4 +48,13 @@ public class RuleListToJavaFX implements Observer{
         System.out.println("aggiorno");
         observableList.setAll(ruleList.getRules());
     }
+
+    public void restartTrigger() {
+        List<Rule> tempRules = ruleList.getRules();
+        for(Rule rule : tempRules){
+            if(!rule.isSleeping())
+            rule.restartTrigger();
+        }
+    }
+
 }

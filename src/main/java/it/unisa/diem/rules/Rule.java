@@ -4,16 +4,15 @@ import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import it.unisa.diem.actions.Action;
 import it.unisa.diem.triggers.Trigger;
 //"The synchronized keyword makes functions thread-safe. In the future, another thread will be used to parallelize auto-save."
 
-public class Rule implements Serializable,Observable{
+public class Rule extends Observable implements Serializable {
     private static final long serialVersionUID = 1L;
-    private transient List<Observer> observers = new ArrayList<>();
+
     private final String name;
     private Trigger t;
     private Action a;
@@ -79,6 +78,7 @@ public class Rule implements Serializable,Observable{
     }
     public synchronized void changeRuleStatus(){
         this.status = !this.status;
+        restartTrigger();
         notifyObserver();
     }
 
@@ -89,19 +89,11 @@ public class Rule implements Serializable,Observable{
     public synchronized String toString() {
         return name;
     }
-    @Override
-    public void addObserver(Observer observer) {
-       observers.add(observer);
+
+    public void restartTrigger() {
+        if(status)  t.startTrigger();
+
     }
-    @Override
-    public void removeObserver(Observer observer) {
-      observers.remove(observer);
-    }
-    @Override
-    public void notifyObserver() {
-      for(Observer observer : observers){
-        observer.update();
-      }
-    }
+
     
 }

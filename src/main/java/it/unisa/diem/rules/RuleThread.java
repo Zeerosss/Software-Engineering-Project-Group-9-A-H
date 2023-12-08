@@ -1,5 +1,7 @@
 package it.unisa.diem.rules;
 
+import it.unisa.diem.SEGroup9.AlertController;
+
 public class RuleThread implements Runnable {
 
     private RuleList ruleList;
@@ -24,6 +26,10 @@ public class RuleThread implements Runnable {
                             rule.updateNextUsefulDate();
                         else
                             rule.setStatus(false);
+                        if (rule.getTrigger().isFailed()) {
+                                AlertController.displayAlert("error", "the trigger failed", rule.getTrigger()+"\nhas failed");
+                        }
+                        else
                         rule.getAction().startAction();
                         
                     

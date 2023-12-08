@@ -9,9 +9,9 @@ import it.unisa.diem.actions.Action;
 import it.unisa.diem.triggers.Trigger;
 
 
-public class RuleList implements Observer,Observable {
+public class RuleList  extends Observable implements Observer{
     private List<Rule> rules;
-    private List<Observer> observers;
+    
     private static RuleList instance;
     private RuleThread ruleThread;
 
@@ -25,7 +25,7 @@ public class RuleList implements Observer,Observable {
 
     private RuleList(){
         this.rules = new ArrayList<>();
-        observers = new ArrayList<>();
+        
         this.ruleThread = new RuleThread(this);
         new Thread(ruleThread).start();
     }
@@ -64,22 +64,7 @@ Action a, boolean onlyOnce, Duration sleepingTime, LocalDateTime nextUsefulDate)
     public boolean isEmpty() {
         return rules.isEmpty();
     }
-    @Override
-    public void addObserver(Observer observer) {
-       observers.add(observer);
-    }
-    @Override
-    public void removeObserver(Observer observer) {
-      observers.remove(observer);
-    }
-    @Override
-    public synchronized void notifyObserver() {
-        
-        for(Observer observer : observers){
-            observer.update();
-            System.out.println("ciao");
-        }
-    }
+
 
     @Override
     public synchronized void update() {
