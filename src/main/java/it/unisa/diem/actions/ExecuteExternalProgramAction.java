@@ -19,20 +19,24 @@ public class ExecuteExternalProgramAction implements Action{
 
     @Override
     public void startAction() {
-        
+
         ProcessBuilder pb = new ProcessBuilder(parameterList);
-        File f = new File("programResoult");
-        pb.redirectOutput(f);
+        File f = new File("programResult\\" + file.getName() + ".txt");
+    
+        synchronized (f){
+            pb.redirectOutput(ProcessBuilder.Redirect.appendTo(f));
         
-        try {
-            Process p = pb.start();
-        } catch (IOException | NullPointerException | IndexOutOfBoundsException | SecurityException e) {
-            try(PrintWriter pw = new PrintWriter(new File("ErrorLog"))){
-                pw.append("Error in program execution");
-            } catch (FileNotFoundException fnfe){
-                fnfe.printStackTrace();
-            }
-        } 
+            try {
+                Process p = pb.start();
+            } catch (IOException | NullPointerException | IndexOutOfBoundsException | SecurityException e) {
+                try(PrintWriter pw = new PrintWriter(new File("ErrorLog.txt"))){
+                    pw.append("Error in program execution " + file.getAbsolutePath());
+                } catch (FileNotFoundException fnfe){
+                    fnfe.printStackTrace();
+                }
+            }     
+
+        }
         
     }
 

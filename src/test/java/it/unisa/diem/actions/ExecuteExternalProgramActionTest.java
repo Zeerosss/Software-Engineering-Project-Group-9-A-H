@@ -15,20 +15,19 @@ import org.junit.Test;
 public class ExecuteExternalProgramActionTest {
     @Test
     public void testStartAction() {
-        // Creazione di un oggetto ExecuteExternalProgramAction con parametri validi
+        
         File file = new File("C:\\Users\\Admin\\OneDrive\\Documenti\\NetBeansProjects\\ExecutionExternProgram\\ciao.exe");
         List<String> parameterList = new ArrayList<>(Arrays.asList("arg1", "arg2"));
         ExecuteExternalProgramAction action = new ExecuteExternalProgramAction(file, parameterList);
-
-        // Verifica che l'esecuzione dell'azione non sollevi eccezioni
+        System.out.println(file.getName());
         try {
             action.startAction();
         } catch (Exception e) {
             fail("Unexpected exception: " + e.getMessage());
         }
 
-        // Puoi aggiungere ulteriori asserzioni specifiche a seconda dei risultati attesi
-        assertTrue("Output file should exist", new File("programResoult").exists());
+        
+        assertTrue("Output file should exist", new File("programResult\\" + file.getName() + ".txt").exists());
     }
     @Test
     public void testStartActionWithException() {
