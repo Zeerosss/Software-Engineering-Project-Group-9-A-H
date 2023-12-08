@@ -2,7 +2,6 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.triggers.AbstractTriggerController;
@@ -13,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -38,19 +36,6 @@ public class FileDimensionExceedsController implements AbstractTriggerController
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        chooseFileButton.setDisable(true);
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Alert!");
-        alert.setHeaderText("Caution: This action works on files.");
-        alert.setContentText("Press Confirm to go forward");
-        Optional<ButtonType> result = alert.showAndWait();
-
-        // If the user confirms the alert, enable the buttons
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            chooseFileButton.setDisable(false);
-        }
-
         // Inizializza Spinner con le unità di misura
         unitSpinner.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<>(FXCollections.observableArrayList("byte", "kilobyte", "megabyte", "gigabyte")));
     }
@@ -62,7 +47,7 @@ public class FileDimensionExceedsController implements AbstractTriggerController
 
         selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            chosenFileID.setText(selectedFile.getName());
+            chosenFileID.setText("Chosen file: " + selectedFile.getName());
         }
     }
 
