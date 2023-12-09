@@ -111,6 +111,7 @@ public class PrimaryController implements Initializable{
         rulesTable.setItems(ruleListToJavaFX.getRules());
 
         deleteButton.visibleProperty().bind(Bindings.isNotEmpty(ruleListToJavaFX.getRules()));
+        deleteButton.disableProperty().bind(rulesTable.getSelectionModel().selectedItemProperty().isNull());       
         changeRuleStatusButton.disableProperty().bind(rulesTable.getSelectionModel().selectedItemProperty().isNull());       
         changeRuleStatusButton.visibleProperty().bind(Bindings.isNotEmpty(ruleListToJavaFX.getRules()));
 

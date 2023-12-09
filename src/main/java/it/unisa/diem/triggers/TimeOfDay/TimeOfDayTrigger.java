@@ -1,6 +1,8 @@
-package it.unisa.diem.triggers;
+package it.unisa.diem.triggers.TimeOfDay;
 
 import java.time.LocalTime;
+
+import it.unisa.diem.triggers.Trigger;
 
 public class TimeOfDayTrigger implements Trigger {
     

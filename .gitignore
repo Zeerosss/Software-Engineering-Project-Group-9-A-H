@@ -13,6 +13,9 @@
 #target directory
 target/**
 
+#rules auto-save file
+src/main/resources/it/unisa/diem/rules.date
+
 # Package Files #
 *.jar
 *.war

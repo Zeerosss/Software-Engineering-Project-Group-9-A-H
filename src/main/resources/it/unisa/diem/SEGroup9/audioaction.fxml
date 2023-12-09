@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="fileChooserPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.SEGroup9.AudioActionController">
+<AnchorPane fx:id="fileChooserPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.SEGroup9.AudioActionController">
    <children>
-      <Label fx:id="audioFilePathLabel" alignment="CENTER" layoutX="206.0" layoutY="77.0" maxWidth="Infinity" prefHeight="170.0" prefWidth="322.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="118.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="audioFilePathLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="77.0" maxWidth="Infinity" prefHeight="21.0" prefWidth="155.0" text="No file chosen" textAlignment="CENTER" textOverrun="CLIP" wrapText="false" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="138.0" AnchorPane.rightAnchor="137.0" AnchorPane.topAnchor="77.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font></Label>
-      <Button fx:id="changeFileButton" layoutX="321.0" layoutY="75.0" mnemonicParsing="false" onAction="#changeFile" stylesheets="@application.css" text="Change File">
+      <Button fx:id="changeFileButton" layoutX="138.0" layoutY="33.0" mnemonicParsing="false" onAction="#chooseFile" stylesheets="@application.css" text="Choose an audio FIle">
          <font>
             <Font name="Arial" size="12.0" />
          </font>

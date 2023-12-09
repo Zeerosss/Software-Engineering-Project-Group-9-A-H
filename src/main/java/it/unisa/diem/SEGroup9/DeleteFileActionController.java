@@ -18,7 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 
-public class DeleteFileActionController extends FileChecker implements AbstractActionController{
+public class DeleteFileActionController extends FileChecker implements AbstractActionController {
     private File file;
 
     @FXML
@@ -27,53 +27,55 @@ public class DeleteFileActionController extends FileChecker implements AbstractA
     @FXML
     private Label fileChoosenId;
 
-    //method to handle the file choosing process by clicking the button "Choose a File". The method will also check the file lenght to ensure that there are no overlapping texts on the UI.
+    // This method handles the file choosing process by clicking the "Choose a File" button.
+    // It also checks the file length to ensure that there are no overlapping texts on the UI.
     @FXML
     void chooseFile(ActionEvent event) {
-        FileChooser fileChooser=new FileChooser();
-        fileChooser.setTitle("Choose a file to copy");
-        file= fileChooser.showOpenDialog(App.getStage());
-        if (file!=null){
-            String fileName=file.getName();
-            if(fileName.length()>15){
-                fileName=fileName.substring(0, 15)+"...";
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose a file to delete");
+        file = fileChooser.showOpenDialog(App.getStage());
+        if (file != null) {
+            String fileName = file.getName();
+            if (fileName.length() > 15) {
+                fileName = fileName.substring(0, 15) + "...";
             }
             fileChoosenId.setText(fileName);
-            }
-
+        }
     }
-    //Disable the button until the Confirm button of the Alert is pressed. The button will be disabled if the alert is closed without pressing Confirm
+
+    // Disable the button until the Confirm button of the Alert is pressed.
+    // The button will be disabled if the alert is closed without pressing Confirm.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         chooseFileButton.setDisable(true);
 
-        Alert alert= new Alert(AlertType.WARNING);
+        Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Warning");
         alert.setHeaderText("Caution: This action is irreversible!");
         alert.setContentText("Press Confirm to continue or change the selected action");
 
-        Optional<ButtonType> result= alert.showAndWait();    
-        if(result.isPresent() && result.get()==ButtonType.OK){
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             chooseFileButton.setDisable(false);
         }
-        
     }
 
+    // This method creates and returns a DeleteFileAction based on user input
     @Override
     public Action createAction() {
-        if(isFilled()){
-            return(new DeleteFileAction(file));
-        }else{return null;}
-
+        if (isFilled()) {
+            return new DeleteFileAction(file);
+        } else {
+            return null;
+        }
     }
 
+    // This method checks if the necessary fields are filled
     @Override
     public boolean isFilled() {
         if (file != null && !unavailableFile(file)) {
-                return true;
-            }
+            return true;
+        }
         return false;
     }
-    
 }
-

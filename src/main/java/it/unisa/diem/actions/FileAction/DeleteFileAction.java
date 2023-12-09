@@ -8,24 +8,30 @@ import it.unisa.diem.actions.Action;
 
 public class DeleteFileAction implements Action {
     private File file;
-    
-    public DeleteFileAction(File file){
-        this.file=file;
+
+    // Constructor to initialize the file when creating an instance of the class
+    public DeleteFileAction(File file) {
+        this.file = file;
     }
+
+    // Override the startAction method as required by the Action interface
     @Override
     public void startAction() {
-        try{Files.delete(file.toPath());
-        }catch(IOException e){
-            if(Files.notExists(file.toPath())){
-                System.err.println("File doesn't exists or has been already deleted!");
-            }else{
-            System.err.println("Error when deleting the file");}
+        try {
+            // Attempt to delete the file
+            Files.delete(file.toPath());
+        } catch (IOException e) {
+            if (Files.notExists(file.toPath())) {
+                System.err.println("File doesn't exist or has been already deleted!");
+            } else {
+                System.err.println("Error when deleting the file");
+            }
         }
-    
-}
+    }
 
+    // Override the toString method to provide a human-readable representation of the action
     @Override
-    public String toString(){
-        return "Delete the file: "+ file.getName();
+    public String toString() {
+        return "Delete the file: " + file.getName();
     }
 }

@@ -4,9 +4,8 @@ import java.net.URL;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
-
-import it.unisa.diem.triggers.TimeOfDayTrigger;
 import it.unisa.diem.triggers.Trigger;
+import it.unisa.diem.triggers.TimeOfDay.TimeOfDayTrigger;
 import it.unisa.diem.triggers.AbstractTriggerController;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

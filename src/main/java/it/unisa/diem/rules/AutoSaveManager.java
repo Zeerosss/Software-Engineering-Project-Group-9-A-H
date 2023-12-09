@@ -9,66 +9,70 @@ import java.io.ObjectOutputStream;
 
 public class AutoSaveManager implements Observer {
     RuleList ruleList = RuleList.getInstance();
+
+    // Define the file path for saving and loading rules
     private static String SAVE_PATH = "src\\main\\resources\\it\\unisa\\diem\\rules.date";
     private static File file = new File(SAVE_PATH);
- 
+
+    // Constructor to set up the observer relationship
     public AutoSaveManager() {
         ruleList.addObserver(this);
     }
 
+    // Private method to save the rules to a file
     private void save() throws IOException {
-            
-            if (!file.exists()) 
-                  try {
-                    file.createNewFile();
-                  } catch (IOException e) {
-                    System.err.println("error in file creation");
-                  }  
-                
+        // If the file does not exist, create a new file
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.err.println("Error in file creation");
+            }
+        }
+
+        // Use try-with-resources to automatically close the ObjectOutputStream
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))) {
-                Rule[] rules = ruleList.getRules().toArray(new Rule[0]);
-                objectOutputStream.writeObject(rules);
+            Rule[] rules = ruleList.getRules().toArray(new Rule[0]);
+            objectOutputStream.writeObject(rules);
         }
-        }
-    
-   
+    }
+
     /**
-     * @return
+     * Load rules from the saved file.
+     *
+     * @return True if loading was successful, false otherwise.
      * @throws Exception
      */
-    public Boolean load() throws Exception{
-    
+    public Boolean load() throws Exception {
+        if (file.exists()) {
+            // Use try-with-resources to automatically close the ObjectInputStream
+            try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
+                // Read the object from the file using deserialization
+                Object[] rulesArray = (Object[]) objectInputStream.readObject();
 
-    if (file.exists()) {
-        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
-            // Read the object from the file using deserialization
-            Object[] rulesArray = (Object[]) objectInputStream.readObject();
+                // Add the loaded rules to the RuleList
+                for (Object obj : rulesArray) {
+                    if (obj instanceof Rule) {
+                        Rule rule = (Rule) obj;
 
-            //add to the list;
-            
-            for (Object obj : rulesArray) {
-                if (obj instanceof Rule) {
-                    Rule rule = (Rule) obj;
-                    
-                    ruleList.ruleAdd(rule.getStatus(), rule.getName(), rule.getTrigger(), rule.getAction(), 
-                    rule.isOnlyOnce(), rule.getSleepingTime(), rule.getNextUsefulDate());
+                        ruleList.ruleAdd(rule.getStatus(), rule.getName(), rule.getTrigger(), rule.getAction(),
+                                rule.isOnlyOnce(), rule.getSleepingTime(), rule.getNextUsefulDate());
+                    }
                 }
+                return true;
             }
-           
-        return true;    
+        } else {
+            return false;
         }
-    }else{
-        return false;
     }
-}
-    
-     @Override
+
+    @Override
     public void update() {
-        try{
+        try {
+            // Trigger save method when the RuleList is updated
             save();
         } catch (IOException e) {
             System.out.println("Error while saving data!");
         }
     }
-
 }
