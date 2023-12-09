@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import it.unisa.diem.actions.Action;
+import it.unisa.diem.actions.MessageAction.AlertDisplayer;
+import it.unisa.diem.actions.MessageAction.AlertJavaFX;
 
 public class MoveFileAction implements Action {
     private File file;
@@ -26,9 +28,11 @@ public class MoveFileAction implements Action {
             Files.move(file.toPath(), Paths.get(destinationPath));
         } catch (IOException e) {
             if (Files.exists(Paths.get(destinationPath))) {
-                System.err.println("File already moved!");
+                AlertDisplayer alert=new AlertJavaFX();   
+                alert.displayAlert("Information","File already moved", "Press OK to close the window");
             } else {
-                System.err.println("An error occurred while moving the file: " + e.getMessage());
+                AlertDisplayer alert=new AlertJavaFX();   
+                alert.displayAlert("Information","An error occurred while moving the file", "Press OK to close the window");
             }
         }
     }

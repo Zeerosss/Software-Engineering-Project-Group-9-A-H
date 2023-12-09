@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import it.unisa.diem.actions.Action;
+import it.unisa.diem.actions.MessageAction.AlertDisplayer;
+import it.unisa.diem.actions.MessageAction.AlertJavaFX;
 
 public class DeleteFileAction implements Action {
     private File file;
@@ -22,9 +24,11 @@ public class DeleteFileAction implements Action {
             Files.delete(file.toPath());
         } catch (IOException e) {
             if (Files.notExists(file.toPath())) {
-                System.err.println("File doesn't exist or has been already deleted!");
+                AlertDisplayer alert=new AlertJavaFX();   
+                alert.displayAlert("Information","File already deleted", "Press OK to close the window");
             } else {
-                System.err.println("Error when deleting the file");
+                AlertDisplayer alert=new AlertJavaFX();   
+                alert.displayAlert("Information","An error occurred while deleting the file", "Press OK to close the window");
             }
         }
     }

@@ -1,6 +1,8 @@
 package it.unisa.diem.actions.FileAction;
 
 import it.unisa.diem.actions.Action;
+import it.unisa.diem.actions.MessageAction.AlertDisplayer;
+import it.unisa.diem.actions.MessageAction.AlertJavaFX;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,13 +12,11 @@ import java.nio.file.StandardCopyOption;
 
 public class CopyFileAction implements Action {
     private File file;
-    private String sourcePath;
     private String destinationPath;
 
-    // Constructor to initialize the source file and destination path when creating an instance of the class
+    // Constructor to initialize the file and destination path when creating an instance of the class.
     public CopyFileAction(File file, String destinationPath) {
         this.file = file;
-        this.sourcePath = file.getPath();
         // Create the full destination path by combining the destination directory and the file name
         this.destinationPath = Paths.get(destinationPath, file.getName()).toString();
     }
@@ -26,9 +26,10 @@ public class CopyFileAction implements Action {
     public void startAction() {
         try {
             // Copy the source file to the destination path, replacing existing files if necessary
-            Files.copy(Paths.get(sourcePath), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(file.toPath(), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            System.err.println("An error occurred while copying the file: " + e.getMessage());
+            AlertDisplayer alert=new AlertJavaFX();   
+            alert.displayAlert("Information","An error occurred while copying the file", "Press OK to close the window");
         }
     }
 
