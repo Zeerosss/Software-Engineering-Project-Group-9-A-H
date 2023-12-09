@@ -10,11 +10,9 @@ import it.unisa.diem.triggers.ProgramExitStatusTrigger;
 import it.unisa.diem.triggers.Trigger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 
 public class ExitStatusTriggerController implements AbstractTriggerController{
