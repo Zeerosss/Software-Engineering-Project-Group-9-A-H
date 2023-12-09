@@ -47,6 +47,8 @@ public class PrimaryController implements Initializable{
     private TableColumn<Rule,Trigger> triggerNameId;
     @FXML
     private TableColumn<Rule,Action> actionNameId;
+    @FXML
+    private TableColumn<?, ?> executeBehaviourId;
     
    
     @FXML
@@ -100,10 +102,7 @@ public class PrimaryController implements Initializable{
             createSet.setText("Add new rules");
         }
         
-        
-        
-
-       //table column initialization+ settings
+        //table column initialization+ settings
         actionNameId.setCellValueFactory(new PropertyValueFactory<Rule,Action>("Action"));
         triggerNameId.setCellValueFactory(new PropertyValueFactory<Rule,Trigger>("Trigger"));
         ruleNameId.setCellValueFactory(new PropertyValueFactory<Rule,String>("Name"));
