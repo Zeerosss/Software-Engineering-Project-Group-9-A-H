@@ -20,11 +20,11 @@ import it.unisa.diem.rules.RuleListToJavaFX;
  */
 public class App extends Application {
     private static Scene scene;
-
+    public final static String SAVE_PATH= "src\\main\\resources\\it\\unisa\\diem\\rules.date";
     private Alert alert = new Alert(Alert.AlertType.WARNING);
 
     // AutoSaveManager instance for managing rule auto-saving
-    private AutoSaveManager autoSaveManager = new AutoSaveManager();
+private AutoSaveManager autoSaveManager = new AutoSaveManager(SAVE_PATH);
 
     // RuleListToJavaFX instance for managing rules in JavaFX
     private RuleListToJavaFX ruleListToJavaFX = RuleListToJavaFX.getInstance();

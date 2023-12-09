@@ -11,12 +11,12 @@ public class AutoSaveManager implements Observer {
     RuleList ruleList = RuleList.getInstance();
 
     // Define the file path for saving and loading rules
-    private static String SAVE_PATH = "src\\main\\resources\\it\\unisa\\diem\\rules.date";
-    private static File file = new File(SAVE_PATH);
+    private static File file;
 
     // Constructor to set up the observer relationship
-    public AutoSaveManager() {
+    public AutoSaveManager(String savePath) {
         ruleList.addObserver(this);
+        file = new File(savePath);
     }
 
     // Private method to save the rules to a file

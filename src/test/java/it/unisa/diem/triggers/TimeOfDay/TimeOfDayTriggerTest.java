@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import org.junit.Test;
 
 import it.unisa.diem.triggers.Trigger;
-import it.unisa.diem.triggers.TimeOfDay.TimeOfDayTrigger;
+
 
 public class TimeOfDayTriggerTest {
     @Test

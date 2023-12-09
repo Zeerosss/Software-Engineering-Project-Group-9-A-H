@@ -19,7 +19,7 @@ public class AutoSaveManagerTest {
         @Test
     public void test_save_rules_to_file_when_notified_of_changes() {
         // Arrange
-        AutoSaveManager autoSaveManager = new AutoSaveManager();
+        AutoSaveManager autoSaveManager = new AutoSaveManager("rulestest.date");
         RuleList ruleList = RuleList.getInstance();
         ruleList.ruleAdd(true, "Rule 1", new TimeOfDayTrigger(LocalTime.now()), new ShowDialogBoxAction("Test",new AlertJavaFX()), true, null, LocalDateTime.now()); 
         Rule rule = ruleList.getRules().get(0);
