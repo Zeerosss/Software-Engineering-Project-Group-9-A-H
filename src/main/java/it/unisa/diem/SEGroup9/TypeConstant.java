@@ -14,10 +14,10 @@ public class TypeConstant {
         Map<Integer, String> map2= new HashMap<>();
 
         map1.put(0, "timetrigger");
-        
-        map1.put(1, "fileexiststrigger");
-        map1.put(2, "filedimensiontrigger");
-        map1.put(3,"exitstatustrigger");
+        map1.put(1, "dayoftheweektrigger");
+        map1.put(2, "fileexiststrigger");
+        map1.put(3, "filedimensiontrigger");
+        map1.put(4,"exitstatustrigger");
 
         map2.put(0,"audioaction");
         map2.put(1,"dialogaction");
@@ -25,7 +25,7 @@ public class TypeConstant {
         map2.put(3,"movefileaction");
         map2.put(4,"deletefileaction");
         map2.put(5,"appendfileaction");
-        
+        map2.put(6, "executeexternalprogram");
 
        
         

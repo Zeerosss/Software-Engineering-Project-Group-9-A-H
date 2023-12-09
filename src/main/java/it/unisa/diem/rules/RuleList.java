@@ -74,7 +74,7 @@ public class RuleList  extends Observable implements Observer{
     }
 
     // Function to check if the rule list is empty
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return rules.isEmpty();
     }
 

@@ -72,6 +72,9 @@ private AutoSaveManager autoSaveManager = new AutoSaveManager(SAVE_PATH);
                     // Exit the application when the user clicks OK
                     System.exit(0);
                 }
+                else{
+                    event.consume();
+                }
             });
         });
 
