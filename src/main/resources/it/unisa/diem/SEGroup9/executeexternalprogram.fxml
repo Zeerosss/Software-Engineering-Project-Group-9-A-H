@@ -4,15 +4,28 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.SEGroup9.ExecuteExternalProgramActionController">
    <children>
-      <Label layoutX="214.0" layoutY="23.0" text="Inserisci il parametro" />
-      <TextField fx:id="parameterID" layoutX="194.0" layoutY="56.0" />
-      <Button fx:id="addParameterButton" layoutX="345.0" layoutY="50.0" mnemonicParsing="false" onAction="#addParameterAction" text="+" />
-      <Button fx:id="changeProgramButton" layoutX="14.0" layoutY="85.0" mnemonicParsing="false" onAction="#changeProgramAction" text="change program" />
-      <Label fx:id="externalProgramPathLabel" layoutX="12.0" layoutY="42.0" prefHeight="18.0" prefWidth="150.0" />
-      <Label layoutX="206.0" layoutY="89.0" text="parameters added" />
-      <Label fx:id="parametersLabel" layoutX="320.0" layoutY="89.0" prefHeight="18.0" prefWidth="25.0" text="0" />
+      <Label layoutX="199.0" layoutY="26.0" text="Enter a parameter:">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></Label>
+      <TextField fx:id="parameterID" layoutX="199.0" layoutY="48.0" prefHeight="25.0" prefWidth="156.0" promptText="Insert your parameter here!" />
+      <Button fx:id="addParameterButton" alignment="CENTER" contentDisplay="CENTER" layoutX="361.0" layoutY="43.0" mnemonicParsing="false" onAction="#addParameterAction" stylesheets="@application.css" text="+" />
+      <Button fx:id="changeProgramButton" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="43.0" mnemonicParsing="false" onAction="#changeProgramAction" stylesheets="@application.css" text="Change program" />
+      <Label fx:id="externalProgramPathLabel" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="34.0" layoutY="81.0" prefHeight="17.0" prefWidth="150.0" text="No program chosen">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="198.0" layoutY="81.0" text="Added parameters:">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></Label>
+      <Label fx:id="parametersLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="80.0" prefHeight="18.0" prefWidth="25.0" text="0">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></Label>
    </children>
 </AnchorPane>

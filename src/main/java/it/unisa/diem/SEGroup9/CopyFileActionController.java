@@ -44,7 +44,7 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
         file = fileChooser.showOpenDialog(App.getStage());
         if (file != null) {
             String fileName = file.getName();
-            if (fileName.length() > 15) {
+            if (fileName.length() > 20) {
                 fileName = fileName.substring(0, 15) + "...";
             }
             fileChoosenId.setText(fileName);

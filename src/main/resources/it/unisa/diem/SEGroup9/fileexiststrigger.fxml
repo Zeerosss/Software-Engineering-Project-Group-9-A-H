@@ -8,10 +8,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.SEGroup9.FileExistsController">
    <children>
-      <Button fx:id="chooseDirectoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="265.0" layoutY="45.0" mnemonicParsing="false" onAction="#chooseDirectory" stylesheets="@application.css" text="Choose a directroy" />
-      <Label fx:id="chosenDirectoryID" layoutX="265.0" layoutY="87.0" text="No directory chosen" />
+      <Button fx:id="chooseDirectoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="265.0" layoutY="45.0" mnemonicParsing="false" onAction="#chooseDirectory" stylesheets="@application.css" text="Choose a directory" />
+      <Label fx:id="chosenDirectoryID" layoutX="265.0" layoutY="87.0" text="No directory chosen">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></Label>
       <TextField fx:id="fileNameTextField" alignment="CENTER" layoutX="42.0" layoutY="50.0" prefHeight="25.0" prefWidth="172.0" promptText="Enter file name and extension" />
-      <Label layoutX="42.0" layoutY="28.0" text="File written:">
+      <Label layoutX="42.0" layoutY="28.0" text="Written File:">
          <font>
             <Font name="Arial" size="12.0" />
          </font></Label>

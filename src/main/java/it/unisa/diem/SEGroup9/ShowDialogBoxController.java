@@ -28,7 +28,7 @@ public class ShowDialogBoxController implements AbstractActionController{
  
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showDialogTextId.setPromptText("Inserisci il testo qui...");
+        showDialogTextId.setPromptText("...");
 
     }
 

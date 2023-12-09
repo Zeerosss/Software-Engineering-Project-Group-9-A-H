@@ -180,7 +180,7 @@ public class SecondaryController implements Initializable {
         alert = new Alert(Alert.AlertType.WARNING);
         actionBox.getItems().setAll("Play an audio file", "Display a message","Copy File","Move File","Delete File","Append a message to a file", 
     "Execute external program");
-        triggerBox.getItems().setAll("Time of day Trigger","Day of the week trigger","File exists in a directory Trigger","File dimension exceeds Trigger","exit status of a program" );
+        triggerBox.getItems().setAll("Time of day","Day of the week","File exists in a directory","File dimension exceeds a value","Exit status of a program" );
 
         alreadyAdd.setItems(ruleCollection.getRules());
 
