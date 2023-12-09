@@ -64,12 +64,7 @@ public class ExitStatusTriggerController implements AbstractTriggerController{
             try {
                 return new ProgramExitStatusTrigger(file.getPath(),inputField.getText());
             } catch (IOException e) {
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText("WARNING!");
-                alert.setContentText("Error in the trigger parameters");
-                alert.showAndWait();
-                
+                AlertController.displayAlertWarning("Warning!",null,"Error in the external program");
             }
             
         return null;

@@ -34,4 +34,7 @@ public class AlertController {
     public static void displayAlert(String title, String header, String message) {
         alertDisplayer.displayAlert(title, header, message);
     }
+    public static void displayAlertWarning(String title, String header, String message) {
+        alertDisplayer.displayAlertWarning(title, header, message);
+    }
 }
