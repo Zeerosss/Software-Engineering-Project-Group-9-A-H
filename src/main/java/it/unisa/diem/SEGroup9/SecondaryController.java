@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 
@@ -88,6 +89,7 @@ public class SecondaryController implements Initializable {
 
         }else{
             Trigger trigger = triggerController.createTrigger();
+            
             Action action = actionController.createAction();
             System.err.println(action);
             if( ( action == null )||( trigger == null) ){

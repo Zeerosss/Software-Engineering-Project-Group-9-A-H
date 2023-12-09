@@ -1,6 +1,7 @@
 package it.unisa.diem.SEGroup9;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,9 +10,11 @@ import it.unisa.diem.triggers.ProgramExitStatusTrigger;
 import it.unisa.diem.triggers.Trigger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 
 public class ExitStatusTriggerController implements AbstractTriggerController{
@@ -42,9 +45,8 @@ public class ExitStatusTriggerController implements AbstractTriggerController{
     public void initialize(URL location, ResourceBundle resources) {
      // Create a FileChooser to allow the user to select a txt file
         fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("external program (*.exe)", "*.exe");
-        fileChooser.getExtensionFilters().add(extensionFilter);
-        fileChooser.setTitle("Open Resource File");
+        
+        fileChooser.setTitle("Select an external program");
 
         // Show the file chooser dialog and get the selected file
         file = fileChooser.showOpenDialog(App.getStage());
@@ -59,7 +61,17 @@ public class ExitStatusTriggerController implements AbstractTriggerController{
     @Override
     public Trigger createTrigger() {
         if(isFilled())
-        return new ProgramExitStatusTrigger(file.getPath(),inputField.getText());
+            try {
+                return new ProgramExitStatusTrigger(file.getPath(),inputField.getText());
+            } catch (IOException e) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("WARNING!");
+                alert.setContentText("Error in the trigger parameters");
+                alert.showAndWait();
+                
+            }
+            
         return null;
     }
 

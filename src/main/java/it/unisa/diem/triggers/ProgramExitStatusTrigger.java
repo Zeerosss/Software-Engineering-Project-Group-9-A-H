@@ -20,15 +20,14 @@ public class ProgramExitStatusTrigger implements Trigger, Observer {
      * Constructor that initializes the path and args fields and creates an instance of the ExecProgram class.
      * @param path The path to the program.
      * @param args The arguments to be passed to the program.
+     * @throws IOException
      */
-    public ProgramExitStatusTrigger(String path, String args){
+    public ProgramExitStatusTrigger(String path, String args) throws IOException{
         this.path = path;
         this.args = args.split(",");
-        try {
-            execProgram = new ExecProgram(path, this.args, this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+       
+        execProgram = new ExecProgram(path, this.args, this);
+        
     }
 
     /**
