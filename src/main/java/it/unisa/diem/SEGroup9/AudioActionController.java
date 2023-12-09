@@ -11,7 +11,7 @@ import it.unisa.diem.actions.AudioFileAction.PlayAudioFileAction;
 import it.unisa.diem.actions.AudioFileAction.PlayAudioFileJavaFX;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -69,7 +69,7 @@ public class AudioActionController implements AbstractActionController {
                 return new PlayAudioFileAction(file.getPath(), new PlayAudioFileJavaFX());
             } catch (FileNotFoundException e) {
                 showAlert("Error: File not found.");
-                e.printStackTrace();
+                
             }
         }
         return null;
