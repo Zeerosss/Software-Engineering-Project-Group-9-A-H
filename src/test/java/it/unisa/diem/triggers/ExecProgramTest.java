@@ -11,13 +11,11 @@ import java.io.IOException;
 public class ExecProgramTest {
 
 
-    private static final Class IOException = null;
-
     // Can construct ExecProgram object with valid path, args, and observer
     @Test
     public void test_constructExecProgramWithValidPathArgsAndObserver() throws IOException {
         String path = "src/test/java/it/unisa/diem/triggers/test.exe";
-        String args = "valid args";
+        String[] args = {"valid args"};
         Observer observer = new Observer() {
             @Override
             public void update() {
@@ -34,7 +32,7 @@ public class ExecProgramTest {
     @Test
     public void test_getExitStatusAfterExecution() throws IOException {
         String path = "src/test/java/it/unisa/diem/triggers/test.exe";
-        String args = "valid args";
+        String[] args = {"valid args"};
         Observer observer = new Observer() {
             @Override
             public void update() {
@@ -53,7 +51,7 @@ public class ExecProgramTest {
     @Test
     public void test_restartProgramAndGetNewExitStatus() throws IOException {
         String path = "src/test/java/it/unisa/diem/triggers/test.exe";
-        String args = "valid args";
+        String[] args = {"valid args"};
         Observer observer = new Observer() {
             @Override
             public void update() {
@@ -67,6 +65,23 @@ public class ExecProgramTest {
         Integer exitStatus = execProgram.getExitStatus();
     
         assertNull(exitStatus);
+    }
+
+    // test that the external program read several args
+    @Test
+    public void test_external_program_read_several_args() throws IOException {
+        String path = "src\\test\\java\\it\\unisa\\diem\\triggers\\test_args.exe";
+        String[] args = {"arg1", "arg2", "arg3"};
+        Observer observer = new Observer() {
+                @Override
+                public void update() {
+                    // do nothing
+                }
+            };
+    
+        ExecProgram execProgram = new ExecProgram(path, args, observer);
+    
+        assertNotNull(execProgram);
     }
 
 

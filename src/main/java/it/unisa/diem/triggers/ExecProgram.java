@@ -1,7 +1,11 @@
 package it.unisa.diem.triggers;
 
+
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import it.unisa.diem.rules.Observable;
 import it.unisa.diem.rules.Observer;
@@ -14,7 +18,7 @@ import it.unisa.diem.rules.Observer;
 public class ExecProgram extends Observable implements Serializable {
     private Integer exitStatus = null;
     String path;
-    String args;
+    String[] args;
 
     /**
      * Constructs a new ExecProgram object with the specified path, arguments, and observer.
@@ -24,7 +28,7 @@ public class ExecProgram extends Observable implements Serializable {
      * @param observer The observer to be notified when the program exits.
      * @throws IOException If an I/O error occurs.
      */
-    public ExecProgram(String path, String args, Observer observer) throws IOException {
+    public ExecProgram(String path, String[] args, Observer observer) throws IOException {
         this.path = path;
         this.args = args;
         restart();
@@ -46,7 +50,12 @@ public class ExecProgram extends Observable implements Serializable {
      * @throws IOException If an I/O error occurs.
      */
     public void restart() throws IOException {
-        ProcessBuilder processBuilder = new ProcessBuilder(path, args);
+        List<String> command = new ArrayList<>();
+        command.add(path);
+        command.addAll(Arrays.asList(args));
+        System.err.println(command);
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        processBuilder.command(command);
         Process process = processBuilder.start();
         new Thread(() -> {
             try {
