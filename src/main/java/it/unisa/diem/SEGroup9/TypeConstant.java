@@ -17,14 +17,14 @@ public class TypeConstant {
         map1.put(1, "dayoftheweektrigger");
         map1.put(2, "fileexiststrigger");
         map1.put(3, "filedimensiontrigger");
-        map1.put(4,"exitstatustrigger");
+        map1.put(4, "exitstatustrigger");
 
-        map2.put(0,"audioaction");
-        map2.put(1,"dialogaction");
-        map2.put(2,"copyfileaction");
-        map2.put(3,"movefileaction");
-        map2.put(4,"deletefileaction");
-        map2.put(5,"appendfileaction");
+        map2.put(0, "audioaction");
+        map2.put(1, "dialogaction");
+        map2.put(2, "copyfileaction");
+        map2.put(3, "movefileaction");
+        map2.put(4, "deletefileaction");
+        map2.put(5, "appendfileaction");
         map2.put(6, "executeexternalprogramaction");
 
        
