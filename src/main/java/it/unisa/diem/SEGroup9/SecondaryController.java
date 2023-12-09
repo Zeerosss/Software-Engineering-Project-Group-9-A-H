@@ -25,7 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
@@ -71,6 +71,13 @@ public class SecondaryController implements Initializable {
     private Spinner<Integer> minuteSpinner;
     @FXML
     private Spinner<Integer> daySpinner;
+    @FXML
+    private Label daysLabel;
+    @FXML
+    private Label hoursLabel;
+    @FXML 
+    private Label minutesLabel;
+    
     
     @FXML
     private void switchToPrimary() throws IOException {
@@ -194,6 +201,10 @@ public class SecondaryController implements Initializable {
         hourSpinner.visibleProperty().bind(sleepingTimeRadio.selectedProperty());
         minuteSpinner.visibleProperty().bind(sleepingTimeRadio.selectedProperty());
         daySpinner.visibleProperty().bind(sleepingTimeRadio.selectedProperty());
+
+        hoursLabel.visibleProperty().bind(sleepingTimeRadio.selectedProperty());
+        minutesLabel.visibleProperty().bind(sleepingTimeRadio.selectedProperty());
+        daysLabel.visibleProperty().bind(sleepingTimeRadio.selectedProperty());
 
         hourSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23));
         minuteSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59));

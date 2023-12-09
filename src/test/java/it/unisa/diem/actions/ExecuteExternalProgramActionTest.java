@@ -26,7 +26,6 @@ public class ExecuteExternalProgramActionTest {
             fail("Unexpected exception: " + e.getMessage());
         }
 
-        
         assertTrue("Output file should exist", new File("programResult\\" + file.getName() + ".txt").exists());
     }
     @Test

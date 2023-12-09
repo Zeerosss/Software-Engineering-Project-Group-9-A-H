@@ -34,6 +34,9 @@ public class ExecuteExternalProgramActionController implements AbstractActionCon
     @FXML
     private TextField parameterID;
 
+    @FXML
+    private Label parametersLabel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
@@ -51,9 +54,11 @@ public class ExecuteExternalProgramActionController implements AbstractActionCon
     }
     @FXML
     void addParameterAction(ActionEvent event){
+        //add parameter in a list and update the label
         if(!parameterID.getText().trim().equals(""))
             parameterList.add(parameterID.getText());
         parameterID.setText("");
+        parametersLabel.setText(String.valueOf(parameterList.size()));
     }
     @FXML
     void changeProgramAction(ActionEvent event){
