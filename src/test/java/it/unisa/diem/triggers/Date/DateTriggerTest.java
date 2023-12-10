@@ -26,8 +26,7 @@ public class DateTriggerTest {
     @Test
     public void dateToStringTest(){
         DateTrigger dateTrigger = new DateTrigger(15, 6, 2024); 
-        assertEquals("The date choosen is: \n15-06-2024", dateTrigger.toString());
+        assertEquals("The chosen date is: \n15-06-2024", dateTrigger.toString());
     }
-
 
 }

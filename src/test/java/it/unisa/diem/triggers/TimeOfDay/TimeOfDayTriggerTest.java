@@ -17,7 +17,7 @@ public class TimeOfDayTriggerTest {
         Trigger trigger = new TimeOfDayTrigger(time);
         assertTrue(trigger.isValidated());
     }
-        // Returns a string with the time trigger set on, with leading zeros for hours and minutes less than 10
+    // Returns a string with the time trigger set on, with leading zeros for hours and minutes less than 10
     @Test
     public void test_leading_zeros() {
         TimeOfDayTrigger trigger = new TimeOfDayTrigger(LocalTime.of(9, 5));

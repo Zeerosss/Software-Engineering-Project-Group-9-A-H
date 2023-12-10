@@ -1,4 +1,4 @@
-package it.unisa.diem.actions.FileAction;
+package it.unisa.diem.actions.FileActions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -10,8 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.junit.Test;
-
-import it.unisa.diem.actions.FileActions.DeleteFileAction;
 
 public class DeleteFileActionTest {
     //Test to delete a common .txt file.
@@ -54,7 +52,7 @@ public class DeleteFileActionTest {
     public void toStringTest() throws IOException{
         File tempFile = File.createTempFile("example",".txt");
         DeleteFileAction action=new DeleteFileAction(tempFile);
-        String expectedString = "Delete the file: "+tempFile.getName();
+        String expectedString = "Delete the file:\n" + tempFile.getName();
         assertEquals(expectedString, action.toString());
 
         try{

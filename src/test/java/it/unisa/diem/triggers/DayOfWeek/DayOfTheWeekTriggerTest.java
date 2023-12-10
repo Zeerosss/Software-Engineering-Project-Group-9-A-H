@@ -1,5 +1,6 @@
 package it.unisa.diem.triggers.DayOfWeek;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -23,5 +24,12 @@ public class DayOfTheWeekTriggerTest {
                 assertFalse("Il trigger non dovrebbe essere valido per " + otherDay, falseTrigger.isValidated());
             }
         }
+    }
+    @Test
+    public void testDayOfTheWeekTriggerToString(){
+        DayOfTheWeekTrigger trigger = new DayOfTheWeekTrigger(DayOfWeek.MONDAY);
+        String expected = "The chosen day of the week is: \n" + "MONDAY";
+        String actual = trigger.toString();
+        assertEquals(expected, actual);
     }
 }

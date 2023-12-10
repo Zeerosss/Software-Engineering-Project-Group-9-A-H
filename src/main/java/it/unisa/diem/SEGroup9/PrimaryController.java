@@ -48,7 +48,7 @@ public class PrimaryController implements Initializable{
     @FXML
     private TableColumn<Rule,Action> actionNameId;
     @FXML
-    private TableColumn<?, ?> executeBehaviourId;
+    private TableColumn<Rule, String> executeBehaviourId;
     
    
     @FXML
@@ -106,6 +106,7 @@ public class PrimaryController implements Initializable{
         triggerNameId.setCellValueFactory(new PropertyValueFactory<Rule,Trigger>("Trigger"));
         ruleNameId.setCellValueFactory(new PropertyValueFactory<Rule,String>("Name"));
         statusId.setCellValueFactory(new PropertyValueFactory<Rule,Boolean>("Status"));
+        executeBehaviourId.setCellValueFactory(new PropertyValueFactory<Rule,String>("NextExecution"));
         rulesTable.setItems(ruleListToJavaFX.getRules());
 
         deleteButton.visibleProperty().bind(Bindings.isNotEmpty(ruleListToJavaFX.getRules()));
