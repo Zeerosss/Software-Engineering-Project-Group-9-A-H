@@ -1,4 +1,4 @@
-package it.unisa.diem.triggers.FileDimensionExceeds;
+package it.unisa.diem.triggers.FileSizeExceeds;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

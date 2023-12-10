@@ -1,4 +1,4 @@
-package it.unisa.diem.actions;
+package it.unisa.diem.actions.ExecuteProgramAction;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -9,8 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
-
-import it.unisa.diem.actions.ExecuteProgramAction.ExecuteExternalProgramAction;
 
 public class ExecuteExternalProgramActionTest {
     @Test

@@ -10,7 +10,7 @@ module it.unisa.diem{
 
     opens it.unisa.diem.actions to junit;
     opens it.unisa.diem.triggers.TimeOfDay to junit;
-    opens it.unisa.diem.triggers.FileDimensionExceeds to junit;
+    opens it.unisa.diem.triggers.FileSizeExceeds to junit;
     opens it.unisa.diem.triggers.FileExists to junit;
     
     exports it.unisa.diem.actions;

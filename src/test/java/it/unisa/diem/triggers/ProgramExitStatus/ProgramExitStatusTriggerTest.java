@@ -1,9 +1,7 @@
-package it.unisa.diem.triggers;
+package it.unisa.diem.triggers.ProgramExitStatus;
 
 
 import org.junit.Test;
-
-import it.unisa.diem.triggers.ProgramExitStatus.ProgramExitStatusTrigger;
 
 import static org.junit.Assert.*;
 

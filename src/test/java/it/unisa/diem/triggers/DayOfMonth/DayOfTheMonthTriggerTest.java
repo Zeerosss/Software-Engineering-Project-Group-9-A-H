@@ -1,4 +1,4 @@
-package it.unisa.diem.triggers;
+package it.unisa.diem.triggers.DayOfMonth;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -7,8 +7,6 @@ import static org.junit.Assert.assertTrue;
 import java.time.LocalDate;
 
 import org.junit.Test;
-
-import it.unisa.diem.triggers.DayOfMonth.DayOfTheMonthTrigger;
 
 public class DayOfTheMonthTriggerTest {
     @Test

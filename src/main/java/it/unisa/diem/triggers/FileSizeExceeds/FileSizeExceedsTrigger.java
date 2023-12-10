@@ -1,4 +1,4 @@
-package it.unisa.diem.triggers.FileDimensionExceeds;
+package it.unisa.diem.triggers.FileSizeExceeds;
 
 import java.io.File;
 

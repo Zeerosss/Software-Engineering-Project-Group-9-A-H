@@ -1,4 +1,4 @@
-package it.unisa.diem.triggers;
+package it.unisa.diem.triggers.DayOfWeek;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -7,8 +7,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 import org.junit.Test;
-
-import it.unisa.diem.triggers.DayOfWeek.DayOfTheWeekTrigger;
 
 public class DayOfTheWeekTriggerTest {
     @Test

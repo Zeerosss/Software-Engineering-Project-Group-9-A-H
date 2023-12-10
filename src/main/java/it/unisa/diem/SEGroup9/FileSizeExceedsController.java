@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.triggers.AbstractTriggerController;
 import it.unisa.diem.triggers.Trigger;
-import it.unisa.diem.triggers.FileDimensionExceeds.FileSizeExceedsTrigger;
+import it.unisa.diem.triggers.FileSizeExceeds.FileSizeExceedsTrigger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

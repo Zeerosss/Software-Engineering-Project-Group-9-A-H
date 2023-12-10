@@ -1,9 +1,8 @@
-package it.unisa.diem.triggers;
+package it.unisa.diem.triggers.ProgramExitStatus;
 
 import org.junit.Test;
 
 import it.unisa.diem.rules.Observer;
-import it.unisa.diem.triggers.ProgramExitStatus.ExecProgram;
 
 import static org.junit.Assert.*;
 
