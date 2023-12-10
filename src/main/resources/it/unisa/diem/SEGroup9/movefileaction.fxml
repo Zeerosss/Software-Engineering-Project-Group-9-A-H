@@ -9,11 +9,11 @@
    <children>
       <Button fx:id="chooseFileButton" alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseFile" stylesheets="@application.css" text="Choose a file" />
       <Button fx:id="chooseDirectoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="244.0" layoutY="32.0" mnemonicParsing="false" onAction="#chooseDirectory" stylesheets="@application.css" text="Choose a directory" />
-      <Label fx:id="fileChoosenId" layoutX="69.0" layoutY="76.0" text="No File chosen">
+      <Label fx:id="choosenFileID" layoutX="69.0" layoutY="76.0" text="No File chosen">
          <font>
             <Font name="Arial" size="12.0" />
          </font></Label>
-      <Label fx:id="directoryChoosenId" layoutX="260.0" layoutY="76.0" text="No Directory chosen">
+      <Label fx:id="choosenDirectoryID" layoutX="260.0" layoutY="76.0" text="No Directory chosen">
          <font>
             <Font name="Arial" size="12.0" />
          </font></Label>

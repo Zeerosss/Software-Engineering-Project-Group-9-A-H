@@ -2,7 +2,6 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
@@ -12,8 +11,8 @@ import it.unisa.diem.actions.FileAction.CopyFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -23,10 +22,10 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
     private File directory;
     
     @FXML
-    private Label directoryChoosenId;
+    private Label choosenFileID;
 
     @FXML
-    private Label fileChoosenId;
+    private Label choosenDirectoryID;
 
     @FXML
     private Button chooseFileButton;
@@ -47,7 +46,7 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
             if (fileName.length() > 20) {
                 fileName = fileName.substring(0, 15) + "...";
             }
-            fileChoosenId.setText(fileName);
+            choosenFileID.setText(fileName);
         }
     }
 
@@ -59,29 +58,20 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
 
         directory = directoryChooser.showDialog(App.getStage());
         if (directory != null) {
-            directoryChoosenId.setText(directory.getName());
+            choosenDirectoryID.setText(directory.getName());
         }
     }
 
     // This method is called when the controller is initialized
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Buttons are set to disabled until the user confirms the Alert below.
-        // If the user closes the alert without confirming it, the buttons will remain inactive.
-        chooseFileButton.setDisable(true);
-        chooseDirectoryButton.setDisable(true);
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Alert!");
-        alert.setHeaderText("Caution: This action works on files.");
-        alert.setContentText("Press Confirm to go forward");
-        Optional<ButtonType> result = alert.showAndWait();    
-
-        // If the user confirms the alert, enable the buttons
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            chooseFileButton.setDisable(false);
-            chooseDirectoryButton.setDisable(false);
-        }
+        //Alerting the user about an impending file operation
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("Caution: This action copies a file!");
+        alert.setContentText("Press Confirm to OK to continue");  
+        alert.showAndWait();
     }
 
     // This method creates and returns a CopyFileAction based on user input
@@ -97,9 +87,25 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
     // This method checks if the necessary fields are filled
     @Override
     public boolean isFilled() {
-        if (file != null && directory != null && !unavailableDirectory(directory.getPath()) && !unavailableFile(file)) {
+        if (file != null && directory != null){
+            if(!unavailableDirectory(directory.getPath()) && !unavailableFile(file)) {
             return true;
+        }else{
+            if(unavailableDirectory(directory.getPath())){
+                AlertController.displayAlertWarning("Warning!",null , "Directory not available");
+            }
+            if(unavailableFile(file)){
+                AlertController.displayAlertWarning("Warning!",null , "File Cannot be selected!");
+            }
         }
-        return false;
+    }else{
+        if(file == null){
+            AlertController.displayAlertWarning("Warning!",null , "File not selected");
+        }
+        if(directory == null){
+            AlertController.displayAlertWarning("Warning!",null , "Directory not selected");
+        }
     }
+        return false;
+}
 }

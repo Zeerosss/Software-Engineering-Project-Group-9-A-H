@@ -98,7 +98,6 @@ public class SecondaryController implements Initializable {
             Trigger trigger = triggerController.createTrigger();
             
             Action action = actionController.createAction();
-            System.err.println(action);
             if( ( action == null )||( trigger == null) ){
                 
                 // If the action/trigger object is null
@@ -178,9 +177,8 @@ public class SecondaryController implements Initializable {
      */
     public void initialize(URL arg0, ResourceBundle arg1) {
         alert = new Alert(Alert.AlertType.WARNING);
-        actionBox.getItems().setAll("Play an audio file", "Display a message","Copy File","Move File","Delete File","Append a message to a file", 
-    "Execute external program");
-        triggerBox.getItems().setAll("Time of day","Day of the week","File exists in a directory","File dimension exceeds a value","Exit status of a program" );
+        actionBox.getItems().setAll("Play an audio file", "Display a message","Copy File","Move File","Delete File","Append a message to a file","Execute External Program");
+        triggerBox.getItems().setAll("Time of day Trigger","Day of the week","Day of the month","Date","File exists in a directory","File dimension exceeds a value","Exit status of a program");
 
         alreadyAdd.setItems(ruleCollection.getRules());
 

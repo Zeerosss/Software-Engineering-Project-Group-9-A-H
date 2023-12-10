@@ -7,11 +7,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.SEGroup9.CopyFileActionController">
    <children>
-      <Label fx:id="fileChoosenId" alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="68.0" text="No File Chosen">
+      <Label fx:id="choosenFileID" alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="68.0" text="No File Chosen">
          <font>
             <Font name="Arial" size="12.0" />
          </font></Label>
-      <Label fx:id="directoryChoosenId" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="68.0" text="No Directory Chosen">
+      <Label fx:id="choosenDirectoryID" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="68.0" text="No Directory Chosen">
          <font>
             <Font name="Arial" size="12.0" />
          </font></Label>

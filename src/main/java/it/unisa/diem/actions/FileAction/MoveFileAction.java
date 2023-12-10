@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import it.unisa.diem.SEGroup9.AlertController;
 import it.unisa.diem.actions.Action;
+
 
 public class MoveFileAction implements Action {
     private File file;
@@ -26,9 +28,9 @@ public class MoveFileAction implements Action {
             Files.move(file.toPath(), Paths.get(destinationPath));
         } catch (IOException e) {
             if (Files.exists(Paths.get(destinationPath))) {
-                System.err.println("File already moved!");
+                AlertController.displayAlertWarning("Warning!",null , "File already moved!");
             } else {
-                System.err.println("An error occurred while moving the file: " + e.getMessage());
+                AlertController.displayAlertWarning("Warning!",null , "An error occurred while moving the file!");
             }
         }
     }

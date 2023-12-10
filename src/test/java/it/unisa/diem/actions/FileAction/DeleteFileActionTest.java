@@ -1,5 +1,6 @@
 package it.unisa.diem.actions.FileAction;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
@@ -45,5 +46,13 @@ public class DeleteFileActionTest {
         
         assertThrows(NullPointerException.class,action::startAction);
 
+    }
+
+        @Test
+    public void toStringTest() throws IOException{
+        File tempFile = File.createTempFile("example",".txt");
+        DeleteFileAction action=new DeleteFileAction(tempFile);
+        String expectedString = "Delete the file: "+tempFile.getName();
+        assertEquals(expectedString, action.toString());
     }
 }

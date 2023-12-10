@@ -2,7 +2,6 @@ package it.unisa.diem.SEGroup9;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
@@ -12,8 +11,8 @@ import it.unisa.diem.actions.FileAction.MoveFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -29,10 +28,10 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
     private Button chooseFileButton;
 
     @FXML
-    private Label directoryChoosenId;
+    private Label choosenDirectoryID;
 
     @FXML
-    private Label fileChoosenId;
+    private Label choosenFileID;
 
     // This method handles the directory choosing process by clicking the "Choose a Directory" button
     @FXML
@@ -42,7 +41,7 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
 
         directory = directoryChooser.showDialog(App.getStage());
         if (directory != null) {
-            directoryChoosenId.setText(directory.getName());
+            choosenDirectoryID.setText(directory.getName());
         }
     }
 
@@ -59,27 +58,19 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
             if (fileName.length() > 15) {
                 fileName = fileName.substring(0, 15) + "...";
             }
-            fileChoosenId.setText(fileName);
+            choosenFileID.setText(fileName);
         }
     }
 
-    // Disable the buttons until the Confirm button of the Alert is pressed.
-    // The buttons will be disabled if the alert is closed without pressing Confirm.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        chooseFileButton.setDisable(true);
-        chooseDirectoryButton.setDisable(true);
+        //Alerting the user about an impending file operation
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("Caution: This action moves a file!");
+        alert.setContentText("Press OK to continue");
+        alert.showAndWait();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Alert!");
-        alert.setHeaderText("Caution: This action works on files.");
-        alert.setContentText("Press Confirm to go forward");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            chooseFileButton.setDisable(false);
-            chooseDirectoryButton.setDisable(false);
-        }
     }
 
     // This method creates and returns a MoveFileAction based on user input
@@ -95,9 +86,27 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
     // This method checks if the necessary fields are filled
     @Override
     public boolean isFilled() {
-        if (file != null && directory != null && !unavailableDirectory(directory.getPath()) && !unavailableFile(file)) {
+        if (file != null && directory != null){
+            if(!unavailableDirectory(directory.getPath()) && !unavailableFile(file)) {
             return true;
+        }else{
+            if(unavailableDirectory(directory.getPath())){
+                AlertController.displayAlertWarning("Warning!",null , "Directory not available");
+            }
+            if(unavailableFile(file)){
+                AlertController.displayAlertWarning("Warning!",null , "File Cannot be selected!");
+            }
         }
-        return false;
+    }else{
+        if(file == null){
+            AlertController.displayAlertWarning("Warning!",null , "File not selected");
+        }
+        if(directory == null){
+            AlertController.displayAlertWarning("Warning!",null , "Directory not selected");
+        }
     }
+        return false;
 }
+}
+
+

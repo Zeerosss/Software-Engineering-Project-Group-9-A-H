@@ -1,5 +1,6 @@
 package it.unisa.diem.actions.FileAction;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -68,7 +69,14 @@ public class MoveFileActionTest {
     }
 }
 
-
+    @Test
+    public void toStringTest() throws IOException{
+        File tempFile = File.createTempFile("example",".txt");
+        Path tempDirectory = Files.createTempDirectory("temporaryDirectory");
+        MoveFileAction action=new MoveFileAction(tempFile, tempDirectory.toString());
+        String expectedString = "Move the File:"+tempFile.getName() +"\n to:"+ Paths.get(tempDirectory.toString(),tempFile.getName());
+        assertEquals(expectedString, action.toString());
+    }
 
 }
 

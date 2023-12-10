@@ -1,5 +1,6 @@
 package it.unisa.diem.actions.FileAction;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -56,6 +57,14 @@ public class CopyFileActionTest {
             System.err.println("Error in deleting the temp file");
         }
 
+    }
+        @Test
+    public void toStringTest() throws IOException{
+        File tempFile = File.createTempFile("example",".txt");
+        Path tempDirectory = Files.createTempDirectory("temporaryDirectory");
+        CopyFileAction action=new CopyFileAction(tempFile, tempDirectory.toString());
+        String expectedString = "Copy the file:"+tempFile.getName() +"\n to:"+ Paths.get(tempDirectory.toString(),tempFile.getName());
+        assertEquals(expectedString, action.toString());
     }
 
 }
