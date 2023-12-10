@@ -1,4 +1,4 @@
-package it.unisa.diem.actions.FileAction;
+package it.unisa.diem.actions.FileActions;
 
 import it.unisa.diem.SEGroup9.AlertController;
 import it.unisa.diem.actions.Action;

@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import it.unisa.diem.actions.MessageAction.AlertJavaFX;
+import it.unisa.diem.actions.DialogAction.AlertJavaFX;
 import it.unisa.diem.rules.AutoSaveManager;
 import it.unisa.diem.rules.RuleListToJavaFX;
 

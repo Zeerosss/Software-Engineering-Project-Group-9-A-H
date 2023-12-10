@@ -12,6 +12,8 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
+import it.unisa.diem.actions.FileActions.MoveFileAction;
+
 //Test to check if a file has left the sourcePath correctly. The file is deleted after the check. 
 //The test has been run with Visual Studio Code which has been started with Admin privileges.
 //using createTempDirectory, i can create a temporary directory to be able to run tests on both mac and windows without the needs to specify a OS Path.

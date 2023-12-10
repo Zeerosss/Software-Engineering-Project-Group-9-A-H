@@ -1,7 +1,9 @@
-package it.unisa.diem.triggers;
+package it.unisa.diem.triggers.DayOfWeek;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+
+import it.unisa.diem.triggers.Trigger;
 
 public class DayOfTheWeekTrigger implements Trigger{
 

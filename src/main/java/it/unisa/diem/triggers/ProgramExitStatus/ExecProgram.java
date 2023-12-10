@@ -1,4 +1,4 @@
-package it.unisa.diem.triggers;
+package it.unisa.diem.triggers.ProgramExitStatus;
 
 
 import java.io.IOException;

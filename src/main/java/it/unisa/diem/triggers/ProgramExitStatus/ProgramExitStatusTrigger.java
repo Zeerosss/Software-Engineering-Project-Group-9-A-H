@@ -1,8 +1,9 @@
-package it.unisa.diem.triggers;
+package it.unisa.diem.triggers.ProgramExitStatus;
 
 import java.io.IOException;
 
 import it.unisa.diem.rules.Observer;
+import it.unisa.diem.triggers.Trigger;
 
 
 /**

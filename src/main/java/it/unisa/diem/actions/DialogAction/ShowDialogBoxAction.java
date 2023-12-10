@@ -1,4 +1,4 @@
-package it.unisa.diem.actions.MessageAction;
+package it.unisa.diem.actions.DialogAction;
 
 import it.unisa.diem.actions.Action;
 

@@ -1,6 +1,6 @@
 package it.unisa.diem.SEGroup9;
 
-import it.unisa.diem.actions.MessageAction.AlertDisplayer;
+import it.unisa.diem.actions.DialogAction.AlertDisplayer;
 
 /**
  * The AlertController class is responsible for managing alerts in a Java application.

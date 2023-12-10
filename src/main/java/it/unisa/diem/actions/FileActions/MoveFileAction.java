@@ -1,4 +1,4 @@
-package it.unisa.diem.actions.FileAction;
+package it.unisa.diem.actions.FileActions;
 
 import java.io.File;
 import java.io.IOException;

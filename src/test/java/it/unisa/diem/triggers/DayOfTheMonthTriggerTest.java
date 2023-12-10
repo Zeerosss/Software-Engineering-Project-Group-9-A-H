@@ -8,6 +8,8 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
+import it.unisa.diem.triggers.DayOfMonth.DayOfTheMonthTrigger;
+
 public class DayOfTheMonthTriggerTest {
     @Test
     public void isValidatedTest() {

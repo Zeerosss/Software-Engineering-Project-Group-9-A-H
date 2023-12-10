@@ -2,6 +2,9 @@ package it.unisa.diem.triggers;
 
 
 import org.junit.Test;
+
+import it.unisa.diem.triggers.ProgramExitStatus.ProgramExitStatusTrigger;
+
 import static org.junit.Assert.*;
 
 import java.io.IOException;

@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
 import it.unisa.diem.actions.FileChecker;
-import it.unisa.diem.actions.FileAction.MoveFileAction;
+import it.unisa.diem.actions.FileActions.MoveFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

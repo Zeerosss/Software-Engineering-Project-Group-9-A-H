@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
-import it.unisa.diem.actions.ExecuteExternalProgramAction;
+import it.unisa.diem.actions.ExecuteProgramAction.ExecuteExternalProgramAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
