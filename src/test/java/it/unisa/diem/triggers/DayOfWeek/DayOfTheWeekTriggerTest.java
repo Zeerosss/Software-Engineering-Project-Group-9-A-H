@@ -28,7 +28,7 @@ public class DayOfTheWeekTriggerTest {
     @Test
     public void testDayOfTheWeekTriggerToString(){
         DayOfTheWeekTrigger trigger = new DayOfTheWeekTrigger(DayOfWeek.MONDAY);
-        String expected = "Day of the week trigger\nset on: " + "MONDAY";
+        String expected = "The chosen day of the week is: \n" + "MONDAY";
         String actual = trigger.toString();
         assertEquals(expected, actual);
     }

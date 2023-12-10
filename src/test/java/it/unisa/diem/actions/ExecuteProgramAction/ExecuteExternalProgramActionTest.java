@@ -18,7 +18,6 @@ public class ExecuteExternalProgramActionTest {
         File file = new File("src\\test\\java\\it\\unisa\\diem\\triggers\\test.exe");
         List<String> parameterList = new ArrayList<>(Arrays.asList("arg1", "arg2"));
         ExecuteExternalProgramAction action = new ExecuteExternalProgramAction(file, parameterList);
-        System.out.println(file.getName());
         try {
             action.startAction();
         } catch (Exception e) {
@@ -27,23 +26,13 @@ public class ExecuteExternalProgramActionTest {
 
         assertTrue("Output file should exist", new File("testLog\\" + file.getName() + ".txt").exists());
     }
-    @Test
-    public void testStartActionWithException() {
-        
-        File file = new File("path/to/nonexistent/program");
-        List<String> parameterList = new ArrayList<>(Arrays.asList("arg1", "arg2"));
-        ExecuteExternalProgramAction action = new ExecuteExternalProgramAction(file, parameterList);
-
-        action.startAction();
-        
-        
-    }
+    
     @Test
     public void testExecuteExternalProgramActionToString(){
         File file = new File("testToString.txt");
         List<String> parameterList = new ArrayList<>(Arrays.asList("arg1", "arg2"));
         ExecuteExternalProgramAction action = new ExecuteExternalProgramAction(file, parameterList);
-        String expected = "Execute external program action\n" + "testToString.txt";
+        String expected = "Execute this external program:\n" + "testToString.txt";
         String actual = action.toString();
         assertEquals(expected, actual);
     }

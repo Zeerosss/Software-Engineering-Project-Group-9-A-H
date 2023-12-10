@@ -11,8 +11,6 @@ import java.nio.file.Path;
 
 import org.junit.Test;
 
-import it.unisa.diem.actions.FileActions.DeleteFileAction;
-
 public class DeleteFileActionTest {
     //Test to delete a common .txt file.
     @Test
