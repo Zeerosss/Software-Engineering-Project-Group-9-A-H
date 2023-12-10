@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import it.unisa.diem.actions.AppendTextAction.AppendTextAction;
 
 public class AppendTextActionTest {
 
