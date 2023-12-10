@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -8,5 +9,8 @@
       <Spinner fx:id="monthSpinner" layoutX="178.0" layoutY="85.0" prefHeight="26.0" prefWidth="84.0" />
       <Spinner fx:id="yearSpinner" layoutX="298.0" layoutY="85.0" prefHeight="26.0" prefWidth="84.0" />
       <Spinner fx:id="daySpinner" layoutX="53.0" layoutY="85.0" prefHeight="26.0" prefWidth="84.0" />
+      <Label layoutX="85.0" layoutY="57.0" text="Day" />
+      <Label layoutX="202.0" layoutY="57.0" text="Month" />
+      <Label layoutX="328.0" layoutY="57.0" text="Year" />
    </children>
 </AnchorPane>
