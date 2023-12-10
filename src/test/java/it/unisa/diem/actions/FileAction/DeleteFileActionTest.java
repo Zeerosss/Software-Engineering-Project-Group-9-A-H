@@ -56,5 +56,11 @@ public class DeleteFileActionTest {
         DeleteFileAction action=new DeleteFileAction(tempFile);
         String expectedString = "Delete the file: "+tempFile.getName();
         assertEquals(expectedString, action.toString());
+
+        try{
+            Files.delete(tempFile.toPath());
+        }catch(IOException e){
+            System.err.println("Error in deleting the temp file");
+        }
     }
 }

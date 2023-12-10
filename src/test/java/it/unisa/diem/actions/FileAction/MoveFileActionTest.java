@@ -39,7 +39,9 @@ public class MoveFileActionTest {
     
 
 
-    try{Files.delete(destinationPath);
+    try{
+        Files.delete(tempDirectory);
+        Files.delete(destinationPath);
     }catch(IOException e){
         System.err.println("Error when deleting the tempfile");
     }
@@ -65,7 +67,9 @@ public class MoveFileActionTest {
     
 
 
-    try{Files.delete(destinationPath);
+    try{
+        Files.delete(destinationPath);
+        Files.delete(tempDirectory);
     }catch(IOException e){
         System.err.println("Error when deleting the tempfile");
     }
@@ -78,6 +82,14 @@ public class MoveFileActionTest {
         MoveFileAction action=new MoveFileAction(tempFile, tempDirectory.toString());
         String expectedString = "Move the File:"+tempFile.getName() +"\n to:"+ Paths.get(tempDirectory.toString(),tempFile.getName());
         assertEquals(expectedString, action.toString());
+
+
+        try{
+            Files.delete(tempFile.toPath());
+            Files.delete(tempDirectory);
+        }catch(IOException e){
+            System.err.println("Error in deleting the temp file");
+        }
     }
 
 }
