@@ -71,7 +71,7 @@ public class ProgramExitStatusTrigger implements Trigger, Observer {
      */
     @Override
     public String toString() {
-        return "Exit Status Trigger\nprogram:" + path + "\nargs:" + args;
+        return "Exit Status Trigger, program:" + path + "\nargs:" + args;
     }
 
     /**
@@ -85,7 +85,6 @@ public class ProgramExitStatusTrigger implements Trigger, Observer {
             return true;
         }}
         return false;
-
-        
+   
     }
 }

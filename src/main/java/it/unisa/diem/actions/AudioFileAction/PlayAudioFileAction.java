@@ -22,7 +22,7 @@ public class PlayAudioFileAction implements Action {
     // Override the toString method to provide a human-readable representation of the action
     @Override
     public String toString() {
-        return "Play this file \nfile:" + audioFilePath;
+        return "Play this file:\n" + audioFilePath;
     }
 
     // Override the startAction method as required by the Action interface

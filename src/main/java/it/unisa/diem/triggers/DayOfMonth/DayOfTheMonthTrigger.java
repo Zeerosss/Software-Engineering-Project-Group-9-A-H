@@ -19,7 +19,7 @@ public class DayOfTheMonthTrigger implements Trigger{
     }
     @Override
     public String toString() {
-        return "Day of month choosen: \n " + localDate.getDayOfMonth();
+        return "The chosen day of the month is: \n " + localDate.getDayOfMonth();
     }
     }
     

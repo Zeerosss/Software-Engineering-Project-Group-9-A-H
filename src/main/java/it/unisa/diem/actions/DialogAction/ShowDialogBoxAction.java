@@ -25,6 +25,6 @@ public class ShowDialogBoxAction implements Action {
     // Override the toString method to provide a human-readable representation of the action
     @Override
     public String toString() {
-        return ("Show Dialog Box Action:\n" + message);
+        return "Show a Dialog Box with this message:\n" + message;
     }
 }

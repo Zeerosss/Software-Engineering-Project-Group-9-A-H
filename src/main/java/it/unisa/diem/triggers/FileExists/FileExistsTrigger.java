@@ -22,7 +22,7 @@ public class FileExistsTrigger implements Trigger {
 
     @Override
     public String toString() {
-    return "FileExistsTrigger:\n" + "fileName=\n" + fileName + "\nDirectory=\n" + directoryPath;
+    return "This file: " + fileName + "\nExists in this Directory: " + directoryPath;
 }
 
 }

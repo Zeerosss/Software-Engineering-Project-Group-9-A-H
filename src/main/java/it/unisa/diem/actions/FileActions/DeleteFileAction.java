@@ -34,6 +34,6 @@ public class DeleteFileAction implements Action {
     // Override the toString method to provide a human-readable representation of the action
     @Override
     public String toString() {
-        return "Delete the file: " + file.getName();
+        return "Delete the file:\n" + file.getName();
     }
 }

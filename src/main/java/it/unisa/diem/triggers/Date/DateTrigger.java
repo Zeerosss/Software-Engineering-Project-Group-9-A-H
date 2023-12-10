@@ -19,7 +19,7 @@ public class DateTrigger implements Trigger {
     @Override
     public String toString() {
         DateTimeFormatter formatter= DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return "The date choosen is: \n" + date.format(formatter);
+        return "The chosen date is: \n" + date.format(formatter);
     }
 
     

@@ -77,7 +77,7 @@ public class FileSizeExceedsController implements AbstractTriggerController {
 
                     // Check if the file dimension is a positive number
                     if (maxSize > 0) {
-                        return new FileSizeExceedsTrigger(selectedFile.getAbsolutePath(), maxSize);
+                        return new FileSizeExceedsTrigger(selectedFile.getAbsolutePath(), maxSize, selectedUnit);
                     } else {
                         showAlert("Please enter a positive number for file dimension.");
                     }
@@ -95,7 +95,7 @@ public class FileSizeExceedsController implements AbstractTriggerController {
 
     // Show an alert with the specified message
     private void showAlert(String message) {
-        AlertController.displayAlertWarning("Warning!",null , message);
+        AlertController.displayAlertWarning("Warning!", null, message);
     }
 
     // Convert the file dimension value to bytes based on the selected unit

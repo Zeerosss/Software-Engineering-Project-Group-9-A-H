@@ -38,6 +38,6 @@ public class MoveFileAction implements Action {
     // Override the toString method to provide a human-readable representation of the action
     @Override
     public String toString() {
-        return "Move the File:" + file.getName() + "\n to:" + destinationPath;
+        return "Move the File: " + file.getName() + "\nInto the directory: " + destinationPath;
     }
 }

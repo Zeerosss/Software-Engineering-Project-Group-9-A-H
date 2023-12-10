@@ -9,8 +9,8 @@ import java.io.PrintWriter;
 import it.unisa.diem.actions.Action;
 
 public class AppendTextAction implements Action {
-    public String filePath;
-    public String message;
+    private String filePath;
+    private String message;
 
     // Constructor to initialize the file path and message when creating an instance of the class
     public AppendTextAction(String filePath, String message) {
@@ -21,7 +21,7 @@ public class AppendTextAction implements Action {
     // Override the toString method to provide a human-readable representation of the action
     @Override
     public String toString() {
-        return "Append a string on a file\n file:" + filePath + ", message=" + message;
+        return "Append this message: " + message + "\nTo this file: " + filePath;
     }
 
     // Override the startAction method as required by the Action interface
