@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
+
 public class AppendTextActionTest {
 
     // This test verifies that the AppendTextAction appends the given message to the file.

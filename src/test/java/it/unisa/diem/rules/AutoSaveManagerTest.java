@@ -19,6 +19,7 @@ public class AutoSaveManagerTest {
         @Test
     public void test_save_rules_to_file_when_notified_of_changes() {
         // Arrange
+        
         AutoSaveManager autoSaveManager = new AutoSaveManager("testLog\\rulestest.date");
         RuleList ruleList = RuleList.getInstance();
         ruleList.ruleAdd(true, "Rule 1", new TimeOfDayTrigger(LocalTime.now()), new ShowDialogBoxAction("Test",new AlertJavaFX()), true, null, LocalDateTime.now()); 
@@ -46,5 +47,6 @@ public class AutoSaveManagerTest {
         } catch (Exception e) {
             fail("Exception thrown while reading file");
         }
+        file.delete();
     }
 }
