@@ -16,11 +16,7 @@ public class RuleThread implements Runnable {
     public void run() {
         while (true) {
             try {
-                for (Rule rule : ruleList.getRules()) {
-
-                    // Print the next useful date and rule name for debugging purposes
-                    System.out.println(rule.getNextUsefulDate() + " " + rule);
-
+                for (Rule rule : ruleList.getRules()) {            
                     // Check if the rule is not in sleeping state, is enabled, and its trigger is validated
                     if (!rule.isSleeping() && rule.getStatus() && rule.getTrigger().isValidated()) {
 

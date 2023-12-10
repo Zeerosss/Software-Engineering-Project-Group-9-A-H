@@ -22,7 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class PrimaryController implements Initializable{
+public class RuleViewController implements Initializable{
     
 
     //getting the RuleCollection Instance to get the elements from the ObservableList
@@ -39,14 +39,19 @@ public class PrimaryController implements Initializable{
 
     @FXML
     private TableView<Rule> rulesTable;
+
     @FXML
     private TableColumn<Rule,String> ruleNameId;
+
     @FXML
     private TableColumn<Rule,Boolean> statusId;
+
     @FXML
     private TableColumn<Rule,Trigger> triggerNameId;
+
     @FXML
     private TableColumn<Rule,Action> actionNameId;
+
     @FXML
     private TableColumn<Rule, String> executeBehaviourId;
     

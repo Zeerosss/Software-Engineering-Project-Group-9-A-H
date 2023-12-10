@@ -9,8 +9,6 @@ import java.nio.file.Files;
 
 import org.junit.Test;
 
-import it.unisa.diem.actions.AppendTextAction.AppendTextAction;
-
 public class PlayAudioFileActionTest {  //this test checks for the correct reproduction of the audio file
 
     @Test

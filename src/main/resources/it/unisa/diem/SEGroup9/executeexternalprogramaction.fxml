@@ -20,7 +20,7 @@
             <Tooltip text="Add a parameter" />
          </tooltip>
       </Button>
-      <Button fx:id="changeProgramButton" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="43.0" mnemonicParsing="false" onAction="#changeProgramAction" stylesheets="@application.css" text="Change program"/>
+      <Button fx:id="changeProgramButton" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="43.0" mnemonicParsing="false" onAction="#changeProgramAction" stylesheets="@application.css" text="Choose program" />
       <Label fx:id="externalProgramPathLabel" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="34.0" layoutY="81.0" prefHeight="17.0" prefWidth="150.0" text="No program chosen">
          <font>
             <Font name="Arial" size="12.0" />

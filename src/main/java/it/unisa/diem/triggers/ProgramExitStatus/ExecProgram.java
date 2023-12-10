@@ -53,14 +53,12 @@ public class ExecProgram extends Observable implements Serializable {
         List<String> command = new ArrayList<>();
         command.add(path);
         command.addAll(Arrays.asList(args));
-        System.err.println(command);
         ProcessBuilder processBuilder = new ProcessBuilder();
         processBuilder.command(command);
         Process process = processBuilder.start();
         new Thread(() -> {
             try {
                 exitStatus = process.waitFor();
-                System.err.println(exitStatus);
                 notifyObserver();
             } catch (InterruptedException e) {
                 e.printStackTrace();
