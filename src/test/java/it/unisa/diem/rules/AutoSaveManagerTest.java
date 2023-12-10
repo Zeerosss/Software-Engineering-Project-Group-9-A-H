@@ -19,14 +19,14 @@ public class AutoSaveManagerTest {
         @Test
     public void test_save_rules_to_file_when_notified_of_changes() {
         // Arrange
-        AutoSaveManager autoSaveManager = new AutoSaveManager("rulestest.date");
+        AutoSaveManager autoSaveManager = new AutoSaveManager("testLog\\rulestest.date");
         RuleList ruleList = RuleList.getInstance();
         ruleList.ruleAdd(true, "Rule 1", new TimeOfDayTrigger(LocalTime.now()), new ShowDialogBoxAction("Test",new AlertJavaFX()), true, null, LocalDateTime.now()); 
         Rule rule = ruleList.getRules().get(0);
-        File file = new File("src\\main\\resources\\it\\unisa\\diem\\rules.date");
+       
         // Act
         autoSaveManager.update();
-    
+        File file = new File("testLog\\rulestest.date");
         // Assert
         // Check if the file exists and contains the saved rule
         assertTrue(file.exists());

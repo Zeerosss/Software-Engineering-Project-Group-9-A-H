@@ -117,6 +117,11 @@ public class SecondaryController implements Initializable {
                     triggerBox.setValue(null);
                     actionBox.setValue(null);
                     ruleNameLabel.clear();
+                    hourSpinner.getValueFactory().setValue(0);
+                    daySpinner.getValueFactory().setValue(0);
+                    minuteSpinner.getValueFactory().setValue(0);
+                    onlyOnceRadio.setSelected(true);
+                    sleepingTimeRadio.setSelected(false);
                
             
                 }catch(Exception e){

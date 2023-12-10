@@ -14,7 +14,7 @@ public class ExecuteExternalProgramActionTest {
     @Test
     public void testStartAction() {
         
-        File file = new File("C:\\Users\\Admin\\OneDrive\\Documenti\\NetBeansProjects\\ExecutionExternProgram\\ciao.exe");
+        File file = new File("src\\test\\java\\it\\unisa\\diem\\triggers\\test.exe");
         List<String> parameterList = new ArrayList<>(Arrays.asList("arg1", "arg2"));
         ExecuteExternalProgramAction action = new ExecuteExternalProgramAction(file, parameterList);
         System.out.println(file.getName());
@@ -24,7 +24,7 @@ public class ExecuteExternalProgramActionTest {
             fail("Unexpected exception: " + e.getMessage());
         }
 
-        assertTrue("Output file should exist", new File("programResult\\" + file.getName() + ".txt").exists());
+        assertTrue("Output file should exist", new File("testLog\\" + file.getName() + ".txt").exists());
     }
     @Test
     public void testStartActionWithException() {
@@ -35,6 +35,6 @@ public class ExecuteExternalProgramActionTest {
 
         action.startAction();
         
-        assertTrue("Error file should exist", new File("ErrorLog").length() != 0);
+        assertTrue("Error file should exist", new File("testLog\\ErrorLog.txt").length() != 0);
     }
 }
