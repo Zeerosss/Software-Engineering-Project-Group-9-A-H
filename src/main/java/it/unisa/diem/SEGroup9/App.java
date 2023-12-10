@@ -24,7 +24,7 @@ public class App extends Application {
     private Alert alert = new Alert(Alert.AlertType.WARNING);
 
     // AutoSaveManager instance for managing rule auto-saving
-private AutoSaveManager autoSaveManager = new AutoSaveManager(SAVE_PATH);
+    private AutoSaveManager autoSaveManager = new AutoSaveManager(SAVE_PATH);
 
     // RuleListToJavaFX instance for managing rules in JavaFX
     private RuleListToJavaFX ruleListToJavaFX = RuleListToJavaFX.getInstance();
