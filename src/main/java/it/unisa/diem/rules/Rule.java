@@ -32,7 +32,7 @@ public class Rule extends Observable implements Serializable {
         this.status = status;
         this.onlyOnce = onlyOnce;
         this.sleepingTime = sleepingTime;
-        this.nextUsefulDate = LocalDateTime.of(0, 1, 1, 0, 0);
+        this.nextUsefulDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
     // Getter methods for rule properties
@@ -58,6 +58,12 @@ public class Rule extends Observable implements Serializable {
 
     public synchronized LocalDateTime getNextUsefulDate() {
         return nextUsefulDate;
+    }
+
+    public synchronized String getNextExecution(){
+        if(onlyOnce)
+            return "only once";
+        return "Will be available from\n" + getNextUsefulDate().toString();
     }
 
     // Setter method for next useful date and notifies observers

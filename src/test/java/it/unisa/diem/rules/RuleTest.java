@@ -38,6 +38,12 @@ public class RuleTest {
         assertEquals(onlyOnce, rule.isOnlyOnce());
         assertEquals(sleepingTime, rule.getSleepingTime());
         assertEquals(nextUsefulDate, rule.getNextUsefulDate());
+        assertEquals("only once", rule.getNextExecution());
+
+        Rule rule2 = new Rule(false, null, null, null, false, sleepingTime);
+        rule2.updateNextUsefulDate();
+
+        assertEquals("Will be available from\n" + nextUsefulDate.toString(), rule2.getNextExecution());
     }
    
     

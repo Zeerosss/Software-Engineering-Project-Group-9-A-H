@@ -30,7 +30,8 @@ public class RuleThread implements Runnable {
                         else
                             rule.setStatus(false);
                         if (rule.getTrigger().isFailed()) {
-                                AlertController.displayAlert("error", "the trigger failed", rule.getTrigger()+"\nhas failed");
+                                AlertController.displayAlert("error", "the trigger failed", 
+                            rule.getTrigger()+"\nhas failed");
                         }
                         else
                         rule.getAction().startAction();

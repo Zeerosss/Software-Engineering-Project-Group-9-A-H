@@ -20,7 +20,7 @@ public class DayOfTheWeekTrigger implements Trigger{
 
     @Override
     public String toString() {
-        return "DayOfTheWeekTrigger [day=" + day + "]";
+        return "Day of the week trigger\nset on: " + day.toString();
     }
 
 }

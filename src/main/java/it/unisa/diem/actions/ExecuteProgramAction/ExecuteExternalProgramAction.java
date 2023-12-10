@@ -47,7 +47,7 @@ public class ExecuteExternalProgramAction implements Action{
 
     @Override
     public String toString() {
-        return "ExecuteExternalProgramAction [file=" + file + "]";
+        return "Execute external program action\n" + file;
     }
 
 }
