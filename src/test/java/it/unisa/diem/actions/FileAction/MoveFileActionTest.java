@@ -39,7 +39,9 @@ public class MoveFileActionTest {
     
 
 
-    try{Files.delete(destinationPath);
+    try{
+        Files.delete(tempDirectory);
+        Files.delete(destinationPath);
     }catch(IOException e){
         System.err.println("Error when deleting the tempfile");
     }
@@ -65,7 +67,9 @@ public class MoveFileActionTest {
     
 
 
-    try{Files.delete(destinationPath);
+    try{
+        Files.delete(destinationPath);
+        Files.delete(tempDirectory);
     }catch(IOException e){
         System.err.println("Error when deleting the tempfile");
     }

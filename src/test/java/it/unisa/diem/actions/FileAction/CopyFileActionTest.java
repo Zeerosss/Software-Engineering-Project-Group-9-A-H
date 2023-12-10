@@ -33,7 +33,9 @@ public class CopyFileActionTest {
         assertTrue(Files.exists(filePath));
 
         try {
+            Files.delete(tempFile.toPath());
             Files.delete(filePath);
+            Files.delete(tempDirectory);
         } catch (IOException e) {
             System.err.println("Error in deleting the temp file");
         }
@@ -54,7 +56,10 @@ public class CopyFileActionTest {
         assertTrue(Files.exists(destinationPath2));
         
         try{
+            Files.delete(tempFile.toPath());
             Files.delete(destinationPath2);
+            Files.delete(tempDirectory);
+            
         }catch(IOException e){
             System.err.println("Error in deleting the temp file");
         }
