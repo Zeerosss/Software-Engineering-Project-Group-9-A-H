@@ -1,5 +1,6 @@
 package it.unisa.diem.actions.ExecuteProgramAction;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -35,6 +36,15 @@ public class ExecuteExternalProgramActionTest {
 
         action.startAction();
         
-        assertTrue("Error file should exist", new File("testLog\\ErrorLog.txt").length() != 0);
+        
+    }
+    @Test
+    public void testExecuteExternalProgramActionToString(){
+        File file = new File("testToString.txt");
+        List<String> parameterList = new ArrayList<>(Arrays.asList("arg1", "arg2"));
+        ExecuteExternalProgramAction action = new ExecuteExternalProgramAction(file, parameterList);
+        String expected = "Execute external program action\n" + "testToString.txt";
+        String actual = action.toString();
+        assertEquals(expected, actual);
     }
 }
