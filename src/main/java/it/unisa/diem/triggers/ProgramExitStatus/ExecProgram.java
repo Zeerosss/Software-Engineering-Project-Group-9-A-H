@@ -51,17 +51,11 @@ public class ExecProgram extends Observable implements Serializable {
      */
     public void restart() throws IOException {
         List<String> command = new ArrayList<>();
+        command.add(path);
+        command.addAll(Arrays.asList(args));
         ProcessBuilder processBuilder = new ProcessBuilder();
-        String os = System.getProperty("os.name").toLowerCase();
-        if (os.contains("win")) {
-            command.add(path);
-            command.addAll(Arrays.asList(args));}
-        else{
-             command.add("/bin/bash"); // Use bash to run the command on macOS
-            command.add("-c");
-            command.add(path + " " + String.join(" ", args));} // Combine path and args into a single command string
-         processBuilder.command(command);
-         Process process = processBuilder.start();
+        processBuilder.command(command);
+        Process process = processBuilder.start();
         new Thread(() -> {
             try {
                 exitStatus = process.waitFor();
