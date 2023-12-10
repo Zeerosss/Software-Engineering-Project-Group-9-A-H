@@ -63,7 +63,7 @@ public class DeleteFileActionController extends FileChecker implements AbstractA
             if(!unavailableFile(file)) {
             return true;
         }else{
-            AlertController.displayAlertWarning("Warning!",null , "File not available");
+            AlertController.displayAlertWarning("Warning!",null , "File cannot be deleted!");
         }
         
     }else{

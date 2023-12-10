@@ -83,10 +83,10 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
             return true;
         }else{
             if(unavailableDirectory(directory.getPath())){
-                AlertController.displayAlertWarning("Warning!",null , "Directory not available");
+                AlertController.displayAlertWarning("Warning!",null , "Directory cannot be selected!");
             }
             if(unavailableFile(file)){
-                AlertController.displayAlertWarning("Warning!",null , "File Cannot be selected!");
+                AlertController.displayAlertWarning("Warning!",null , "File Cannot be copied!");
             }
         }
     }else{
