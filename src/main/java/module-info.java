@@ -15,11 +15,11 @@ module it.unisa.diem{
     
     exports it.unisa.diem.actions;
     exports it.unisa.diem.actions.AudioFileAction;
-    exports it.unisa.diem.actions.MessageAction;
+    exports it.unisa.diem.actions.DialogAction;
 
     exports it.unisa.diem.triggers;
     exports it.unisa.diem.rules;
     exports it.unisa.diem.SEGroup9;
     
-    exports it.unisa.diem.actions.FileAction;
+    exports it.unisa.diem.actions.FileActions;
 }

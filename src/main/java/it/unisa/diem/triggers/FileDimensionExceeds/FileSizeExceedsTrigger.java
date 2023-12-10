@@ -4,11 +4,11 @@ import java.io.File;
 
 import it.unisa.diem.triggers.Trigger;
 
-public class FileDimensionExceedsTrigger implements Trigger{
+public class FileSizeExceedsTrigger implements Trigger{
     private String filePath;
     private double maxSize; // Maximum size in bytes
 
-    public FileDimensionExceedsTrigger(String filePath, double maxSize) {
+    public FileSizeExceedsTrigger(String filePath, double maxSize) {
         this.filePath = filePath;
         this.maxSize = maxSize;
     }

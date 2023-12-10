@@ -5,8 +5,8 @@ import java.time.DayOfWeek;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.triggers.AbstractTriggerController;
-import it.unisa.diem.triggers.DayOfTheWeekTrigger;
 import it.unisa.diem.triggers.Trigger;
+import it.unisa.diem.triggers.DayOfWeek.DayOfTheWeekTrigger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

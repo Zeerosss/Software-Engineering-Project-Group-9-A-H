@@ -6,8 +6,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.triggers.AbstractTriggerController;
-import it.unisa.diem.triggers.ProgramExitStatusTrigger;
 import it.unisa.diem.triggers.Trigger;
+import it.unisa.diem.triggers.ProgramExitStatus.ProgramExitStatusTrigger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

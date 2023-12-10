@@ -18,7 +18,7 @@ public class TypeConstant {
         map1.put(2,"dayofmonthtrigger");
         map1.put(3,"datetrigger");
         map1.put(4, "fileexiststrigger");
-        map1.put(5, "filedimensiontrigger");
+        map1.put(5, "filesizetrigger");
         map1.put(6, "exitstatustrigger");
         
         map2.put(0,"audioaction");

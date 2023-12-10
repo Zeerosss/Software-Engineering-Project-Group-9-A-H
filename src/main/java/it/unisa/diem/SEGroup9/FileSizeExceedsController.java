@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.triggers.AbstractTriggerController;
 import it.unisa.diem.triggers.Trigger;
-import it.unisa.diem.triggers.FileDimensionExceeds.FileDimensionExceedsTrigger;
+import it.unisa.diem.triggers.FileDimensionExceeds.FileSizeExceedsTrigger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
-public class FileDimensionExceedsController implements AbstractTriggerController {
+public class FileSizeExceedsController implements AbstractTriggerController {
 
     private File selectedFile;
 
@@ -77,7 +77,7 @@ public class FileDimensionExceedsController implements AbstractTriggerController
 
                     // Check if the file dimension is a positive number
                     if (maxSize > 0) {
-                        return new FileDimensionExceedsTrigger(selectedFile.getAbsolutePath(), maxSize);
+                        return new FileSizeExceedsTrigger(selectedFile.getAbsolutePath(), maxSize);
                     } else {
                         showAlert("Please enter a positive number for file dimension.");
                     }

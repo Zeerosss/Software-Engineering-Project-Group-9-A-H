@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import it.unisa.diem.actions.ExecuteProgramAction.ExecuteExternalProgramAction;
+
 public class ExecuteExternalProgramActionTest {
     @Test
     public void testStartAction() {

@@ -1,4 +1,4 @@
-package it.unisa.diem.actions.MessageAction;
+package it.unisa.diem.actions.DialogAction;
 import java.io.Serializable;
 
 public interface AlertDisplayer extends Serializable{

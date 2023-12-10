@@ -3,6 +3,7 @@ package it.unisa.diem.triggers;
 import org.junit.Test;
 
 import it.unisa.diem.rules.Observer;
+import it.unisa.diem.triggers.ProgramExitStatus.ExecProgram;
 
 import static org.junit.Assert.*;
 

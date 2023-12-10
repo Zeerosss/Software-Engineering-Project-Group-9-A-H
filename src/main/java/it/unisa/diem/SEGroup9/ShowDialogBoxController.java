@@ -4,8 +4,8 @@ import java.util.ResourceBundle;
 
 import it.unisa.diem.actions.AbstractActionController;
 import it.unisa.diem.actions.Action;
-import it.unisa.diem.actions.MessageAction.AlertJavaFX;
-import it.unisa.diem.actions.MessageAction.ShowDialogBoxAction;
+import it.unisa.diem.actions.DialogAction.AlertJavaFX;
+import it.unisa.diem.actions.DialogAction.ShowDialogBoxAction;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.TextField;

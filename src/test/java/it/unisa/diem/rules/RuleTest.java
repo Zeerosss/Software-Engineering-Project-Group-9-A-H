@@ -10,8 +10,8 @@ import java.time.temporal.ChronoUnit;
 import org.junit.Test;
 
 import it.unisa.diem.actions.Action;
-import it.unisa.diem.actions.MessageAction.AlertJavaFX;
-import it.unisa.diem.actions.MessageAction.ShowDialogBoxAction;
+import it.unisa.diem.actions.DialogAction.AlertJavaFX;
+import it.unisa.diem.actions.DialogAction.ShowDialogBoxAction;
 import it.unisa.diem.triggers.Trigger;
 import it.unisa.diem.triggers.TimeOfDay.TimeOfDayTrigger;
 
