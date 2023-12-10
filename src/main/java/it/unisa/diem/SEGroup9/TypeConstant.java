@@ -4,35 +4,36 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class TypeConstant {
+    // Constants representing trigger types
     public static final Map<Integer, String> TRIGGERTYPES_CONSTANTS;
+
+    // Constants representing action types
     public static final Map<Integer, String> ACTIONTYPES_CONSTANTS;
+
     static {
-        // Creazione del dizionario
-        Map<Integer, String> map1= new HashMap<>();
-        Map<Integer, String> map2= new HashMap<>();
+        // Creation of the map for trigger types
+        Map<Integer, String> triggerTypesMap = new HashMap<>();
+        triggerTypesMap.put(0, "timetrigger");
+        triggerTypesMap.put(1, "dayoftheweektrigger");
+        triggerTypesMap.put(2, "dayofmonthtrigger");
+        triggerTypesMap.put(3, "datetrigger");
+        triggerTypesMap.put(4, "fileexiststrigger");
+        triggerTypesMap.put(5, "filesizetrigger");
+        triggerTypesMap.put(6, "exitstatustrigger");
 
-        map1.put(0, "timetrigger");
-        map1.put(1, "dayoftheweektrigger");
-        map1.put(2,"dayofmonthtrigger");
-        map1.put(3,"datetrigger");
-        map1.put(4, "fileexiststrigger");
-        map1.put(5, "filesizetrigger");
-        map1.put(6, "exitstatustrigger");
-        
-        map2.put(0,"audioaction");
-        map2.put(1,"dialogaction");
-        map2.put(2,"copyfileaction");
-        map2.put(3,"movefileaction");
-        map2.put(4,"deletefileaction");
-        map2.put(5,"appendfileaction");
-        map2.put(6, "executeexternalprogramaction");
+        // Creation of the map for action types
+        Map<Integer, String> actionTypesMap = new HashMap<>();
+        actionTypesMap.put(0, "audioaction");
+        actionTypesMap.put(1, "dialogaction");
+        actionTypesMap.put(2, "appendfileaction");
+        actionTypesMap.put(3, "copyfileaction");
+        actionTypesMap.put(4, "movefileaction");
+        actionTypesMap.put(5, "deletefileaction");
+        actionTypesMap.put(6, "executeexternalprogramaction");
 
-       
-        
-        TRIGGERTYPES_CONSTANTS = Collections.unmodifiableMap(map1);
-        ACTIONTYPES_CONSTANTS = Collections.unmodifiableMap(map2);
+        // Assigning immutable maps to constants
+        TRIGGERTYPES_CONSTANTS = Collections.unmodifiableMap(triggerTypesMap);
+        ACTIONTYPES_CONSTANTS = Collections.unmodifiableMap(actionTypesMap);
     }
-
 }

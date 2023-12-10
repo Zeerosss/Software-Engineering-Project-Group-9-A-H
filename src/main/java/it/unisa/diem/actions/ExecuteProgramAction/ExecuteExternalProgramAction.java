@@ -40,9 +40,7 @@ public class ExecuteExternalProgramAction implements Action{
                     fnfe.printStackTrace();
                 }
             }     
-
-        }
-        
+        } 
     }
 
     @Override
