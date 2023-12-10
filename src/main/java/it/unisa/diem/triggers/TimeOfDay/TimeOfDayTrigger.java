@@ -6,7 +6,7 @@ import it.unisa.diem.triggers.Trigger;
 
 public class TimeOfDayTrigger implements Trigger {
     
-    LocalTime time;
+    private LocalTime time;
     
     public TimeOfDayTrigger(LocalTime time) {
         this.time = time;

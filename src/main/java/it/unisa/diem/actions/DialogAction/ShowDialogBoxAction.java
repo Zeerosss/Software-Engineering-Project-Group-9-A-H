@@ -10,11 +10,6 @@ public class ShowDialogBoxAction implements Action {
         this.message = message;
         this.dialogDisplayer = alertDisplayer;
     }
-
-    public String getMessage() {
-        return this.message;
-    }
-
     // Override the startAction method as required by the Action interface
     @Override
     public void startAction() {
