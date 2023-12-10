@@ -1,4 +1,4 @@
-package it.unisa.diem.actions.MessageAction;
+package it.unisa.diem.actions.DialogAction;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;

@@ -8,6 +8,8 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
+import it.unisa.diem.triggers.DayOfWeek.DayOfTheWeekTrigger;
+
 public class DayOfTheWeekTriggerTest {
     @Test
     public void testIsValidated() {

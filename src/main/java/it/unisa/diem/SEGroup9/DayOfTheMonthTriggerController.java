@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import it.unisa.diem.triggers.AbstractTriggerController;
-import it.unisa.diem.triggers.DayOfTheMonthTrigger;
 import it.unisa.diem.triggers.Trigger;
+import it.unisa.diem.triggers.DayOfMonth.DayOfTheMonthTrigger;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Spinner;

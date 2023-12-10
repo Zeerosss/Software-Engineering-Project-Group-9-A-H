@@ -1,7 +1,9 @@
-package it.unisa.diem.triggers;
+package it.unisa.diem.triggers.Date;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import it.unisa.diem.triggers.Trigger;
 
 public class DateTrigger implements Trigger {
     private LocalDate date;

@@ -7,6 +7,8 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
+import it.unisa.diem.triggers.Date.DateTrigger;
+
 public class DateTriggerTest {
     @Test
     public void isValidatedTest() {
