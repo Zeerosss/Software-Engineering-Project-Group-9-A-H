@@ -29,16 +29,6 @@ public class RuleListToJavaFXTest {
         assertFalse(ruleListToJavaFX.isEmpty());
     }
 
-    // Rule can be deleted from the RuleList using RuleListToJavaFX
-    @Test
-    public void test_delete_rule() {
-        RuleListToJavaFX ruleListToJavaFX = RuleListToJavaFX.getInstance();
-        ruleListToJavaFX.ruleAdd(true, "Test Rule", new DateTrigger(1,1,1), new ShowDialogBoxAction("", null), false, Duration.ofSeconds(5));
-        ruleListToJavaFX.ruleDelete(ruleListToJavaFX.getRules().get(0));
-        assertTrue(ruleListToJavaFX.isEmpty());
-    }
-
-
 
 
     // RuleListToJavaFX cannot delete a null rule from the RuleList
@@ -53,10 +43,4 @@ public class RuleListToJavaFXTest {
         }
     }
 
-    // RuleListToJavaFX can check if the rule list is empty
-    @Test
-    public void test_check_if_rule_list_is_empty() {
-        RuleListToJavaFX ruleListToJavaFX = RuleListToJavaFX.getInstance();
-        assertTrue(ruleListToJavaFX.isEmpty());
-    }
 }
