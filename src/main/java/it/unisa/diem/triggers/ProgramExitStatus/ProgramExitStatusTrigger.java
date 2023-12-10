@@ -1,6 +1,8 @@
 package it.unisa.diem.triggers.ProgramExitStatus;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import it.unisa.diem.rules.Observer;
 import it.unisa.diem.triggers.Trigger;
@@ -71,7 +73,7 @@ public class ProgramExitStatusTrigger implements Trigger, Observer {
      */
     @Override
     public String toString() {
-        return "Exit Status Trigger, program:" + path + "\nargs:" + args;
+        return "Exit Status Trigger, program:" + path + "\nargs:" + Arrays.asList(args).toString();
     }
 
     /**

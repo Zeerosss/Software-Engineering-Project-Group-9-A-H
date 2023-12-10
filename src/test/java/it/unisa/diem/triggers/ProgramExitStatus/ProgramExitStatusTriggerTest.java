@@ -39,5 +39,15 @@ public class ProgramExitStatusTriggerTest {
 
         while(trigger.isValidated())
         assertFalse(trigger.isFailed());
+
+        
     }
+        // Returns a string containing the program path and arguments.
+        @Test
+        public void test_returns_string_with_path_and_arguments() throws IOException {
+            ProgramExitStatusTrigger trigger = new ProgramExitStatusTrigger("src\\test\\java\\it\\unisa\\diem\\triggers\\test.exe", "arg1,arg2,arg3");
+            String expected = "Exit Status Trigger, program:src\\test\\java\\it\\unisa\\diem\\triggers\\test.exe\nargs:[arg1, arg2, arg3]";
+            String actual = trigger.toString();
+            assertEquals(expected, actual);
+        }
 }
