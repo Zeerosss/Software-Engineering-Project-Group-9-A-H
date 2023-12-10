@@ -78,6 +78,14 @@ public class MoveFileActionTest {
         MoveFileAction action=new MoveFileAction(tempFile, tempDirectory.toString());
         String expectedString = "Move the File:"+tempFile.getName() +"\n to:"+ Paths.get(tempDirectory.toString(),tempFile.getName());
         assertEquals(expectedString, action.toString());
+
+
+        try{
+            Files.delete(tempFile.toPath());
+            Files.delete(tempDirectory);
+        }catch(IOException e){
+            System.err.println("Error in deleting the temp file");
+        }
     }
 
 }

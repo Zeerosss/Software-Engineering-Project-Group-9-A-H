@@ -67,6 +67,13 @@ public class CopyFileActionTest {
         CopyFileAction action=new CopyFileAction(tempFile, tempDirectory.toString());
         String expectedString = "Copy the file:"+tempFile.getName() +"\n to:"+ Paths.get(tempDirectory.toString(),tempFile.getName());
         assertEquals(expectedString, action.toString());
+
+        try{
+            Files.delete(tempFile.toPath());
+            Files.delete(tempDirectory);
+        }catch(IOException e){
+            System.err.println("Error in deleting the temp file");
+        }
     }
 
 }
