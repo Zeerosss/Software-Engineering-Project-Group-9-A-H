@@ -10,8 +10,6 @@ import it.unisa.diem.actions.FileChecker;
 import it.unisa.diem.actions.FileAction.CopyFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
@@ -65,13 +63,6 @@ public class CopyFileActionController extends FileChecker implements AbstractAct
     // This method is called when the controller is initialized
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        //Alerting the user about an impending file operation
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("Warning");
-        alert.setHeaderText("Caution: This action copies a file!");
-        alert.setContentText("Press Confirm to OK to continue");  
-        alert.showAndWait();
     }
 
     // This method creates and returns a CopyFileAction based on user input

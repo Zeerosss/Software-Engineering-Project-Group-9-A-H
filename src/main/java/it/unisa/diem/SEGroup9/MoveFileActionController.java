@@ -10,8 +10,6 @@ import it.unisa.diem.actions.FileChecker;
 import it.unisa.diem.actions.FileAction.MoveFileAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
@@ -64,13 +62,6 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Alerting the user about an impending file operation
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("Warning");
-        alert.setHeaderText("Caution: This action moves a file!");
-        alert.setContentText("Press OK to continue");
-        alert.showAndWait();
-
     }
 
     // This method creates and returns a MoveFileAction based on user input
