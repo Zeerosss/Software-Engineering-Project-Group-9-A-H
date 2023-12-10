@@ -24,7 +24,7 @@ public class FileSizeExceedsTriggerTest {
         long fileSizeInBytes = tempFile.length();
         System.out.println("The size of the text file is: " + fileSizeInBytes + " bytes");
 
-        FileSizeExceedsTrigger trigger = new FileSizeExceedsTrigger(tempFile.getPath(), 50); //here you can change the max size of the file
+        FileSizeExceedsTrigger trigger = new FileSizeExceedsTrigger(tempFile.getPath(), 50, "KB"); //here you can change the max size of the file
 
         // Validate that the file size exceeds 50 bytes (in general, a specified amount of bytes decided by the user, it can be changed according to every need)
         // This test could even be named testIsNotValidated by providing a byte threshold smaller than the actual file size,
