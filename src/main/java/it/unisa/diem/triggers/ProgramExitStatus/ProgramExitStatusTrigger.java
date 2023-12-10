@@ -2,7 +2,6 @@ package it.unisa.diem.triggers.ProgramExitStatus;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 
 import it.unisa.diem.rules.Observer;
 import it.unisa.diem.triggers.Trigger;

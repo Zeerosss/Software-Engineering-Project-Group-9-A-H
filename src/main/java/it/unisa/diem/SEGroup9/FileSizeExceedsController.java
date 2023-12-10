@@ -20,6 +20,7 @@ import javafx.stage.FileChooser;
 public class FileSizeExceedsController implements AbstractTriggerController {
 
     private File selectedFile;
+    private FileChooser fileChooser;
 
     @FXML
     private Button chooseFileButton;
@@ -35,6 +36,8 @@ public class FileSizeExceedsController implements AbstractTriggerController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose a file");
         // Initialize the Spinner with units of measure
         unitSpinner.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<>(FXCollections.observableArrayList("byte", "kilobyte", "megabyte", "gigabyte")));
     }
@@ -42,11 +45,8 @@ public class FileSizeExceedsController implements AbstractTriggerController {
     @FXML
     private void chooseFile(ActionEvent event) {
         // Open a FileChooser dialog to choose a file
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose a file");
-
         // Get the selected file
-        File newSelectedFile = fileChooser.showOpenDialog(null);
+        File newSelectedFile = fileChooser.showOpenDialog(App.getStage());
         if (newSelectedFile != null) {
             // Update the selectedFile and label with the chosen file information
             selectedFile = newSelectedFile;

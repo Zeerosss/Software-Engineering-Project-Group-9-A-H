@@ -38,11 +38,12 @@ public class ExecuteExternalProgramActionController implements AbstractActionCon
     private Label parametersLabel;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
+    public void initialize(URL location, ResourceBundle resources) { 
         parameterList = new ArrayList<>();
-
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
     }
+    
     @FXML
     private void addParameterAction(ActionEvent event){
         //add parameter in a list and update the label
@@ -53,12 +54,10 @@ public class ExecuteExternalProgramActionController implements AbstractActionCon
     }
     @FXML
     void changeProgramAction(ActionEvent event){
-        fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
+        File newSelectedFile = fileChooser.showOpenDialog(App.getStage());
         // Show the file chooser dialog and update the label with the name of the chosen file
-        file = fileChooser.showOpenDialog(App.getStage());
-        externalProgramPathLabel.setText("");
-        if (file != null) {
+        if (newSelectedFile != null) {
+            file = newSelectedFile;
             externalProgramPathLabel.setText("Chosen file: " + file.getName());
         }
     }

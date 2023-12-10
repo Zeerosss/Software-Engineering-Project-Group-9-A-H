@@ -17,13 +17,11 @@ import javafx.stage.FileChooser;
 
 public class ExitStatusTriggerController implements AbstractTriggerController{
 
-    
     private FileChooser fileChooser;
     private File file;
+
     @FXML
     private Button chooseProgramButton;
-
-
 
     @FXML
     private Label fileLabel;
@@ -33,29 +31,19 @@ public class ExitStatusTriggerController implements AbstractTriggerController{
 
     @FXML
     private void chooseFile(ActionEvent event) {
-        file = fileChooser.showOpenDialog(App.getStage());
-        fileLabel.setText("");
-        if (file != null) {
+        File newSelectedFile = fileChooser.showOpenDialog(App.getStage());
+        if (newSelectedFile != null) {
+            file = newSelectedFile;
             fileLabel.setText("Chosen file: " + file.getName());
         }
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-     // Create a FileChooser to allow the user to select a txt file
+        // Create a FileChooser to allow the user to select an external program
         fileChooser = new FileChooser();
-        
         fileChooser.setTitle("Select an external program");
-
-        // Show the file chooser dialog and get the selected file
-        file = fileChooser.showOpenDialog(App.getStage());
-        // Remove the comment of the next line if you want to print the path of the chosen file to the console
-       // System.out.println(file);
-
-        // Update the label with the name of the chosen file if file is not null
-        if (file != null) {
-            fileLabel.setText("Chosen file: " + file.getName());
-        }
     }
+
     @Override
     public Trigger createTrigger() {
         if(isFilled())
@@ -69,9 +57,7 @@ public class ExitStatusTriggerController implements AbstractTriggerController{
     }
 
     public boolean isFilled() {
-        if(file==null || inputField.getText().isEmpty()) 
-        return(false);
-        return(true);
+        return file!=null;
     }
     
 }
