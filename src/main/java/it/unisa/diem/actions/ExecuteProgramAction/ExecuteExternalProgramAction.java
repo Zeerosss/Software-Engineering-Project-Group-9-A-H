@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import it.unisa.diem.SEGroup9.AlertController;
@@ -29,9 +31,8 @@ public class ExecuteExternalProgramAction implements Action{
         File f = new File("programResult\\" + file.getName() + ".txt");
     
         synchronized (f){
-            pb.redirectOutput(ProcessBuilder.Redirect.appendTo(f));
-        
             try {
+                pb.redirectOutput(ProcessBuilder.Redirect.appendTo(f));
                 Process p = pb.start();
             } catch (IOException | NullPointerException | IndexOutOfBoundsException | SecurityException e) {
                 AlertController.displayAlertWarning("Warning!",null , "An error occurred while executing the file!");
