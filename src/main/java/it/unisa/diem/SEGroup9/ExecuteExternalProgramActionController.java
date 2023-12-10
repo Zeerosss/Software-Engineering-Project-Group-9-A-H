@@ -42,15 +42,6 @@ public class ExecuteExternalProgramActionController implements AbstractActionCon
         
         parameterList = new ArrayList<>();
 
-        fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-
-        // Show the file chooser dialog and get the selected file
-        file = fileChooser.showOpenDialog(App.getStage());
-
-        if (file != null) {
-            externalProgramPathLabel.setText("Chosen file: " + file.getName());
-        }
     }
     @FXML
     void addParameterAction(ActionEvent event){
@@ -62,6 +53,8 @@ public class ExecuteExternalProgramActionController implements AbstractActionCon
     }
     @FXML
     void changeProgramAction(ActionEvent event){
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
         // Show the file chooser dialog and update the label with the name of the chosen file
         file = fileChooser.showOpenDialog(App.getStage());
         externalProgramPathLabel.setText("");
