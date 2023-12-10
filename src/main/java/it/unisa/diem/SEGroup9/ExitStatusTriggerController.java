@@ -32,7 +32,7 @@ public class ExitStatusTriggerController implements AbstractTriggerController{
     private TextField inputField;
 
     @FXML
-    void chooseFile(ActionEvent event) {
+    private void chooseFile(ActionEvent event) {
         file = fileChooser.showOpenDialog(App.getStage());
         fileLabel.setText("");
         if (file != null) {

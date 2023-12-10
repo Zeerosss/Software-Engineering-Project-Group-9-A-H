@@ -40,7 +40,7 @@ public class FileSizeExceedsController implements AbstractTriggerController {
     }
 
     @FXML
-    void chooseFile(ActionEvent event) {
+    private void chooseFile(ActionEvent event) {
         // Open a FileChooser dialog to choose a file
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a file");

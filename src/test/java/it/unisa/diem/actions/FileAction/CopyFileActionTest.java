@@ -18,18 +18,16 @@ public class CopyFileActionTest {
     
     @Test
     // Test to check if a file is correctly copied and exists in the selected destination Path. After the check, the file is deleted.
-    //using createTempDirectory, i can create a temporary directory to be able to run tests on both mac and windows without the needs to specify a OS Path. 
-    //In a previous github release i used only a windows compatible test using C:\
+    //using createTempDirectory, I can create a temporary directory to be able to run tests on both mac and windows without the needs to specify a OS Path. 
+    //In a previous github release I used only a windows compatible test using C:\
     public void copyActionTest() throws IOException {
         File tempFile= File.createTempFile("test", ".txt");
         Path tempDirectory = Files.createTempDirectory("temporaryDirectory");
 
         CopyFileAction copyAction = new CopyFileAction(tempFile, tempDirectory.toString());
         copyAction.startAction();
-
         
         Path filePath = Paths.get(tempDirectory.toString(), tempFile.getName());
-
         assertTrue(Files.exists(filePath));
 
         try {

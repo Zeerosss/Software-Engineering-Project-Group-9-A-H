@@ -52,7 +52,7 @@ public class PrimaryController implements Initializable{
     
    
     @FXML
-    void deleteSelectedRule(ActionEvent event) throws IOException{
+    private void deleteSelectedRule(ActionEvent event) throws IOException{
         Rule selectedRule = rulesTable.getSelectionModel().getSelectedItem();
         if(selectedRule != null){
 
@@ -73,7 +73,7 @@ public class PrimaryController implements Initializable{
         }
     }
     @FXML
-    void changeStatus(ActionEvent event) throws IOException {
+    private void changeStatus(ActionEvent event) throws IOException {
         Rule selectedRule = rulesTable.getSelectionModel().getSelectedItem();
         if (selectedRule != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -89,8 +89,7 @@ public class PrimaryController implements Initializable{
 
 
     @FXML
-    void switchToCreateView(ActionEvent event) throws IOException{
-
+    private void switchToCreateView(ActionEvent event) throws IOException{
         App.setRoot("createsetview");
     }
    

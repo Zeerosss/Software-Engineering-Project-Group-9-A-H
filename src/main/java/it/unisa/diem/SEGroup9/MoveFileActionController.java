@@ -33,7 +33,7 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
 
     // This method handles the directory choosing process by clicking the "Choose a Directory" button
     @FXML
-    void chooseDirectory(ActionEvent event) {
+    private void chooseDirectory(ActionEvent event) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Choose your directory");
 
@@ -46,7 +46,7 @@ public class MoveFileActionController extends FileChecker implements AbstractAct
     // This method handles the file choosing process by clicking the "Choose a File" button.
     // It also checks the file length to ensure that there are no overlapping texts on the UI.
     @FXML
-    void chooseFile(ActionEvent event) {
+    private void chooseFile(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a file to move");
 

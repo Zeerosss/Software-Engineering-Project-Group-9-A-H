@@ -53,7 +53,7 @@ public class ExecuteExternalProgramActionController implements AbstractActionCon
         }
     }
     @FXML
-    void addParameterAction(ActionEvent event){
+    private void addParameterAction(ActionEvent event){
         //add parameter in a list and update the label
         if(!parameterID.getText().trim().equals(""))
             parameterList.add(parameterID.getText());
@@ -61,7 +61,7 @@ public class ExecuteExternalProgramActionController implements AbstractActionCon
         parametersLabel.setText(String.valueOf(parameterList.size()));
     }
     @FXML
-    void changeProgramAction(ActionEvent event){
+    private void changeProgramAction(ActionEvent event){
         // Show the file chooser dialog and update the label with the name of the chosen file
         file = fileChooser.showOpenDialog(App.getStage());
         externalProgramPathLabel.setText("");

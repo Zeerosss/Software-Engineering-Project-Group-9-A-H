@@ -38,7 +38,7 @@ public class AppendTextActionController implements AbstractActionController {
 
     // Event handler method for the chooseFileButton
     @FXML
-    void chooseFile(ActionEvent event) {
+    private void chooseFile(ActionEvent event) {
         // Show the file chooser dialog and update the label with the name of the chosen file
         File newFile = fileChooser.showOpenDialog(App.getStage());
         if (newFile != null) {

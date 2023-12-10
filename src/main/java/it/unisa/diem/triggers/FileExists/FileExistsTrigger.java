@@ -17,7 +17,7 @@ public class FileExistsTrigger implements Trigger {
     @Override
     public boolean isValidated() {
         Path filePath = Paths.get(directoryPath, fileName);
-        return Files.exists(filePath) && Files.isRegularFile(filePath);
+        return Files.exists(filePath); //&& Files.isRegularFile(filePath);
     }
 
     @Override
