@@ -38,7 +38,7 @@ public class FileExistsTriggerTest {
         File tempFile = File.createTempFile("file",".txt");
         Path tempDirectory = Files.createTempDirectory("temporaryDirectory");
         FileExistsTrigger trigger = new FileExistsTrigger(tempDirectory.toString(), tempFile.getName());
-        String expectedString = "FileExistsTrigger:\n" + "fileName=\n" + tempFile.getName() + "\nDirectory=\n" + tempDirectory.toString();
+        String expectedString = "This file: " + tempFile.getName() + "\nExists in this Directory: " + tempDirectory.toString();
         assertEquals(expectedString, trigger.toString());
         try {
             Files.delete(tempFile.toPath());

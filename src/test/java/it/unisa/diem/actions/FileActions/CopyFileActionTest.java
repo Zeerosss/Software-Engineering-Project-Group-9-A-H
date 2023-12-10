@@ -1,4 +1,4 @@
-package it.unisa.diem.actions.FileAction;
+package it.unisa.diem.actions.FileActions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -68,7 +68,7 @@ public class CopyFileActionTest {
         File tempFile = File.createTempFile("example",".txt");
         Path tempDirectory = Files.createTempDirectory("temporaryDirectory");
         CopyFileAction action=new CopyFileAction(tempFile, tempDirectory.toString());
-        String expectedString = "Copy the file:"+tempFile.getName() +"\n to:"+ Paths.get(tempDirectory.toString(),tempFile.getName());
+        String expectedString = "Copy the file: " + tempFile.getName() + "\nInto the directory: " + Paths.get(tempDirectory.toString(),tempFile.getName());
         assertEquals(expectedString, action.toString());
 
         try{

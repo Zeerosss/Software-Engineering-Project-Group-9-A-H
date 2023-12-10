@@ -1,4 +1,4 @@
-package it.unisa.diem.actions.AppendToFile;
+package it.unisa.diem.actions.AppendTextAction;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -74,7 +74,7 @@ public class AppendTextActionTest {
         AppendTextAction trigger = new AppendTextAction(tempFile.getPath(), "test");
 
         // Create the expected string representation of the action
-        String expectedString = "Append a string on a file\n file:" + tempFile.getPath() + ", message=" + "test";
+        String expectedString = "Append this message: " + "test" + "\nTo this file: " + tempFile.getPath();
         assertEquals(expectedString, trigger.toString());
 
         // Delete the temporary file after the test

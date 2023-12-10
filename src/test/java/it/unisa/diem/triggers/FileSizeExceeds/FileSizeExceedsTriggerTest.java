@@ -22,9 +22,9 @@ public class FileSizeExceedsTriggerTest {
         Files.write(tempFile.toPath(), data.getBytes(), StandardOpenOption.APPEND);
 
         long fileSizeInBytes = tempFile.length();
-        System.out.println("The size of the text file is: " + fileSizeInBytes + " bytes");
+        System.out.println("The size of the file is: " + fileSizeInBytes + " bytes");
 
-        FileSizeExceedsTrigger trigger = new FileSizeExceedsTrigger(tempFile.getPath(), 50); //here you can change the max size of the file
+        FileSizeExceedsTrigger trigger = new FileSizeExceedsTrigger(tempFile.getPath(), 50, "KB"); //here you can change the max size of the file
 
         // Validate that the file size exceeds 50 bytes (in general, a specified amount of bytes decided by the user, it can be changed according to every need)
         // This test could even be named testIsNotValidated by providing a byte threshold smaller than the actual file size,
@@ -44,17 +44,15 @@ public class FileSizeExceedsTriggerTest {
     public void testToString() throws IOException {
         // Create a temporary file
         File tempFile = File.createTempFile("file", ".txt");
-        
+
         // Write data to the temporary file
         String data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
         Files.write(tempFile.toPath(), data.getBytes(), StandardOpenOption.APPEND);
 
-        FileSizeExceedsTrigger trigger = new FileSizeExceedsTrigger(tempFile.getName(), 2);
+        FileSizeExceedsTrigger trigger = new FileSizeExceedsTrigger(tempFile.getName(), 2, "bytes");
 
         // Create the expected string representation of the trigger
-        String expectedString = "FileSizeTrigger:\n" +
-                                "fileName=\n" + tempFile.getName() + "\n" +
-                                "sizeFile=\n" + 2.0;
+        String expectedString = "This file: " + tempFile.getName() + "\nIs bigger in size than: 2.0 bytes";
 
         // Assert that the toString() method produces the expected string
         assertEquals(expectedString, trigger.toString());

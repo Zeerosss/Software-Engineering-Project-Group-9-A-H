@@ -1,4 +1,4 @@
-package it.unisa.diem.actions.FileAction;
+package it.unisa.diem.actions.FileActions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -65,10 +65,8 @@ public class MoveFileActionTest {
 
     assertTrue(Files.exists(destinationPath));
     
-
-
     try{
-        Files.delete(destinationPath);
+        Files.delete(tempFile.toPath());
         Files.delete(tempDirectory);
     }catch(IOException e){
         System.err.println("Error when deleting the tempfile");
@@ -80,7 +78,7 @@ public class MoveFileActionTest {
         File tempFile = File.createTempFile("example",".txt");
         Path tempDirectory = Files.createTempDirectory("temporaryDirectory");
         MoveFileAction action=new MoveFileAction(tempFile, tempDirectory.toString());
-        String expectedString = "Move the File:"+tempFile.getName() +"\n to:"+ Paths.get(tempDirectory.toString(),tempFile.getName());
+        String expectedString = "Move the File: " + tempFile.getName() + "\nInto the directory: " + Paths.get(tempDirectory.toString(),tempFile.getName());
         assertEquals(expectedString, action.toString());
 
 

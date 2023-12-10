@@ -1,13 +1,9 @@
-package it.unisa.diem.actions.MessageAction;
+package it.unisa.diem.actions.DialogAction;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
-
-import it.unisa.diem.actions.DialogAction.AlertJavaFX;
-import it.unisa.diem.actions.DialogAction.ShowDialogBoxAction;
-
 
 public class ShowDialogBoxActionTest {
     @Test

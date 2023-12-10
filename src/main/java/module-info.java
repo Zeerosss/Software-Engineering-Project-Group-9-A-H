@@ -9,6 +9,7 @@ module it.unisa.diem{
     opens it.unisa.diem.SEGroup9 to javafx.fxml;
 
     opens it.unisa.diem.actions to junit;
+    opens it.unisa.diem.actions.AppendTextAction to junit;
     opens it.unisa.diem.triggers.TimeOfDay to junit;
     opens it.unisa.diem.triggers.FileSizeExceeds to junit;
     opens it.unisa.diem.triggers.FileExists to junit;
@@ -16,10 +17,17 @@ module it.unisa.diem{
     exports it.unisa.diem.actions;
     exports it.unisa.diem.actions.AudioFileAction;
     exports it.unisa.diem.actions.DialogAction;
+    exports it.unisa.diem.actions.AppendTextAction;
+    exports it.unisa.diem.actions.FileActions;
+    exports it.unisa.diem.actions.ExecuteProgramAction;
+    
 
     exports it.unisa.diem.triggers;
+    exports it.unisa.diem.triggers.DayOfWeek;
+    exports it.unisa.diem.triggers.DayOfMonth;
+    exports it.unisa.diem.triggers.Date;
+    exports it.unisa.diem.triggers.ProgramExitStatus;
     exports it.unisa.diem.rules;
     exports it.unisa.diem.SEGroup9;
     
-    exports it.unisa.diem.actions.FileActions;
 }

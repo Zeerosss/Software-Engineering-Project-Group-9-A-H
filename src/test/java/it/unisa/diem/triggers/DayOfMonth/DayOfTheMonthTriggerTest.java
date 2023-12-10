@@ -38,7 +38,7 @@ public class DayOfTheMonthTriggerTest {
     @Test
     public void testDayOfTheMonthTriggerToString() {
         DayOfTheMonthTrigger dayTrigger = new DayOfTheMonthTrigger(10);
-        String choosenDay = "Day of month choosen: \n " + 10;
+        String choosenDay = "The chosen day of the month is: \n " + 10;
         assertEquals(choosenDay, dayTrigger.toString());
     }
 }
