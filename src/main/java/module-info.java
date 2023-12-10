@@ -2,8 +2,8 @@ module it.unisa.diem{
     requires javafx.controls;
     requires javafx.fxml;
     requires junit;
-    requires java.desktop;
     requires javafx.media;
+    requires java.desktop;
     
     opens it.unisa.diem.rules to javafx.base;
     opens it.unisa.diem.SEGroup9 to javafx.fxml;
