@@ -11,5 +11,4 @@ https://trello.com/b/smrxoKJ0/software-engineering-project-group-9-a-h
 
 LINK TO UML AND USED PATTERN DOCUMENT->
 https://drive.google.com/file/d/1GPrfG6U9hTT1pVN1NNm5tRAfl-LhZYKf/view?usp=sharing
-
-download for better resolution of uml
+Download the file for better resolution of the UML Class Diagram
